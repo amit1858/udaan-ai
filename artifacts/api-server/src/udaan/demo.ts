@@ -17,6 +17,7 @@ export type Context = {
   experiments: ReturnType<typeof serializeExperiment>[];
   history: { role: string; content: string }[];
   market?: Market;
+  voice?: boolean;
 };
 
 export function matchIntent(text: string, hasPrevious: boolean): AIOutput["intent"] {

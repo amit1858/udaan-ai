@@ -69,3 +69,25 @@ model ProviderCall {
   tokens     Int      @default(0)
   createdAt  DateTime @default(now())
 }
+
+model VoiceLabConfig {
+  id          String  @id @default("singleton")
+  paidEnabled Boolean @default(false)
+  maxRequests Int     @default(6)
+}
+
+model VoiceRequest {
+  id                 String   @id @default(cuid())
+  operation          String
+  model              String
+  speaker            String?
+  status             String   @default("processing")
+  latencyMs          Int      @default(0)
+  estimatedCostPaise Int      @default(0)
+  inputCharacters    Int?
+  inputSeconds       Float?
+  requestId          String?
+  error              String?
+  httpStatus         Int?
+  createdAt          DateTime @default(now())
+}

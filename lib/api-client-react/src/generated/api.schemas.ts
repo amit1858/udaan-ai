@@ -292,6 +292,7 @@ export interface ChatInput {
      * @maxLength 2000
      */
   message: string;
+  voice?: boolean;
 }
 
 export type MessageRole = typeof MessageRole[keyof typeof MessageRole];
@@ -348,6 +349,89 @@ export interface Message {
   market?: MarketIntelligence;
 }
 
+export interface VoiceLoginInput {
+  /**
+     * @minLength 12
+     * @maxLength 200
+     */
+  password: string;
+}
+
+export interface VoiceAuthorizationInput {
+  enabled: boolean;
+  /**
+     * @minimum 1
+     * @maximum 10
+     */
+  maxRequests: number;
+  confirmed: boolean;
+  creditCoverageConfirmed: boolean;
+}
+
+export interface VoiceSynthesisInput {
+  /**
+     * @minLength 1
+     * @maxLength 1000
+     */
+  text: string;
+  language: Language;
+  confirmed: boolean;
+}
+
+export interface VoiceConfirmedInput {
+  confirmed: boolean;
+}
+
+export interface VoiceOperation {
+  id: string;
+  operation: string;
+  model: string;
+  speaker?: string;
+  status: string;
+  latencyMs: number;
+  estimatedCostInr: number;
+  createdAt: string;
+  transcript?: string;
+  audioBase64?: string;
+  audioMime?: string;
+  requestId?: string;
+  inputCharacters?: number;
+  inputSeconds?: number;
+  error?: string;
+  httpStatus?: number;
+}
+
+export type VoiceLabStatusAccess = typeof VoiceLabStatusAccess[keyof typeof VoiceLabStatusAccess];
+
+
+export const VoiceLabStatusAccess = {
+  disabled: 'disabled',
+  locked: 'locked',
+  admin: 'admin',
+} as const;
+
+export type VoiceLabStatusState = typeof VoiceLabStatusState[keyof typeof VoiceLabStatusState];
+
+
+export const VoiceLabStatusState = {
+  not_configured: 'not_configured',
+  ready_to_test: 'ready_to_test',
+  connected: 'connected',
+  error: 'error',
+} as const;
+
+export interface VoiceLabStatus {
+  access: VoiceLabStatusAccess;
+  state: VoiceLabStatusState;
+  configured: boolean;
+  setupRequired: boolean;
+  paidEnabled: boolean;
+  maxRequests: number;
+  usedRequests: number;
+  estimatedCostInr: number;
+  requests: VoiceOperation[];
+}
+
 export interface ProviderStatus {
   id: Provider;
   name: string;
@@ -366,6 +450,11 @@ export interface ProviderTestInput {
 export interface ResetInput {
   confirmed: boolean;
 }
+
+export type TranscribeVoiceParams = {
+language: Language;
+confirmed: boolean;
+};
 
 export type GetOpportunitiesParams = {
 language?: Language;

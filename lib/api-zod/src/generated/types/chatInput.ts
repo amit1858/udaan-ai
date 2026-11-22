@@ -12,4 +12,5 @@ export interface ChatInput {
      * @maxLength 2000
      */
   message: string;
+  voice?: boolean;
 }

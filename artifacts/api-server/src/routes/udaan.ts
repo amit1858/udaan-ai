@@ -17,6 +17,7 @@ import { calculate, assertTransition, financeInput, toPaise, learningFacts } fro
 import { generate, providerStatuses, type ProviderId } from "../udaan/providers";
 import type { Context } from "../udaan/demo";
 import { isMarketQuestion, retrieveMarket } from "../udaan/market";
+import voiceLabRouter, { requireVoiceLabAdmin } from "./voice-lab";
 
 const router: IRouter = Router();
 router.use("/udaan", cookieParser(process.env.SESSION_SECRET || randomUUID()));
@@ -37,6 +38,7 @@ router.use("/udaan", async (req: Request, res: Response, next: NextFunction): Pr
   if (!id || !/^[0-9a-f-]{36}$/.test(id)) {
     id = randomUUID();
     res.cookie("udaan_session", id, { signed: true, httpOnly: true, sameSite: "lax", secure: req.secure || req.get("x-forwarded-proto") === "https", maxAge: 7 * 86400000, path: "/api/udaan" });
+    req.signedCookies.udaan_session = id;
   }
   const now = Date.now();
   if (buckets.size > 10000) for (const [key, b] of buckets) if (b.until < now) buckets.delete(key);
@@ -49,6 +51,7 @@ router.use("/udaan", async (req: Request, res: Response, next: NextFunction): Pr
   next();
 });
 
+router.use("/udaan/voice-lab", voiceLabRouter);
 router.get("/udaan/state", async (req, res): Promise<void> => {
   res.json(GetUdaanStateResponse.parse(await getState(sessionId(req))));
 });
@@ -84,7 +87,12 @@ router.get("/udaan/conversation", async (req, res): Promise<void> => {
 });
 const chatBusy = new Set<string>();
 router.post("/udaan/chat", async (req, res): Promise<void> => {
-  const { message } = SendChatBody.parse(req.body);
+  const { message, voice } = SendChatBody.parse(req.body);
+  if (voice) {
+    let denied: unknown;
+    requireVoiceLabAdmin(req, res, (e) => { denied = e; });
+    if (denied) throw denied;
+  }
   z.string().trim().min(1).parse(message);
   const id = sessionId(req);
   if (chatBusy.has(id)) { res.status(429).json({ error: "Please wait for your previous answer." }); return; }
@@ -95,7 +103,7 @@ router.post("/udaan/chat", async (req, res): Promise<void> => {
     const lang = s.language as Language;
     const experiments = await prisma.experiment.findMany({ where: { sessionId: id }, orderBy: { createdAt: "desc" }, take: 10 });
     const history = await prisma.chatMessage.findMany({ where: { sessionId: id }, orderBy: { createdAt: "desc" }, take: 8 });
-    const context: Context = { profile, language: lang,
+    const context: Context = { profile, language: lang, voice,
       experiments: experiments.map((e) => serializeExperiment(e, lang, profile)),
       history: history.reverse().map((m) => ({ role: m.role, content: m.content })),
       ...(isMarketQuestion(message) ? { market: await retrieveMarket() } : {}),

@@ -25,7 +25,7 @@ Authority: complete UDAAN_MASTER_SPEC.md Version 5.0, read before implementation
 ## Authorization and schedule
 - User approved paid testing up to ₹100; conservative global persistent maximum six live attempts, no automatic retries.
 - OpenAI credentials provisioned securely by Replit; Anthropic credentials unavailable.
-- User deadline: 2026-11-22 15:00 IST. Feature freeze 14:35 IST; final 25 minutes reserved.
+- Original deadline: 2026-11-22 15:00 IST; original feature freeze 14:35 IST. Superseded by the user's extension: feature work may continue until **15:30 IST**. Revised final submission time was not specified.
 
 ## Milestone 2 — Complete application, validated
 - Discovery → contextual chat → evaluation → draft → approval → running → confirmed results → learning → linked next experiment implemented.
@@ -76,3 +76,15 @@ No public deployment, GitHub push or external business action performed. Paid ca
 - ESLint and full-workspace TypeScript passed.
 - API and frontend production bundles built successfully. Vite reports a nonblocking large-bundle warning and two scaffold sourcemap-location notices; no build failure.
 - Sarvam remains pending and is not counted as implemented or verified.
+
+## Revised Sarvam scope — protected Voice Lab first
+- User extended feature work until 15:30 IST and requested a small internal testing screen before customer-facing voice completion.
+- Implemented Settings → Integrations → Sarvam Voice Lab using the existing application and business reasoning.
+- Development-only server guard plus separate admin password, signed HTTP-only session bound to the visitor, 30-minute expiration, logout revocation, origin checks and login throttling.
+- No in-app Sarvam key submission/storage: the app cannot guarantee a Replit secret-store write. Keys must be added in Replit Secrets; Refresh Status is non-billable.
+- Added non-billable configuration checks, explicit credit/spending authorization, persistent total-attempt cap and audit metadata without stored audio/transcripts.
+- Implemented documented Saaras v4/codemix and Bulbul v4 Flash REST calls with verified v4 persona IDs, timeouts, throttling, bounded PCM WAV input and capped speech output. No automatic retries.
+- Lab UI includes ten-second recording, editable transcript, synthesis, Play/Stop/Replay and staged end-to-end reasoning using the existing conversation pipeline.
+- Unit tests: **71 passed**; ESLint and TypeScript passed after moving the cross-client/server audio-contract test out of the API compilation root.
+- User subsequently approved bounded paid testing. Agent selected an initial **₹10 pre-GST ceiling**; no Sarvam call has occurred while credentials are absent.
+- Real provider connectivity, microphone transcription, code-switch pronunciation and speech latency remain pending secure credentials and execution.

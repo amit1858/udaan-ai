@@ -6,6 +6,103 @@ info:
 servers:
   - url: /api
 paths:
+  /udaan/voice-lab/status:
+    get:
+      operationId: getVoiceLabStatus
+      responses:
+        "200":
+          description: Non-billable access and configuration status; sensitive fields masked until admin login
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/VoiceLabStatus" }
+  /udaan/voice-lab/login:
+    post:
+      operationId: loginVoiceLab
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/VoiceLoginInput" }
+      responses:
+        "200":
+          description: Admin session established
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/VoiceLabStatus" }
+  /udaan/voice-lab/logout:
+    post:
+      operationId: logoutVoiceLab
+      responses:
+        "200":
+          description: Admin session revoked
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/VoiceLabStatus" }
+  /udaan/voice-lab/authorization:
+    patch:
+      operationId: authorizeVoiceLab
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/VoiceAuthorizationInput" }
+      responses:
+        "200":
+          description: Explicit admin authorization updated without making a provider call
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/VoiceLabStatus" }
+  /udaan/voice-lab/test:
+    post:
+      operationId: testVoiceLabConnection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/VoiceConfirmedInput" }
+      responses:
+        "200":
+          description: One minimal TTS provider request result
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/VoiceOperation" }
+  /udaan/voice-lab/transcribe:
+    post:
+      operationId: transcribeVoice
+      parameters:
+        - name: language
+          in: query
+          required: true
+          schema: { $ref: "#/components/schemas/Language" }
+        - name: confirmed
+          in: query
+          required: true
+          schema: { type: boolean }
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema: { type: string, format: binary }
+      responses:
+        "200":
+          description: Bounded PCM WAV transcription; audio is not persisted
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/VoiceOperation" }
+  /udaan/voice-lab/synthesize:
+    post:
+      operationId: synthesizeVoice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/VoiceSynthesisInput" }
+      responses:
+        "200":
+          description: Bounded speech synthesis; audio is returned transiently, not stored
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/VoiceOperation" }
   /healthz:
     get:
       operationId: healthCheck
@@ -424,6 +521,7 @@ components:
       required: [message]
       properties:
         message: { type: string, minLength: 1, maxLength: 2000 }
+        voice: { type: boolean }
     Message:
       type: object
       required: [id, role, content, language, provider, createdAt]
@@ -468,6 +566,66 @@ components:
                     name: { type: string }
                     section: { type: string }
                     price: { type: number }
+    VoiceLoginInput:
+      type: object
+      required: [password]
+      properties:
+        password: { type: string, minLength: 12, maxLength: 200 }
+    VoiceAuthorizationInput:
+      type: object
+      required: [enabled, maxRequests, confirmed, creditCoverageConfirmed]
+      properties:
+        enabled: { type: boolean }
+        maxRequests: { type: integer, minimum: 1, maximum: 10 }
+        confirmed: { type: boolean }
+        creditCoverageConfirmed: { type: boolean }
+    VoiceSynthesisInput:
+      type: object
+      required: [text, language, confirmed]
+      properties:
+        text: { type: string, minLength: 1, maxLength: 1000 }
+        language: { $ref: "#/components/schemas/Language" }
+        confirmed: { type: boolean }
+    VoiceConfirmedInput:
+      type: object
+      required: [confirmed]
+      properties:
+        confirmed: { type: boolean }
+    VoiceOperation:
+      type: object
+      required: [id, operation, model, status, latencyMs, estimatedCostInr, createdAt]
+      properties:
+        id: { type: string }
+        operation: { type: string }
+        model: { type: string }
+        speaker: { type: string }
+        status: { type: string }
+        latencyMs: { type: integer }
+        estimatedCostInr: { type: number }
+        createdAt: { type: string }
+        transcript: { type: string }
+        audioBase64: { type: string }
+        audioMime: { type: string }
+        requestId: { type: string }
+        inputCharacters: { type: integer }
+        inputSeconds: { type: number }
+        error: { type: string }
+        httpStatus: { type: integer }
+    VoiceLabStatus:
+      type: object
+      required: [access, state, configured, setupRequired, paidEnabled, maxRequests, usedRequests, estimatedCostInr, requests]
+      properties:
+        access: { type: string, enum: [disabled, locked, admin] }
+        state: { type: string, enum: [not_configured, ready_to_test, connected, error] }
+        configured: { type: boolean }
+        setupRequired: { type: boolean }
+        paidEnabled: { type: boolean }
+        maxRequests: { type: integer }
+        usedRequests: { type: integer }
+        estimatedCostInr: { type: number }
+        requests:
+          type: array
+          items: { $ref: "#/components/schemas/VoiceOperation" }
     ProviderStatus:
       type: object
       required: [id, name, configured, model, status, paidCallsAllowed]

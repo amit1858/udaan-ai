@@ -43,7 +43,14 @@ import type {
   ProviderTestInput,
   ResetInput,
   ResultsInput,
-  TransitionInput
+  TranscribeVoiceParams,
+  TransitionInput,
+  VoiceAuthorizationInput,
+  VoiceConfirmedInput,
+  VoiceLabStatus,
+  VoiceLoginInput,
+  VoiceOperation,
+  VoiceSynthesisInput
 } from './api.schemas';
 
 import { customFetch } from '../custom-fetch';
@@ -72,6 +79,587 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
   }
   return result;
 };
+
+export const getGetVoiceLabStatusUrl = () => {
+
+
+
+
+  return `/api/udaan/voice-lab/status`
+}
+
+export const getVoiceLabStatus = async ( options?: Parameters<typeof customFetch>[1]): Promise<VoiceLabStatus> => {
+
+  return customFetch<VoiceLabStatus>(getGetVoiceLabStatusUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetVoiceLabStatusQueryKey = () => {
+    return [
+    `/api/udaan/voice-lab/status`
+    ] as const;
+    }
+
+
+export const getGetVoiceLabStatusQueryOptions = <TData = Awaited<ReturnType<typeof getVoiceLabStatus>>, TError = ErrorType<unknown>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getVoiceLabStatus>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetVoiceLabStatusQueryKey();
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getVoiceLabStatus>>> = ({ signal }) => getVoiceLabStatus({ signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getVoiceLabStatus>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GetVoiceLabStatusQueryResult = NonNullable<Awaited<ReturnType<typeof getVoiceLabStatus>>>
+export type GetVoiceLabStatusQueryError = ErrorType<unknown>
+
+
+export function useGetVoiceLabStatus<TData = Awaited<ReturnType<typeof getVoiceLabStatus>>, TError = ErrorType<unknown>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getVoiceLabStatus>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getVoiceLabStatus>>,
+          TError,
+          Awaited<ReturnType<typeof getVoiceLabStatus>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetVoiceLabStatus<TData = Awaited<ReturnType<typeof getVoiceLabStatus>>, TError = ErrorType<unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getVoiceLabStatus>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getVoiceLabStatus>>,
+          TError,
+          Awaited<ReturnType<typeof getVoiceLabStatus>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetVoiceLabStatus<TData = Awaited<ReturnType<typeof getVoiceLabStatus>>, TError = ErrorType<unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getVoiceLabStatus>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+
+export function useGetVoiceLabStatus<TData = Awaited<ReturnType<typeof getVoiceLabStatus>>, TError = ErrorType<unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getVoiceLabStatus>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGetVoiceLabStatusQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getLoginVoiceLabUrl = () => {
+
+
+
+
+  return `/api/udaan/voice-lab/login`
+}
+
+export const loginVoiceLab = async (voiceLoginInput: VoiceLoginInput, options?: Parameters<typeof customFetch>[1]): Promise<VoiceLabStatus> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<VoiceLabStatus>(getLoginVoiceLabUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(voiceLoginInput)
+  }
+);}
+
+
+
+
+
+export const getLoginVoiceLabMutationKey = () => ['loginVoiceLab'] as const;
+
+export const getLoginVoiceLabMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof loginVoiceLab>>, TError,LoginVoiceLabMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof loginVoiceLab>>, TError,LoginVoiceLabMutationVariables, TContext> => {
+
+const mutationKey = getLoginVoiceLabMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof loginVoiceLab>>, LoginVoiceLabMutationVariables> = (props) => {
+          const {data} = props ?? {};
+
+          return  loginVoiceLab(data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type LoginVoiceLabMutationResult = NonNullable<Awaited<ReturnType<typeof loginVoiceLab>>>
+    export type LoginVoiceLabMutationBody = BodyType<VoiceLoginInput>
+    export type LoginVoiceLabMutationError = ErrorType<unknown>
+    export type LoginVoiceLabMutationVariables = {data: BodyType<VoiceLoginInput>}
+
+    export const useLoginVoiceLab = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof loginVoiceLab>>, TError,LoginVoiceLabMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof loginVoiceLab>>,
+        TError,
+        LoginVoiceLabMutationVariables,
+        TContext
+      > => {
+      return useMutation(getLoginVoiceLabMutationOptions(options), queryClient);
+    }
+
+export const getLogoutVoiceLabUrl = () => {
+
+
+
+
+  return `/api/udaan/voice-lab/logout`
+}
+
+export const logoutVoiceLab = async ( options?: Parameters<typeof customFetch>[1]): Promise<VoiceLabStatus> => {
+
+  return customFetch<VoiceLabStatus>(getLogoutVoiceLabUrl(),
+  {
+    ...options,
+    method: 'POST'
+
+
+  }
+);}
+
+
+
+
+
+export const getLogoutVoiceLabMutationKey = () => ['logoutVoiceLab'] as const;
+
+export const getLogoutVoiceLabMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof logoutVoiceLab>>, TError,void, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof logoutVoiceLab>>, TError,void, TContext> => {
+
+const mutationKey = getLogoutVoiceLabMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof logoutVoiceLab>>, void> = () => {
+
+
+          return  logoutVoiceLab(requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type LogoutVoiceLabMutationResult = NonNullable<Awaited<ReturnType<typeof logoutVoiceLab>>>
+
+    export type LogoutVoiceLabMutationError = ErrorType<unknown>
+
+
+    export const useLogoutVoiceLab = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof logoutVoiceLab>>, TError,void, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof logoutVoiceLab>>,
+        TError,
+        void,
+        TContext
+      > => {
+      return useMutation(getLogoutVoiceLabMutationOptions(options), queryClient);
+    }
+
+export const getAuthorizeVoiceLabUrl = () => {
+
+
+
+
+  return `/api/udaan/voice-lab/authorization`
+}
+
+export const authorizeVoiceLab = async (voiceAuthorizationInput: VoiceAuthorizationInput, options?: Parameters<typeof customFetch>[1]): Promise<VoiceLabStatus> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<VoiceLabStatus>(getAuthorizeVoiceLabUrl(),
+  {
+    ...options,
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(voiceAuthorizationInput)
+  }
+);}
+
+
+
+
+
+export const getAuthorizeVoiceLabMutationKey = () => ['authorizeVoiceLab'] as const;
+
+export const getAuthorizeVoiceLabMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authorizeVoiceLab>>, TError,AuthorizeVoiceLabMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof authorizeVoiceLab>>, TError,AuthorizeVoiceLabMutationVariables, TContext> => {
+
+const mutationKey = getAuthorizeVoiceLabMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof authorizeVoiceLab>>, AuthorizeVoiceLabMutationVariables> = (props) => {
+          const {data} = props ?? {};
+
+          return  authorizeVoiceLab(data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type AuthorizeVoiceLabMutationResult = NonNullable<Awaited<ReturnType<typeof authorizeVoiceLab>>>
+    export type AuthorizeVoiceLabMutationBody = BodyType<VoiceAuthorizationInput>
+    export type AuthorizeVoiceLabMutationError = ErrorType<unknown>
+    export type AuthorizeVoiceLabMutationVariables = {data: BodyType<VoiceAuthorizationInput>}
+
+    export const useAuthorizeVoiceLab = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authorizeVoiceLab>>, TError,AuthorizeVoiceLabMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof authorizeVoiceLab>>,
+        TError,
+        AuthorizeVoiceLabMutationVariables,
+        TContext
+      > => {
+      return useMutation(getAuthorizeVoiceLabMutationOptions(options), queryClient);
+    }
+
+export const getTestVoiceLabConnectionUrl = () => {
+
+
+
+
+  return `/api/udaan/voice-lab/test`
+}
+
+export const testVoiceLabConnection = async (voiceConfirmedInput: VoiceConfirmedInput, options?: Parameters<typeof customFetch>[1]): Promise<VoiceOperation> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<VoiceOperation>(getTestVoiceLabConnectionUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(voiceConfirmedInput)
+  }
+);}
+
+
+
+
+
+export const getTestVoiceLabConnectionMutationKey = () => ['testVoiceLabConnection'] as const;
+
+export const getTestVoiceLabConnectionMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof testVoiceLabConnection>>, TError,TestVoiceLabConnectionMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof testVoiceLabConnection>>, TError,TestVoiceLabConnectionMutationVariables, TContext> => {
+
+const mutationKey = getTestVoiceLabConnectionMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof testVoiceLabConnection>>, TestVoiceLabConnectionMutationVariables> = (props) => {
+          const {data} = props ?? {};
+
+          return  testVoiceLabConnection(data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type TestVoiceLabConnectionMutationResult = NonNullable<Awaited<ReturnType<typeof testVoiceLabConnection>>>
+    export type TestVoiceLabConnectionMutationBody = BodyType<VoiceConfirmedInput>
+    export type TestVoiceLabConnectionMutationError = ErrorType<unknown>
+    export type TestVoiceLabConnectionMutationVariables = {data: BodyType<VoiceConfirmedInput>}
+
+    export const useTestVoiceLabConnection = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof testVoiceLabConnection>>, TError,TestVoiceLabConnectionMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof testVoiceLabConnection>>,
+        TError,
+        TestVoiceLabConnectionMutationVariables,
+        TContext
+      > => {
+      return useMutation(getTestVoiceLabConnectionMutationOptions(options), queryClient);
+    }
+
+export const getTranscribeVoiceUrl = (params: TranscribeVoiceParams,) => {
+  const normalizedParams = new URLSearchParams();
+
+  Object.entries(params || {}).forEach(([key, value]) => {
+
+    if (value !== undefined) {
+      normalizedParams.append(key, value === null ? 'null' : String(value))
+    }
+  });
+
+  const stringifiedParams = normalizedParams.toString();
+
+  return stringifiedParams.length > 0 ? `/api/udaan/voice-lab/transcribe?${stringifiedParams}` : `/api/udaan/voice-lab/transcribe`
+}
+
+export const transcribeVoice = async (transcribeVoiceBody: Blob,
+    params: TranscribeVoiceParams, options?: Parameters<typeof customFetch>[1]): Promise<VoiceOperation> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<VoiceOperation>(getTranscribeVoiceUrl(params),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/octet-stream', ...getHeaders(options?.headers) },
+    body: transcribeVoiceBody
+  }
+);}
+
+
+
+
+
+export const getTranscribeVoiceMutationKey = () => ['transcribeVoice'] as const;
+
+export const getTranscribeVoiceMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof transcribeVoice>>, TError,TranscribeVoiceMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof transcribeVoice>>, TError,TranscribeVoiceMutationVariables, TContext> => {
+
+const mutationKey = getTranscribeVoiceMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof transcribeVoice>>, TranscribeVoiceMutationVariables> = (props) => {
+          const {data,params} = props ?? {};
+
+          return  transcribeVoice(data,params,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type TranscribeVoiceMutationResult = NonNullable<Awaited<ReturnType<typeof transcribeVoice>>>
+    export type TranscribeVoiceMutationBody = BodyType<Blob>
+    export type TranscribeVoiceMutationError = ErrorType<unknown>
+    export type TranscribeVoiceMutationVariables = {data: BodyType<Blob>;params: TranscribeVoiceParams}
+
+    export const useTranscribeVoice = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof transcribeVoice>>, TError,TranscribeVoiceMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof transcribeVoice>>,
+        TError,
+        TranscribeVoiceMutationVariables,
+        TContext
+      > => {
+      return useMutation(getTranscribeVoiceMutationOptions(options), queryClient);
+    }
+
+export const getSynthesizeVoiceUrl = () => {
+
+
+
+
+  return `/api/udaan/voice-lab/synthesize`
+}
+
+export const synthesizeVoice = async (voiceSynthesisInput: VoiceSynthesisInput, options?: Parameters<typeof customFetch>[1]): Promise<VoiceOperation> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<VoiceOperation>(getSynthesizeVoiceUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(voiceSynthesisInput)
+  }
+);}
+
+
+
+
+
+export const getSynthesizeVoiceMutationKey = () => ['synthesizeVoice'] as const;
+
+export const getSynthesizeVoiceMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof synthesizeVoice>>, TError,SynthesizeVoiceMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof synthesizeVoice>>, TError,SynthesizeVoiceMutationVariables, TContext> => {
+
+const mutationKey = getSynthesizeVoiceMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof synthesizeVoice>>, SynthesizeVoiceMutationVariables> = (props) => {
+          const {data} = props ?? {};
+
+          return  synthesizeVoice(data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type SynthesizeVoiceMutationResult = NonNullable<Awaited<ReturnType<typeof synthesizeVoice>>>
+    export type SynthesizeVoiceMutationBody = BodyType<VoiceSynthesisInput>
+    export type SynthesizeVoiceMutationError = ErrorType<unknown>
+    export type SynthesizeVoiceMutationVariables = {data: BodyType<VoiceSynthesisInput>}
+
+    export const useSynthesizeVoice = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof synthesizeVoice>>, TError,SynthesizeVoiceMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof synthesizeVoice>>,
+        TError,
+        SynthesizeVoiceMutationVariables,
+        TContext
+      > => {
+      return useMutation(getSynthesizeVoiceMutationOptions(options), queryClient);
+    }
 
 export const getHealthCheckUrl = () => {
 

@@ -1,4 +1,15 @@
-# Sarvam voice — pending, not implemented
+# Sarvam voice — Voice Lab implemented, live verification pending
+
+## Updated scope and authorization
+The user extended feature work to 15:30 IST and requested a protected internal Voice Lab before completing main-chat voice integration. That Lab and dormant server adapters are now implemented. The earlier freeze decision below records history, not the current work window.
+
+The user has now authorized paid testing; the agent selected an initial ₹10 pre-GST ceiling. Secure credentials remain absent at this checkpoint, and no Sarvam provider call has been made.
+
+Use Settings → Integrations → Sarvam Voice Lab. Configure `SARVAM_API_KEY` and a separate `VOICE_LAB_ADMIN_PASSWORD` (at least 12 characters) through Replit Secrets. Never paste keys in chat. The application never saves API keys in browser storage or the database.
+
+Current server-controlled documented speakers: English `simran_en_customer`, Hinglish `ishita_enhi_companion`, Hindi `aayan_hi_conversational`, Kannada `chaitra_kn_conversation`.
+
+The full main Ask screen remains unchanged until speech quality is verified. The Lab reuses the existing conversation service, profile, market context and financial rules.
 
 ## Decision at the competition feature freeze
 The voice addendum arrived at approximately 14:33 IST on 2026-11-22. The agreed feature freeze is 14:35 IST, protecting the final 25 minutes before 15:00 submission.

@@ -19,6 +19,7 @@ import PlanDetailPage from '@/pages/plan-detail';
 import OpportunityPage from '@/pages/opportunity';
 import ShopPage from '@/pages/shop';
 import SettingsPage from '@/pages/settings';
+import VoiceLabPage from '@/pages/voice-lab';
 
 const queryClient = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFocus: false, staleTime: 15_000 } } });
 
@@ -34,6 +35,7 @@ function Router() {
         <Route path="/opportunity/:id" component={OpportunityPage} />
         <Route path="/shop" component={ShopPage} />
         <Route path="/settings" component={SettingsPage} />
+        <Route path="/settings/integrations/sarvam" component={VoiceLabPage} />
         <Route component={NotFound} />
       </Switch>
     </RoutedErrorBoundary>

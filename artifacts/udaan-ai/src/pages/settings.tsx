@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useLocation } from 'wouter';
-import { Check, Cpu, RotateCcw, Volume2, PlugZap } from 'lucide-react';
+import { Link, useLocation } from 'wouter';
+import { Check, Cpu, RotateCcw, Volume2, PlugZap, AudioLines, ChevronRight } from 'lucide-react';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   useGetProviders, getGetProvidersQueryKey, useTestProvider, useResetDemo, getGetUdaanStateQueryKey,
@@ -101,6 +101,18 @@ export default function SettingsPage() {
         <p className={cn('mt-1 text-sm', speechSupported ? 'text-signal' : 'text-[#ffb86b]')}>{speechSupported ? t('settings.voiceAvailable') : t('settings.voiceMissing')}</p>
         <p className="mt-2 text-sm text-mist">{t('settings.voiceNote')}</p>
       </section>
+
+      {import.meta.env.DEV && (
+        <section>
+          <h2 className="font-display text-xl font-semibold">Integrations</h2>
+          <p className="mb-3 text-sm text-mist">Internal development tools. Admin access required.</p>
+          <Link href="/settings/integrations/sarvam" data-testid="link-voice-lab" className="flex min-h-16 items-center gap-3 rounded-3xl border border-line bg-surface p-4 transition hover:border-intel/50">
+            <AudioLines className="size-5 text-intel" />
+            <span className="flex-1"><span className="block font-semibold">Sarvam Voice Lab</span><span className="block text-xs text-mist">Speech tests and end-to-end voice checks</span></span>
+            <ChevronRight className="size-4 text-mist" />
+          </Link>
+        </section>
+      )}
 
       <section className="rounded-3xl border border-line bg-surface p-5">
         <h2 className="font-display text-xl font-semibold">{t('settings.demo')}</h2>

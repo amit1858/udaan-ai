@@ -8,6 +8,225 @@
 import * as zod from 'zod';
 
 
+export const GetVoiceLabStatusResponse = zod.object({
+  "access": zod.enum(['disabled', 'locked', 'admin']),
+  "state": zod.enum(['not_configured', 'ready_to_test', 'connected', 'error']),
+  "configured": zod.boolean(),
+  "setupRequired": zod.boolean(),
+  "paidEnabled": zod.boolean(),
+  "maxRequests": zod.int(),
+  "usedRequests": zod.int(),
+  "estimatedCostInr": zod.number(),
+  "requests": zod.array(zod.object({
+  "id": zod.string(),
+  "operation": zod.string(),
+  "model": zod.string(),
+  "speaker": zod.string().optional(),
+  "status": zod.string(),
+  "latencyMs": zod.int(),
+  "estimatedCostInr": zod.number(),
+  "createdAt": zod.string(),
+  "transcript": zod.string().optional(),
+  "audioBase64": zod.string().optional(),
+  "audioMime": zod.string().optional(),
+  "requestId": zod.string().optional(),
+  "inputCharacters": zod.int().optional(),
+  "inputSeconds": zod.number().optional(),
+  "error": zod.string().optional(),
+  "httpStatus": zod.int().optional()
+}))
+})
+
+
+export const loginVoiceLabBodyPasswordMin = 12;
+export const loginVoiceLabBodyPasswordMax = 200;
+
+
+
+export const LoginVoiceLabBody = zod.object({
+  "password": zod.string().min(loginVoiceLabBodyPasswordMin).max(loginVoiceLabBodyPasswordMax)
+})
+
+export const LoginVoiceLabResponse = zod.object({
+  "access": zod.enum(['disabled', 'locked', 'admin']),
+  "state": zod.enum(['not_configured', 'ready_to_test', 'connected', 'error']),
+  "configured": zod.boolean(),
+  "setupRequired": zod.boolean(),
+  "paidEnabled": zod.boolean(),
+  "maxRequests": zod.int(),
+  "usedRequests": zod.int(),
+  "estimatedCostInr": zod.number(),
+  "requests": zod.array(zod.object({
+  "id": zod.string(),
+  "operation": zod.string(),
+  "model": zod.string(),
+  "speaker": zod.string().optional(),
+  "status": zod.string(),
+  "latencyMs": zod.int(),
+  "estimatedCostInr": zod.number(),
+  "createdAt": zod.string(),
+  "transcript": zod.string().optional(),
+  "audioBase64": zod.string().optional(),
+  "audioMime": zod.string().optional(),
+  "requestId": zod.string().optional(),
+  "inputCharacters": zod.int().optional(),
+  "inputSeconds": zod.number().optional(),
+  "error": zod.string().optional(),
+  "httpStatus": zod.int().optional()
+}))
+})
+
+
+export const LogoutVoiceLabResponse = zod.object({
+  "access": zod.enum(['disabled', 'locked', 'admin']),
+  "state": zod.enum(['not_configured', 'ready_to_test', 'connected', 'error']),
+  "configured": zod.boolean(),
+  "setupRequired": zod.boolean(),
+  "paidEnabled": zod.boolean(),
+  "maxRequests": zod.int(),
+  "usedRequests": zod.int(),
+  "estimatedCostInr": zod.number(),
+  "requests": zod.array(zod.object({
+  "id": zod.string(),
+  "operation": zod.string(),
+  "model": zod.string(),
+  "speaker": zod.string().optional(),
+  "status": zod.string(),
+  "latencyMs": zod.int(),
+  "estimatedCostInr": zod.number(),
+  "createdAt": zod.string(),
+  "transcript": zod.string().optional(),
+  "audioBase64": zod.string().optional(),
+  "audioMime": zod.string().optional(),
+  "requestId": zod.string().optional(),
+  "inputCharacters": zod.int().optional(),
+  "inputSeconds": zod.number().optional(),
+  "error": zod.string().optional(),
+  "httpStatus": zod.int().optional()
+}))
+})
+
+
+export const authorizeVoiceLabBodyMaxRequestsMax = 10;
+
+
+
+export const AuthorizeVoiceLabBody = zod.object({
+  "enabled": zod.boolean(),
+  "maxRequests": zod.int().min(1).max(authorizeVoiceLabBodyMaxRequestsMax),
+  "confirmed": zod.boolean(),
+  "creditCoverageConfirmed": zod.boolean()
+})
+
+export const AuthorizeVoiceLabResponse = zod.object({
+  "access": zod.enum(['disabled', 'locked', 'admin']),
+  "state": zod.enum(['not_configured', 'ready_to_test', 'connected', 'error']),
+  "configured": zod.boolean(),
+  "setupRequired": zod.boolean(),
+  "paidEnabled": zod.boolean(),
+  "maxRequests": zod.int(),
+  "usedRequests": zod.int(),
+  "estimatedCostInr": zod.number(),
+  "requests": zod.array(zod.object({
+  "id": zod.string(),
+  "operation": zod.string(),
+  "model": zod.string(),
+  "speaker": zod.string().optional(),
+  "status": zod.string(),
+  "latencyMs": zod.int(),
+  "estimatedCostInr": zod.number(),
+  "createdAt": zod.string(),
+  "transcript": zod.string().optional(),
+  "audioBase64": zod.string().optional(),
+  "audioMime": zod.string().optional(),
+  "requestId": zod.string().optional(),
+  "inputCharacters": zod.int().optional(),
+  "inputSeconds": zod.number().optional(),
+  "error": zod.string().optional(),
+  "httpStatus": zod.int().optional()
+}))
+})
+
+
+export const TestVoiceLabConnectionBody = zod.object({
+  "confirmed": zod.boolean()
+})
+
+export const TestVoiceLabConnectionResponse = zod.object({
+  "id": zod.string(),
+  "operation": zod.string(),
+  "model": zod.string(),
+  "speaker": zod.string().optional(),
+  "status": zod.string(),
+  "latencyMs": zod.int(),
+  "estimatedCostInr": zod.number(),
+  "createdAt": zod.string(),
+  "transcript": zod.string().optional(),
+  "audioBase64": zod.string().optional(),
+  "audioMime": zod.string().optional(),
+  "requestId": zod.string().optional(),
+  "inputCharacters": zod.int().optional(),
+  "inputSeconds": zod.number().optional(),
+  "error": zod.string().optional(),
+  "httpStatus": zod.int().optional()
+})
+
+
+export const TranscribeVoiceQueryParams = zod.object({
+  "language": zod.enum(['en', 'hinglish', 'hi', 'kn']),
+  "confirmed": zod.coerce.boolean()
+})
+
+export const TranscribeVoiceResponse = zod.object({
+  "id": zod.string(),
+  "operation": zod.string(),
+  "model": zod.string(),
+  "speaker": zod.string().optional(),
+  "status": zod.string(),
+  "latencyMs": zod.int(),
+  "estimatedCostInr": zod.number(),
+  "createdAt": zod.string(),
+  "transcript": zod.string().optional(),
+  "audioBase64": zod.string().optional(),
+  "audioMime": zod.string().optional(),
+  "requestId": zod.string().optional(),
+  "inputCharacters": zod.int().optional(),
+  "inputSeconds": zod.number().optional(),
+  "error": zod.string().optional(),
+  "httpStatus": zod.int().optional()
+})
+
+
+export const synthesizeVoiceBodyTextMax = 1000;
+
+
+
+export const SynthesizeVoiceBody = zod.object({
+  "text": zod.string().min(1).max(synthesizeVoiceBodyTextMax),
+  "language": zod.enum(['en', 'hinglish', 'hi', 'kn']),
+  "confirmed": zod.boolean()
+})
+
+export const SynthesizeVoiceResponse = zod.object({
+  "id": zod.string(),
+  "operation": zod.string(),
+  "model": zod.string(),
+  "speaker": zod.string().optional(),
+  "status": zod.string(),
+  "latencyMs": zod.int(),
+  "estimatedCostInr": zod.number(),
+  "createdAt": zod.string(),
+  "transcript": zod.string().optional(),
+  "audioBase64": zod.string().optional(),
+  "audioMime": zod.string().optional(),
+  "requestId": zod.string().optional(),
+  "inputCharacters": zod.int().optional(),
+  "inputSeconds": zod.number().optional(),
+  "error": zod.string().optional(),
+  "httpStatus": zod.int().optional()
+})
+
+
 export const HealthCheckResponse = zod.object({
   "status": zod.string()
 })
@@ -200,7 +419,8 @@ export const sendChatBodyMessageMax = 2000;
 
 
 export const SendChatBody = zod.object({
-  "message": zod.string().min(1).max(sendChatBodyMessageMax)
+  "message": zod.string().min(1).max(sendChatBodyMessageMax),
+  "voice": zod.boolean().optional()
 })
 
 export const SendChatResponse = zod.object({

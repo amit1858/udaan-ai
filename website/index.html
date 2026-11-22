@@ -1,220 +1,203 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<title>Udaan AI — Every small business deserves a big possibility</title>
-<meta name="description" content="Udaan AI is an AI companion for Indian restaurant owners that understands the business, speaks their language, and grows with them. Product thesis.">
-<meta property="og:title" content="Udaan AI — Every small business deserves a big possibility">
-<meta property="og:description" content="An AI companion that understands your business, speaks your language, and grows with you.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="assets/breakfast-photo.jpg">
-<meta name="theme-color" content="#05070D">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Kannada:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("clawpilotTheme");
+      const theme = param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <title>Udaan AI — Every small business deserves a big possibility</title>
+  <meta name="description" content="An AI companion for small Indian business owners. Explore Udaan's human story, real prototype, attributed market intelligence and deterministic experiment economics.">
+  <meta name="theme-color" content="#05070D">
+  <meta property="og:title" content="Udaan AI — Every small business deserves a big possibility">
+  <meta property="og:description" content="Your business. New possibilities. Every day. A product story and evidence-grounded technical case study.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://amit1858.github.io/udaan-ai/">
+  <meta property="og:image" content="https://amit1858.github.io/udaan-ai/assets/social-cover.jpg">
+  <meta property="og:image:alt" content="A dosa vendor preparing breakfast — contextual photograph, not a Udaan customer">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://amit1858.github.io/udaan-ai/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preload" as="image" href="assets/dosa-vendor.webp">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav" id="top">
-  <a class="brand" href="#top" aria-label="Udaan AI home"><span class="mark" aria-hidden="true"></span>Udaan<span class="ai">AI</span></a>
-  <nav aria-label="Sections">
-    <a href="#problem">Ravi</a><a href="#product">Product</a><a href="#loop">Loop</a><a href="#arch">Architecture</a><a href="#thesis">Thesis</a><a href="#roadmap">Roadmap</a>
+  <a class="brand" href="#top" aria-label="Udaan AI home"><span class="mark" aria-hidden="true"></span>udaan<span class="ai">AI</span></a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="sectionNav">Menu <span aria-hidden="true">+</span></button>
+  <nav id="sectionNav" aria-label="Story chapters">
+    <a href="#problem">The story</a><a href="#loop">The experience</a><a href="#arch">The architecture</a><a href="#built">The evidence</a>
   </nav>
-  <a class="btn btn-sm" href="#try">Try Udaan</a>
+  <a class="btn btn-sm ghost nav-cta" href="#product">Explore the product <span aria-hidden="true">↗</span></a>
 </header>
-
 <main id="main">
-<!-- 1 HERO -->
-<section class="hero">
-  <div class="hero-copy">
-    <p class="eyebrow"><span class="dot"></span>Product thesis · Early-stage prototype · RFS 76</p>
-    <h1>Every small business deserves a <em>big possibility.</em></h1>
-    <p class="lede">An AI companion that understands your business, speaks your language, and grows with you.</p>
-    <div class="cta-row">
-      <a class="btn" href="#try">Try Udaan</a>
-      <a class="btn ghost" href="#problem">Meet Ravi</a>
+  <section class="hero" id="hero" aria-labelledby="heroTitle">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="dot"></span> A small business. A bigger tomorrow.</p>
+      <h1 id="heroTitle">Every small business deserves a <em>big possibility.</em></h1>
+      <p class="tagline">Your business. New possibilities. Every day.</p>
+      <p class="lede">Meet Udaan. An AI companion that helps small Indian business owners find a relevant idea, try it carefully, and learn from what happens.</p>
+      <div class="cta-row"><a class="btn" href="#product">Experience Udaan <span aria-hidden="true">↗</span></a><a class="text-link" href="#problem">Start with Ravi's story <span aria-hidden="true">↓</span></a></div>
+      <p class="fine">Working prototype · RFS 76 · Built for Product (Un)Conference 2026</p>
     </div>
-    <dl class="proof">
-      <div><dt>63</dt><dd>unit tests passing</dd></div>
-      <div><dt>6</dt><dd>browser scenarios passed</dd></div>
-      <div><dt>4</dt><dd>languages, one shared logic</dd></div>
-    </dl>
-  </div>
-  <div class="hero-visual">
-    <figure class="photo">
-      <img src="assets/breakfast-photo.jpg" alt="A South Indian breakfast plate of idli, vada, sambar and chutney" width="960" height="720">
-      <figcaption>Photo: Saind147, CC BY-SA 4.0 · <a href="credits.html">credits</a></figcaption>
-    </figure>
-    <div class="phone hero-phone"><img src="assets/home-hinglish-390.png" alt="Actual Udaan home screen in Hinglish showing the featured idea of the day" loading="eager"></div>
-    <div class="chip c1">Weekday combo · ₹99</div>
-    <div class="chip c2 lime">Outcome recorded</div>
-  </div>
-</section>
-
-<!-- 2 PROBLEM -->
-<section class="sec story" id="problem">
-  <div class="label"><span>02</span>The human problem</div>
-  <div class="story-grid">
-    <div class="story-art"><img src="assets/owner.svg" alt="Illustration of Ravi, a restaurant owner, at his counter" loading="lazy"><p class="note">Ravi is fictional. His constraints are not.</p></div>
-    <div class="story-text">
-      <h2>Ravi opens at 6:30. By 7:00 he has already run out of time to think.</h2>
-      <p>He owns a small South Indian breakfast café in Whitefield, Bengaluru. He handles the batter, the staff, the suppliers, the UPI reconciliations and the customer who wants extra chutney.</p>
-      <p>He watches bigger chains launch subscriptions, loyalty apps and QR menus. He is ambitious. What he lacks is not drive — it is an hour to explore, and someone to tell him which idea actually fits a shop his size.</p>
-      <ol class="day">
-        <li><b>05:45</b> Batter, chutney, coffee decoction</li>
-        <li><b>07:00</b> Office crowd rush</li>
-        <li><b>11:30</b> Supplier calls, cash count</li>
-        <li><b>15:00</b> Weekday lull. Tables empty.</li>
-        <li class="hi"><b>21:30</b> Five quiet minutes. Udaan has one idea ready.</li>
-      </ol>
+    <div class="hero-visual">
+      <figure class="hero-photo">
+        <img src="assets/dosa-vendor.webp" alt="A neighbourhood food vendor spreading dosa batter on a hot griddle" width="1280" height="720" fetchpriority="high">
+        <figcaption>Contextual photograph · not Ravi or a Udaan customer<br>Adib95 · CC BY-SA 4.0 · <a href="credits.html#vendor">Credit &amp; license</a></figcaption>
+      </figure>
+      <div class="possibility"><span class="k">The possibility</span><p>What if the next idea<br>fits <em>your</em> business?</p><span class="small">Understand → experiment → learn</span></div>
+      <div class="visual-index" aria-hidden="true"><span>01 / 15</span><span>BUILT AROUND THE OWNER</span></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 3 PRODUCT -->
-<section class="sec" id="product">
-  <div class="label"><span>03</span>The product experience</div>
-  <h2 class="wide">Not a dashboard. Not a chatbot. <span class="muted">One relevant possibility, explained in his language, that he can try this week.</span></h2>
-  <div class="screens" role="list">
-    <figure role="listitem"><div class="phone"><img src="assets/home-en-390.png" alt="Home screen with the featured ₹99 weekday breakfast combo idea" loading="lazy"></div><figcaption><b>Home</b>One idea for your shop today.</figcaption></figure>
-    <figure role="listitem"><div class="phone"><img src="assets/07-demo-conversation.png" alt="Ask Udaan conversation with a structured recommendation card" loading="lazy"></div><figcaption><b>Ask Udaan</b>Conversation that ends in a structured, actionable card.</figcaption></figure>
-    <figure role="listitem"><div class="phone"><img src="assets/10-learning-low.png" alt="Learning screen after a low outcome of 70 combos" loading="lazy"></div><figcaption><b>Learning · 70 combos</b>Below target. Udaan adjusts the next step.</figcaption></figure>
-    <figure role="listitem"><div class="phone"><img src="assets/11-learning-high.png" alt="Learning screen after a high outcome of 130 combos" loading="lazy"></div><figcaption><b>Learning · 130 combos</b>Above target. A different next recommendation.</figcaption></figure>
-  </div>
-  <p class="fine">Actual screenshots captured from the working prototype at 390px. Business data is clearly labelled synthetic demo data.</p>
-</section>
+  <div class="chapter-bar"><span>Not bigger software. Better possibilities.</span><span>Discover. Try. Learn.</span></div>
 
-<!-- 4 LOOP -->
-<section class="sec" id="loop">
-  <div class="label"><span>04</span>From curiosity to growth</div>
-  <div class="loop-wrap">
-    <div class="loop-copy">
-      <h2>A loop, not a list of tips.</h2>
-      <p>Every experiment Ravi runs becomes memory. Every memory sharpens the next possibility.</p>
-      <div class="loop-detail" aria-live="polite"><span class="step-n" id="stepN">01</span><h3 id="stepT">Discover</h3><p id="stepD">Udaan surfaces one idea that fits his shop, budget and weekday lull: a ₹99 breakfast combo.</p></div>
-    </div>
-    <div class="loop" id="loopRing" role="tablist" aria-label="Product loop steps">
-      <svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="150" class="ring"/><circle cx="200" cy="200" r="150" class="ring-prog" id="ringProg"/></svg>
-      <div class="loop-center"><span>Discover again</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- 5 LANGUAGES -->
-<section class="sec" id="lang">
-  <div class="label"><span>05</span>Ambition speaks every language</div>
-  <div class="lang-wrap">
-    <div>
-      <h2>Four independent languages. One shared business brain.</h2>
-      <div class="lang-tabs" role="tablist" aria-label="Choose a language">
-        <button role="tab" aria-selected="true" data-lang="en">English</button>
-        <button role="tab" aria-selected="false" data-lang="hinglish">Hinglish</button>
-        <button role="tab" aria-selected="false" data-lang="hi" lang="hi">हिन्दी</button>
-        <button role="tab" aria-selected="false" data-lang="kn" lang="kn">ಕನ್ನಡ</button>
+  <section class="sec" id="problem" aria-labelledby="problemTitle">
+    <div class="label"><span>02</span> The human problem</div>
+    <div class="story-grid">
+      <figure class="story-art"><img src="assets/owner.svg" alt="Original illustration of a café owner at his counter" width="800" height="600" loading="lazy"><figcaption><span class="badge">Illustrative persona</span> Ravi and Udaan Breakfast House are fictional.</figcaption></figure>
+      <div class="story-text">
+        <p class="k">Whitefield, Bengaluru</p>
+        <h2 id="problemTitle">He has ambition.<br><span class="muted">What he doesn't have is time.</span></h2>
+        <p>Ravi runs Udaan Breakfast House, a small South Indian breakfast café. Before the first idli reaches a table, he is managing preparation, staff and costs. Then come customers, suppliers and the next day's planning.</p>
+        <p>He wants to explore new ideas and technology. But who has time to research what other businesses are trying when there is a kitchen to run?</p>
+        <ol class="day"><li><b>05:45</b> Batter. Chutney. Coffee decoction.</li><li><b>06:30</b> Open the shop. Meet the morning rush.</li><li><b>11:30</b> Suppliers. Staff. Costs. Tomorrow's stock.</li><li class="hi"><b>One quiet moment</b> “What else could my business become?”</li></ol>
+        <p class="fine">An illustrative day, not an observed customer interview. The problem is limited access to time, inspiration and business intelligence — not a lack of ambition.</p>
       </div>
-      <blockquote class="quote" id="langQuote">"Weekday customers are down. Let's try a ₹99 breakfast combo."</blockquote>
-      <p class="fine">Switching language keeps business context, conversation, financial inputs and experiment history intact. Familiar business words — combo, budget, UPI, WhatsApp — stay as owners actually say them.</p>
     </div>
-    <div class="phone lang-phone"><img id="langShot" src="assets/home-en-390.png" alt="Actual Udaan home screen in English"></div>
-  </div>
-</section>
+  </section>
 
-<!-- 6 CAPABILITIES -->
-<section class="sec" id="caps">
-  <div class="label"><span>06</span>Three signature capabilities</div>
-  <div class="caps">
-    <article class="cap big"><span class="cap-n">i.</span><h3>It understands me</h3><p>Shop, menu, prices, making costs, weekday patterns, budget and language — retained as business context, not re-typed into every chat.</p><img src="assets/interior.svg" alt="" loading="lazy"></article>
-    <article class="cap"><span class="cap-n">ii.</span><h3>It opens new possibilities</h3><p>Weekday combos, office breakfast subscriptions, coffee loyalty — each with cost, benefit and the assumptions still to validate.</p><img src="assets/subscription.svg" alt="" loading="lazy"></article>
-    <article class="cap lime"><span class="cap-n">iii.</span><h3>It grows with me</h3><p>Recorded outcomes change what comes next. 70 combos and 130 combos lead to different recommendations.</p><img src="assets/loyalty.svg" alt="" loading="lazy"></article>
-  </div>
-</section>
+  <section class="sec manifesto" id="purpose" aria-labelledby="purposeTitle">
+    <div class="label"><span>03</span> Why Udaan exists</div>
+    <p class="k">The founder's product intent</p>
+    <h2 id="purposeTitle">Useful intelligence shouldn't depend on <em>the size of your business.</em></h2>
+    <div class="split-copy"><p>Large enterprises can turn to analytics teams, consultants and technology platforms. A neighbourhood owner often has to be the strategist, operator and accountant all at once.</p><p>Udaan's intent is to democratize business inspiration: translate relevant observations into small, practical experiments that an owner can understand and choose. No promise of guaranteed growth. A better starting point.</p></div>
+  </section>
 
-<!-- 7 AI DIFFERENTIATION -->
-<section class="sec" id="ai">
-  <div class="label"><span>07</span>Why this is not generic chat advice</div>
-  <div class="diff">
-    <div class="diff-row"><span class="k">Business context</span><p>Every prompt is assembled from persisted SQLite records: profile, menu economics, experiments and learning history.</p></div>
-    <div class="diff-row"><span class="k">Structured recommendations</span><p>The model returns schema-validated cards (Zod), not free paragraphs. A card can become an experiment in one tap.</p></div>
-    <div class="diff-row"><span class="k">Transparent calculations</span><p>The AI explains; a deterministic finance engine calculates. Baseline week: ₹87,600 revenue, 1,095 orders, ₹49,275 contribution.</p></div>
-    <div class="diff-row"><span class="k">Outcome-sensitive learning</span><p>Live OpenAI gpt-5-mini was verified interpreting both the 70 and 130 combo outcomes read from SQLite.</p></div>
-    <div class="diff-row"><span class="k">Human approval</span><p>AI never approves experiments, changes records or moves money. The owner confirms every state change.</p></div>
-  </div>
-</section>
-
-<!-- 8 ARCHITECTURE -->
-<section class="sec" id="arch">
-  <div class="label"><span>08</span>Technology architecture</div>
-  <h2 class="wide">Simple, modular, provider-neutral. <span class="muted">Select a node.</span></h2>
-  <div class="arch">
-    <div class="arch-map" role="group" aria-label="Architecture nodes">
-      <button class="node n-mobile" data-node="mobile">Mobile experience</button>
-      <button class="node n-conv" data-node="conv">Multilingual AI conversation</button>
-      <div class="prov-row">
-        <button class="node prov" data-node="openai">OpenAI<small>verified live</small></button>
-        <button class="node prov" data-node="anthropic">Anthropic<small>adapter, no key</small></button>
-        <button class="node prov" data-node="demo">Demo Engine<small>credential-free</small></button>
-      </div>
-      <div class="core-row">
-        <button class="node" data-node="memory">Business memory</button>
-        <button class="node" data-node="finance">Financial engine</button>
-        <button class="node" data-node="lifecycle">Experiment lifecycle</button>
-        <button class="node" data-node="learning">Learning engine</button>
-      </div>
-      <button class="node n-voice" data-node="voice">Optional voice</button>
+  <section class="sec" id="thesis" aria-labelledby="thesisTitle">
+    <div class="label"><span>04</span> The product thesis</div>
+    <h2 class="wide" id="thesisTitle">Most software manages today.<br><span class="muted">Udaan helps imagine tomorrow.</span></h2>
+    <div class="comparison">
+      <article><span class="k">Not a POS system</span><h3>Beyond recording a sale.</h3><p>Explore an experiment using the owner's menu economics, not another billing workflow.</p></article>
+      <article><span class="k">Not just a dashboard</span><h3>From a number to a next step.</h3><p>Explain a relevant possibility and the assumptions to check, not leave the owner interpreting charts alone.</p></article>
+      <article><span class="k">Not generic chat</span><h3>Context that continues.</h3><p>Saved profile, experiments and learning inform structured recommendations, rather than starting over each time.</p></article>
+      <article><span class="k">Not a directory</span><h3>Inspiration, not a listing.</h3><p>Attributed restaurant facts can prompt an idea. They do not establish demand, popularity or commercial success.</p></article>
     </div>
-    <aside class="arch-detail" aria-live="polite"><span class="k" id="archK">Node</span><h3 id="archT">Mobile experience</h3><p id="archD">React + Tailwind mobile-first app at 390×844, four primary destinations: Home, Discover, Ask Udaan, My Plans. Dark mode, 44px touch targets, reduced-motion support.</p></aside>
-  </div>
-</section>
+  </section>
 
-<!-- 9 BUSINESS -->
-<section class="sec" id="thesis">
-  <div class="label"><span>09</span>Business thesis</div>
-  <div class="biz">
-    <div class="biz-card"><span class="k">Initial market</span><h3>Independent restaurants and cafés in India</h3><p>Owner-operators with thin margins, no strategy team and real appetite to grow.</p></div>
-    <div class="biz-card price"><span class="k">Subscription hypothesis</span><h3>Freemium, then <b>₹299–499</b>/month</h3><p class="warn">Unvalidated. No customers, revenue or willingness-to-pay data exists yet.</p></div>
-    <div class="biz-card"><span class="k">Retention hypothesis</span><h3>Owners return because Udaan remembers</h3><p>Retained context, relevant possibilities and learning from their own experiments compound over time.</p></div>
-    <div class="biz-card"><span class="k">Expansion</span><h3>Bakeries, retailers, salons</h3><p>The loop is category-agnostic; the content and economics are not. Each vertical earns its own playbook.</p></div>
-  </div>
-  <p class="fine">We claim no traction, market size, endorsements or customers. This is a thesis to test.</p>
-</section>
+  <figure class="cinema">
+    <img src="assets/ooty-stall.webp" alt="Customers waiting at a small street-side food stall in Ooty" width="960" height="1280" loading="lazy">
+    <div><p class="k">The everyday is full of possibility.</p><p>Small experiments.<br><em>Real decisions.</em><br>A human in control.</p></div>
+    <figcaption>Contextual photograph from Ooty, not Ravi's café or a Udaan pilot · Siyaulhaque · <a href="credits.html#stall">CC BY-SA 4.0</a></figcaption>
+  </figure>
 
-<!-- 10 ROADMAP -->
-<section class="sec" id="roadmap">
-  <div class="label"><span>10</span>Roadmap</div>
-  <div class="road">
-    <div class="col"><h3><i class="s s-impl"></i>Implemented</h3><ul><li>Four-language mobile app</li><li>Discover cards and daily idea</li><li>Ask Udaan with Demo Engine</li><li>OpenAI and Anthropic adapters</li><li>Experiment lifecycle and learning</li><li>Browser read-aloud</li></ul></div>
-    <div class="col"><h3><i class="s s-test"></i>Tested</h3><ul><li>56 unit tests</li><li>4 browser scenarios incl. language switching</li><li>Live OpenAI gpt-5-mini on 70 and 130 outcomes from SQLite</li><li>Deterministic financial calculations</li></ul></div>
-    <div class="col"><h3><i class="s s-plan"></i>Planned</h3><ul><li>Anthropic live verification</li><li>Real owner pilots in Bengaluru</li><li>WhatsApp-native companion</li><li>Indic speech recognition</li><li>Pricing validation</li></ul></div>
-  </div>
-</section>
+  <section class="sec" id="loop" aria-labelledby="loopTitle">
+    <div class="label"><span>05</span> The experience</div>
+    <div class="loop-wrap">
+      <div class="loop-copy"><h2 id="loopTitle">A loop.<br><span class="muted">Not a list of tips.</span></h2><p>One relevant possibility becomes a bounded experiment. What Ravi records changes the next recommendation.</p><div class="loop-detail" id="stepPanel"><span class="step-n" id="stepN">01</span><h3 id="stepT">Discover</h3><p id="stepD">A context-ranked idea fits Ravi's existing menu: a ₹99 weekday breakfast combo. Discovery is curated, not autonomous market prediction.</p></div><p class="fine">Select a step to follow Ravi's journey. AI supports the decision; Ravi controls the experiment.</p></div>
+      <div class="loop" id="loopRing" role="group" aria-label="Choose a journey step">
+        <svg viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="150" class="ring"/><circle cx="200" cy="200" r="150" class="ring-prog" id="ringProg"/></svg>
+        <div class="loop-center"><span class="mark" aria-hidden="true"></span><span>Your business.<br>Your next possibility.</span></div>
+      </div>
+    </div>
+    <noscript><ol class="fallback-steps"><li>Discover: find a context-ranked idea.</li><li>Explore: ask AI why it fits.</li><li>Evaluate: check deterministic economics.</li><li>Try: approve a seven-day experiment.</li><li>Measure: confirm actual units and spend.</li><li>Learn: use saved results to choose the next step.</li></ol></noscript>
+  </section>
 
-<!-- 11 ORIGIN -->
-<section class="sec origin" id="origin">
-  <div class="label"><span>11</span>Origin</div>
-  <p class="origin-text">Built in response to <b>RFS 76 — An AI Companion for Small Business Owners</b>, at Product (Un)Conference 2026 Builders' Day.</p>
-  <p class="fine">Independent submission. No endorsement, investment or partnership by the RFS author, Nexus Venture Partners or the organisers is implied.</p>
-</section>
+  <section class="sec" id="use-cases" aria-labelledby="useTitle">
+    <div class="label"><span>06</span> Possibilities worth exploring</div>
+    <h2 class="wide" id="useTitle">An idea is only useful<br><span class="muted">when he can act on it.</span></h2>
+    <p class="section-intro">Illustrative owner questions and recommendations, based on the prototype's curated opportunity content. They are not quotes from customers or fresh model responses.</p>
+    <div class="use-grid">
+      <article class="use-card"><img src="assets/breakfast.webp" alt="Idli, vada, sambar and chutney on a South Indian breakfast plate" width="960" height="720" loading="lazy"><div><span class="badge verified">End-to-end prototype verified</span><h3>A. The ₹99 breakfast combo</h3><blockquote>“How can I make weekdays worth stopping for?”</blockquote><p><b>Recommendation:</b> Test an existing-menu combo for seven days. Validate ₹45 variable cost before committing.</p><p><b>Owner action:</b> Ask regulars, evaluate the numbers, approve, then record the outcome.</p><a class="text-link" href="#finance">Explore the economics <span aria-hidden="true">→</span></a></div></article>
+      <article class="use-card"><img class="illustration" src="assets/subscription.svg" alt="Original concept illustration of breakfast prepared for a nearby office" width="800" height="600" loading="lazy"><div><span class="badge">Built idea · real demand unverified</span><h3>B. Office breakfast subscriptions</h3><blockquote>“Could the office next door become a regular?”</blockquote><p><b>Recommendation:</b> Start with one office and five opt-in preorders; confirm packaging and pickup.</p><p><b>Owner action:</b> Manually test repeat demand. No delivery or subscription fulfillment service is integrated.</p></div></article>
+      <article class="use-card"><img class="illustration" src="assets/preorder.svg" alt="Original concept illustration of an owner planning manual breakfast preorders on a phone" width="800" height="600" loading="lazy"><div><span class="badge">Manual concept · no WhatsApp integration</span><h3>C. Tomorrow's breakfast, today</h3><blockquote>“Can I know demand before I prepare the food?”</blockquote><p><b>Recommendation:</b> Draft an opt-in WhatsApp message with menu, cutoff and pickup time. Begin with no promotion spend.</p><p><b>Owner action:</b> Collect permission and track replies manually. Udaan sends no messages or orders.</p></div></article>
+      <article class="use-card"><img class="illustration" src="assets/loyalty.svg" alt="Original concept illustration of a coffee loyalty experiment" width="800" height="600" loading="lazy"><div><span class="badge">Built idea · repeat-visit impact unverified</span><h3>D. One more reason to return</h3><blockquote>“How do I bring my coffee regulars back?”</blockquote><p><b>Recommendation:</b> Explore a simple five-visit stamp card; include rewards in the cost assumptions.</p><p><b>Owner action:</b> Ask willing regulars and measure repeat visits. No automated loyalty platform or proven uplift.</p></div></article>
+    </div>
+  </section>
 
-<!-- 12 CTA -->
-<section class="sec ctas" id="try">
-  <div class="label"><span>12</span>See it for yourself</div>
-  <h2 class="wide">The evidence, honestly labelled.</h2>
-  <div class="cta-grid">
-    <div class="cta-card primary"><span class="k">Working product</span><h3>Try Udaan</h3><p id="appNote">The full app runs in the Replit preview. It is not publicly deployed.</p><a class="btn" id="appLink" href="../" hidden>Open the app</a><span class="status" id="appStatus">Not publicly deployed</span></div>
-    <div class="cta-card"><span class="k">Demo recording</span><h3>Browser walkthrough</h3><p>A real recorded browser session exists in the local review pack. No public URL yet.</p><span class="status">Available in review pack</span></div>
-    <div class="cta-card"><span class="k">Source</span><h3>GitHub repository</h3><p>Proposed as amit1858/udaan-ai. Not yet created or published.</p><span class="status">Not yet public</span></div>
-    <div class="cta-card"><span class="k">Product thesis</span><h3>Read the full thesis</h3><p>Human story, why now, AI differentiation, architecture, hypotheses and known limitations.</p><a class="btn ghost" href="assets/product-thesis.md" download>Download the product thesis</a></div>
-  </div>
-</section>
+  <section class="sec" id="market" aria-labelledby="marketTitle">
+    <div class="label"><span>07</span> Real-world market intelligence</div>
+    <div class="section-heading"><h2 id="marketTitle">Look outside.<br><span class="muted">Keep the evidence intact.</span></h2><p>IndiaRestros supplies restaurant and menu observations. Udaan helps connect relevant facts to an affordable idea — without pretending a menu tells us how a business performs.</p></div>
+    <div class="data-flow"><span>IndiaRestros REST</span><span aria-hidden="true">→</span><span>Validate &amp; filter</span><span aria-hidden="true">→</span><span>Attribute &amp; date</span><span aria-hidden="true">→</span><span>Owner's next experiment</span></div>
+    <div class="provenance-grid">
+      <article><span class="k">01 / Provider facts</span><h3>Observed, not invented.</h3><p>Read-only server requests query Whitefield, Bengaluru and relevant vegetarian menu excerpts. Restaurant links, underlying source and supplied update dates accompany facts.</p></article>
+      <article><span class="k">02 / Cached provider data</span><h3>Reuse with provenance.</h3><p>A five-minute server cache distinguishes fresh from cached responses and retains the original retrieval time. Periodic menu updates are not real-time prices.</p></article>
+      <article><span class="k">03 / AI interpretation</span><h3>A hypothesis, not a fact.</h3><p>Reasoning or Demo Mode suggests a small test. It cannot infer traffic, popularity, outcomes or guaranteed demand from a restaurant listing.</p></article>
+      <article><span class="k">04 / Synthetic demonstration</span><h3>Fiction stays separate.</h3><p>Ravi's shop and seeded sales are fictional. Real provider facts do not make the owner's demonstration results real-world evidence.</p></article>
+    </div>
+    <aside class="evidence-note"><span class="badge verified">Recorded provider execution · 22 Nov 2026</span><p>Fresh retrieval and cached repeat: three upstream HTTP 200s; two search results and 90 raw menu items; one restaurant and three relevant vegetarian items shown. This used <b>Demo reasoning, not synthetic provider data</b>. Paid-model market reasoning is wired but was not separately exercised.</p><a href="https://github.com/amit1858/udaan-ai/blob/ebe3c64ba7db318749e4839478a5074d59f7a886/docs/PROVIDER_VERIFICATION.md">Read the frozen provider evidence ↗</a></aside>
+    <p class="fine">No live provider request is made by this static showcase. Unavailable or invalid upstream data produces an explicit unavailable state, not invented competitors.</p>
+  </section>
+
+  <section class="sec" id="lang" aria-labelledby="langTitle">
+    <div class="label"><span>08</span> Ambition speaks every language</div>
+    <div class="lang-wrap"><div><h2 id="langTitle">His business.<br><span class="muted">His language.</span></h2><p class="section-intro">Language should make an idea easier to use, not become another task. English, Hinglish, Hindi and Kannada share the same business logic and retain saved context when the preference changes.</p><div class="lang-tabs" role="group" aria-label="Choose screenshot language"><button type="button" aria-pressed="true" data-lang="en">English</button><button type="button" aria-pressed="false" data-lang="hinglish">Hinglish</button><button type="button" aria-pressed="false" data-lang="hi" lang="hi">हिन्दी</button><button type="button" aria-pressed="false" data-lang="kn" lang="kn">ಕನ್ನಡ</button></div><blockquote class="quote" id="langQuote">“Weekday customers are down. Let's try a ₹99 breakfast combo.”</blockquote><p class="fine">Illustrative localized copy; the adjacent image is an actual prototype capture. Native-speaker review and full live-model language coverage remain unverified.</p></div><figure><div class="phone lang-phone"><img id="langShot" src="assets/home-en-390.webp" alt="Actual Udaan prototype home screen in English using synthetic data" width="390" height="844" loading="lazy"></div><figcaption>Actual prototype · synthetic demo data</figcaption></figure></div>
+    <aside class="voice-note"><span class="badge">Sarvam · protected internal Voice Lab only</span><h3>Voice-ready is not the same as voice-verified everywhere.</h3><p>Sarvam Saaras v4 speech-to-text and Bulbul v4 Flash text-to-speech completed a generated Hinglish audio → transcription → existing Anthropic chat → speech round trip. Four real speech requests were recorded. Main-chat voice remains browser-based; Sarvam has <b>not</b> replaced it. Human microphone quality, physical-device pronunciation and Hindi/Kannada live speech remain unverified. Paid speech is disarmed.</p><a href="https://github.com/amit1858/udaan-ai/blob/ebe3c64ba7db318749e4839478a5074d59f7a886/docs/SARVAM_VOICE_STATUS.md">Exact speech scope ↗</a></aside>
+  </section>
+
+  <section class="sec" id="finance" aria-labelledby="financeTitle">
+    <div class="label"><span>09</span> A possibility, with the numbers attached</div>
+    <div class="section-heading"><h2 id="financeTitle">₹99 isn't a promise.<br><span class="muted">It's an experiment.</span></h2><p>Keep the assumptions visible. The AI explains the idea; deterministic arithmetic calculates its modeled economics.</p></div>
+    <div class="finance-grid">
+      <div class="finance-inputs"><span class="k">Seven-day breakfast combo</span><dl><div><dt>Selling price / unit</dt><dd>₹99</dd></div><div><dt>Variable cost / unit</dt><dd>₹45</dd></div><div><dt>Promotion budget</dt><dd>₹1,500</dd></div><div><dt>Target</dt><dd>100 units</dd></div><div><dt>Duration</dt><dd>7 days</dd></div></dl><img src="assets/dosa-preparation.webp" alt="Dosa cooking on a griddle — contextual food preparation photograph" width="1280" height="960" loading="lazy"><p class="fine">Rameshng · <a href="credits.html#preparation">CC BY-SA 3.0</a> · not the modeled combo</p></div>
+      <div class="finance-result"><span class="k">Change the outcome, not the assumptions</span><div class="scenario-controls" role="group" aria-label="Select units sold"><button type="button" data-units="70" aria-pressed="false">70 units</button><button type="button" data-units="100" aria-pressed="true">100 units</button><button type="button" data-units="130" aria-pressed="false">130 units</button></div><div id="financialResult" aria-live="polite" aria-atomic="true"><p class="result-label">Modeled contribution after promotion</p><p class="big-number" id="contribution">₹3,900</p><p class="equation" id="equation">(₹99 − ₹45) × 100 − ₹1,500</p><div class="meter" aria-hidden="true"><div id="unitBar"></div><span class="target-marker"></span></div><p class="small"><span id="achievement">100%</span> of the 100-unit target · promotion break-even: <b>28 units total</b></p><h3 id="outcomeTitle">On target. Check repeat demand next.</h3><p id="outcomeAdvice">The model leaves ₹3,900 after variable costs and promotion. A repeat-customer or controlled-expansion test is a next hypothesis, not proof of lasting growth.</p></div><p class="fine">A static educational walkthrough of the repository's integer-paise formula. It does not call the application, save an outcome or run AI.</p></div>
+    </div>
+    <div class="outcome-summary"><article><span class="k">70 units / below target</span><h3>₹2,280</h3><p>Positive modeled contribution, but short of target. Explore a ₹600 visibility test without claiming low awareness caused the shortfall.</p></article><article><span class="k">100 units / target</span><h3>₹3,900</h3><p>₹9,900 revenue − ₹4,500 variable costs − ₹1,500 promotion. Each unit contributes ₹54 before promotion.</p></article><article><span class="k">130 units / above target</span><h3>₹5,520</h3><p>Explore repeat-customer testing or controlled expansion; the implemented follow-up budget is ₹900. Validate capacity before scaling.</p></article></div>
+    <aside class="caution"><b>Contribution is not net profit.</b> Rent, salaries, taxes and other overheads are excluded. Units and costs are demonstration assumptions, not a forecast. At 28 units the ₹1,500 promotion cost is covered across the entire seven-day test — not per day.</aside>
+  </section>
+
+  <section class="sec" id="arch" aria-labelledby="archTitle">
+    <div class="label"><span>10</span> Technical architecture</div>
+    <div class="section-heading"><h2 id="archTitle">AI for the explanation.<br><span class="muted">Code for the boundaries.</span></h2><p>The actual React/Vite + Express/TypeScript architecture. SQLite persistence, validated provider output and deterministic financials — not an invented cloud platform.</p></div>
+    <figure class="architecture-figure"><img src="assets/architecture.svg" alt="Architecture: React/Vite PWA sends typed requests to an Express TypeScript API. Signed session validation scopes SQLite business context; OpenAI, Anthropic and explicit Demo reasoning use that context. IndiaRestros REST uses a five-minute server cache. Deterministic financials feed owner-approved experiments and stored learning. A separate protected development-only Sarvam speech lab uses the existing conversation route. Secrets stay on the server." width="1200" height="980" loading="lazy"><figcaption>Original repository-grounded diagram · dashed boundary = internal development-only speech lab · <a href="assets/architecture.svg" download>Download SVG</a></figcaption></figure>
+    <div class="architecture-decisions"><article><span class="k">Interface &amp; contract</span><h3>React 19 + Vite PWA</h3><p>Mobile-first presentation; generated React Query clients and Zod schemas from OpenAPI. TypeScript/Express validates requests at the server boundary.</p></article><article><span class="k">Context &amp; continuity</span><h3>Prisma 6 + SQLite</h3><p>Saved profile, menu economics, conversations, experiment state and language-neutral learning facts. This is persisted context, not model fine-tuning.</p></article><article><span class="k">Reasoning &amp; fallback</span><h3>OpenAI · Anthropic · Demo</h3><p>Official SDKs share a structured-output contract. Live failures are explicit; the owner chooses Demo Mode. No silent substitution and no automatic paid retries.</p></article><article><span class="k">Money &amp; ownership</span><h3>Deterministic financial engine</h3><p>Integer paise, server-validated transitions and immutable completed results. AI has no mutation tools; the owner confirms record changes.</p></article></div>
+    <p class="fine">The static showcase has no API, credentials or database. It does not host the PWA. Production storage durability and customer access controls remain deployment gates. <a href="https://github.com/amit1858/udaan-ai/blob/ebe3c64ba7db318749e4839478a5074d59f7a886/docs/ARCHITECTURE.md">Read source architecture ↗</a></p>
+  </section>
+
+  <section class="sec" id="trust" aria-labelledby="trustTitle">
+    <div class="label"><span>11</span> Engineering &amp; trust</div>
+    <h2 class="wide" id="trustTitle">Credibility is a product feature.<br><span class="muted">Not a footnote.</span></h2>
+    <div class="trust-grid"><article><span>01</span><h3>Ground the suggestion.</h3><p>Saved context and attributed menu facts inform recommendations. Observations, cached provenance and AI hypotheses stay distinct.</p></article><article><span>02</span><h3>Keep money deterministic.</h3><p>Financial services calculate. AI explains supplied numbers. Modeled contribution is never represented as net profit.</p></article><article><span>03</span><h3>Retain context, not secrets.</h3><p>Signed HttpOnly cookies isolate fictional visitor records. Server-only keys never enter browser code. This is not production account authentication.</p></article><article><span>04</span><h3>One logic, four preferences.</h3><p>Language-neutral learning facts and shared business logic preserve state across language changes. Native-speaker quality still needs review.</p></article><article><span>05</span><h3>Fail visibly.</h3><p>Invalid live inference reports an error; Demo Mode is an explicit choice. Missing market facts are not replaced by fictional competitors.</p></article><article><span>06</span><h3>Offline shell, not offline business.</h3><p>The PWA precaches public assets only. No private API cache, queued writes or automatic synchronization. Physical Android/iPhone installation is unverified.</p></article></div>
+    <div class="proof" aria-label="Recorded application release-candidate verification"><div><strong>71</strong><span>unit / persistence tests</span></div><div><strong>7</strong><span>browser journeys</span></div><div><strong>2</strong><span>production builds</span></div><div><strong>0</strong><span>Chromium installability errors</span></div></div>
+    <p class="fine">Recorded application results from the frozen 22 Nov 2026 release candidate, not tests rerun by this website and not real-world business validation. Lint and workspace typecheck also passed. <a href="https://github.com/amit1858/udaan-ai/blob/ebe3c64ba7db318749e4839478a5074d59f7a886/docs/TEST_REPORT.md">Read the test report ↗</a></p>
+  </section>
+
+  <section class="sec" id="built" aria-labelledby="builtTitle">
+    <div class="label"><span>12</span> What we built</div>
+    <h2 class="wide" id="builtTitle">A working demonstration.<br><span class="muted">An honest boundary.</span></h2>
+    <div class="status-grid"><article><span class="badge verified">Verified in the prototype</span><h3>From discovery to learning.</h3><ul><li>Contextual discovery, structured conversation and saved profiles.</li><li>Exact-money evaluation, owner-approved experiments and immutable results.</li><li>70 / 130-unit outcomes and different next recommendations.</li><li>Four-language state persistence; credential-free Demo Mode.</li><li>Recorded OpenAI and Anthropic calls; real IndiaRestros fresh/cache execution.</li></ul></article><article><span class="badge">Working with limitations</span><h3>Deliberately bounded.</h3><ul><li>Discovery is curated and context-ranked, not autonomous research.</li><li>Sarvam verified with generated audio in the internal Lab only.</li><li>PWA shell tested; physical-device installation unverified.</li><li>Development SQLite persistence, not validated production durability.</li><li>No real customer pilots, proven impact or automated commercial actions.</li></ul></article><article><span class="badge planned">Planned enhancements</span><h3>Earn the next step.</h3><ul><li>Physical-device and native-speaker validation.</li><li>Main-chat Sarvam voice after human quality review.</li><li>Durable production storage, backups and customer access controls.</li><li>Real-owner pilots and pricing validation.</li><li>Consented integrations and broader business categories.</li></ul></article></div>
+    <aside class="origin"><p class="k">The hackathon problem statement</p><h3>RFS 76 — An AI Companion for Small Business Owners</h3><p>Built in response to Product (Un)Conference 2026 Builders' Day: make useful business inspiration accessible to an owner, then connect it to action and learning.</p><p class="fine">Independent submission. No endorsement, investment or partnership by organizers, RFS authors or Nexus Venture Partners is implied. Source checkpoint: <code>ebe3c64</code>. Recorded reasoning allowance is exhausted; this showcase makes no paid calls.</p></aside>
+  </section>
+
+  <section class="sec" id="roadmap" aria-labelledby="roadmapTitle">
+    <div class="label"><span>13</span> Future vision · not shipped features</div>
+    <h2 class="wide" id="roadmapTitle">From a helpful moment<br><span class="muted">to a long-term companion.</span></h2>
+    <div class="roadmap"><article><span>01</span><div><h3>Proactive daily inspiration</h3><p>Relevant ideas arriving with a reason, not another noisy feed. Autonomous proactive discovery remains a roadmap concept.</p></div></article><article><span>02</span><div><h3>Closer to the work</h3><p>Consented commerce and procurement integrations could connect exploration to operations. No purchasing or fulfillment is implemented today.</p></div></article><article><span>03</span><div><h3>A more natural conversation</h3><p>Human-reviewed speech and code-switching could bring the companion into the owner's day beyond the internal Voice Lab.</p></div></article><article><span>04</span><div><h3>Learning across seasons</h3><p>Long-term business learning could build on today's stored experiment facts. It is not autonomous continuous model training.</p></div></article><article><span>05</span><div><h3>More kinds of possibility</h3><p>Bakeries, retailers and salons need their own economics and playbooks. A reusable loop is a starting point, not proof of category fit.</p></div></article></div>
+  </section>
+
+  <section class="sec" id="product" aria-labelledby="productTitle">
+    <div class="label"><span>14</span> The real product experience</div>
+    <div class="section-heading"><h2 id="productTitle">Not a mockup.<br><span class="muted">The working prototype.</span></h2><p>Genuine captures already in the repository. Every business record shown is synthetic. These images are evidence of the prototype UI, not of a publicly deployed release.</p></div>
+    <div class="screens"><figure><a href="assets/home-en-390.webp" aria-label="Open full Home screenshot"><div class="phone"><img src="assets/home-en-390.webp" alt="Actual English Udaan Home screen with a featured breakfast-combo idea and synthetic data" width="390" height="844" loading="lazy"></div></a><figcaption><b>01 / Discover</b>One idea that fits the shop.</figcaption></figure><figure><a href="assets/07-demo-conversation.webp" aria-label="Open full conversation screenshot"><div class="phone"><img src="assets/07-demo-conversation.webp" alt="Actual Udaan Demo Mode conversation and structured recommendation card" width="390" height="844" loading="lazy"></div></a><figcaption><b>02 / Explore</b>Contextual discussion in Demo Mode.</figcaption></figure><figure><a href="assets/10-learning-low.webp" aria-label="Open full 70-unit learning screenshot"><div class="phone"><img src="assets/10-learning-low.webp" alt="Actual prototype learning screen for the synthetic 70-unit below-target result" width="390" height="844" loading="lazy"></div></a><figcaption><b>03 / Learn: 70 units</b>A smaller visibility hypothesis.</figcaption></figure><figure><a href="assets/11-learning-high.webp" aria-label="Open full 130-unit learning screenshot"><div class="phone"><img src="assets/11-learning-high.webp" alt="Actual prototype learning screen for the synthetic 130-unit above-target result" width="390" height="844" loading="lazy"></div></a><figcaption><b>04 / Learn: 130 units</b>A different next possibility.</figcaption></figure></div>
+    <aside class="screenshot-slot"><span class="badge planned">Reserved for verified deployed captures</span><h3>The live product is ready to explore.</h3><p>The owner supplied <a href="https://udaan-ai-builder.replit.app/">udaan-ai-builder.replit.app</a>; its actual Udaan onboarding screen was verified on 22 November 2026. The gallery above remains labeled as inherited prototype captures, not newly captured deployed screens. Replace assets using the <a href="README.md#updating-real-screenshots-without-an-application-rebuild">screenshot update process</a>; no application rebuild is needed.</p></aside>
+  </section>
+
+  <section class="sec final-cta" id="try" aria-labelledby="ctaTitle">
+    <div class="label"><span>15</span> The next possibility</div>
+    <h2 id="ctaTitle">Your next big possibility <em>starts here.</em></h2>
+    <p>For every owner who has the ambition.<br>And deserves a little more room to explore.</p>
+    <div class="cta-row"><a class="btn" href="https://udaan-ai-builder.replit.app/" aria-describedby="appStatus">Try Udaan AI <span aria-hidden="true">↗</span></a><a class="btn ghost" href="https://github.com/amit1858/udaan-ai">Explore the GitHub repository <span aria-hidden="true">↗</span></a><a class="text-link" href="#arch">Learn about the architecture <span aria-hidden="true">↑</span></a></div>
+    <p class="fine" id="appStatus">Owner-supplied live URL verified against the actual Udaan onboarding screen on 22 Nov 2026. This is not an end-to-end production audit. The repository is private; source links require access. This showcase's Pages publication still requires approval.</p>
+  </section>
 </main>
-
-<footer class="foot">
-  <div><span class="brand"><span class="mark" aria-hidden="true"></span>Udaan<span class="ai">AI</span></span><p>Your business. New possibilities. Every day.</p></div>
-  <p class="fine">Ravi and Udaan Breakfast House are fictional. Sales data is synthetic. Illustrations are original SVG. <a href="credits.html">Image credits</a></p>
-</footer>
-<script src="script.js"></script>
+<footer class="foot"><div><a class="brand" href="#top"><span class="mark" aria-hidden="true"></span>udaan<span class="ai">AI</span></a><p>Your business. New possibilities. Every day.</p></div><div><p>Ravi is illustrative. Data is synthetic. Possibilities are not promises.</p><a href="credits.html">Image credits &amp; licensing</a> · <a href="CONTENT_REVIEW.md">Content &amp; status review</a> · <a href="BUILD_BRIEF.md">Original build brief</a></div></footer>
+<script src="script.js" defer></script>
 </body>
 </html>

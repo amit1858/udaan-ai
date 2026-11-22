@@ -1,26 +1,57 @@
-name: Publish thesis website only
-# Manual only: repository push and public publication require explicit owner authorization.
+name: Verify or publish approved Udaan showcase
+# PR checks never publish. Owner approval is required before the manual dispatch.
 on:
+  pull_request:
+    paths:
+      - 'website/**'
+      - '.github/workflows/pages.yml'
   workflow_dispatch:
+    inputs:
+      confirmation:
+        description: 'Only after owner approval, enter PUBLISH APPROVED SHOWCASE'
+        required: true
+        type: string
+        default: 'DO NOT PUBLISH'
 permissions:
   contents: read
-  pages: write
-  id-token: write
 concurrency:
-  group: pages
+  group: showcase-${{ github.ref }}
   cancel-in-progress: false
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate and package static website only
+        run: python website/build.py --output "${{ runner.temp }}/udaan-showcase"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: showcase-preview
+          path: ${{ runner.temp }}/udaan-showcase
   publish:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.confirmation == 'PUBLISH APPROVED SHOWCASE'
+    needs: build
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    # Configure the owner as a required reviewer in this environment before use.
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: showcase-preview
+          path: ${{ runner.temp }}/udaan-showcase
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: website
+          path: ${{ runner.temp }}/udaan-showcase
       - name: Publish approved static site
         id: deployment
         uses: actions/deploy-pages@v4

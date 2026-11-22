@@ -1,58 +1,39 @@
-# Udaan AI
-## Every small business deserves a big possibility.
+# Udaan AI — product thesis
 
-**Promise:** An AI companion that understands your business, speaks your language, and grows with you.
+**Every small business deserves a big possibility.**
 
-### The human problem
-Ravi is a fictional owner of a South Indian breakfast café in Whitefield, Bengaluru. He manages customers, preparation, staff and suppliers. Ambition is not missing; time to discover and evaluate new ideas is.
+Your business. New possibilities. Every day.
 
-### RFS 76 alignment
-Built in response to RFS 76, “An AI Companion for Small Business Owners,” at Product (Un)Conference 2026 Builders' Day. This origin does not imply endorsement, investment or partnership.
+## The human problem
 
-### Vision and initial customer
-Independent Indian restaurant and café owners deserve context-aware inspiration in the language they naturally use. Udaan helps them explore what their business could become, not merely manage today's operations.
+Ravi runs the illustrative Udaan Breakfast House in Whitefield, Bengaluru. Preparation, customers, staff and costs leave little room to research ideas. The constraint is access to time, inspiration and business intelligence, not ambition.
 
-### Experience
-Discover → Explore → Evaluate → Try → Measure → Learn → Discover again.
-An image-led daily idea leads to a contextual conversation, explicit assumptions, a transparent financial evaluation, a seven-day owner-approved experiment, recorded outcomes and a linked next recommendation.
+## The companion thesis
 
-### Why now
-Language models make natural multilingual exploration accessible; mobile tools make small experiments practical. This is a product hypothesis, not evidence of market adoption.
+Most software manages today's business. Udaan helps an owner imagine tomorrow through Discover → Explore → Evaluate → Try → Measure → Learn. Saved context informs structured explanations; owner-approved experiments connect ideas to recorded outcomes.
 
-### Three signatures
-- **It understands me:** retained shop, menu, challenge, budget, language and conversation.
-- **It opens new possibilities:** affordable office subscriptions, opt-in pre-orders, loyalty, combinations and simple technology.
-- **It grows with me:** outcome-sensitive learning changes what is recommended next.
+This is not a POS, ordering service, generic memoryless chatbot or restaurant directory. It is a working, bounded discovery-to-learning prototype.
 
-### AI differentiation
-The AI receives retained business context and actual stored experiment results. A shared provider contract supports Demo/OpenAI/Anthropic. Validated opportunity IDs connect conversation to action. Money and lifecycle mutations remain deterministic and owner-confirmed. Memory is persisted context, not fine-tuning.
+## What is built
 
-### Evidence, not dashboard decoration
-At 70 units, the ₹99 combo generates ₹2,280 modeled contribution and a ₹600 visibility hypothesis. At 130 units, ₹5,520 leads to repeat-customer testing or controlled expansion. The same pipeline produces both. These are synthetic demonstrations, not measured business impact.
+React 19/Vite PWA frontend, TypeScript/Express API, generated OpenAPI clients, Prisma 6/SQLite persistence, official OpenAI/Anthropic reasoning adapters, explicit keyless Demo Mode and deterministic integer-paise financials. IndiaRestros REST supplies attributed observations with five-minute cached provenance. Stored outcomes link to different follow-up opportunities.
 
-### Architecture
-React/Vite, Express, TypeScript, OpenAPI/Zod, Prisma/SQLite, shared official-provider SDK adapters, deterministic financial and learning services, four translation dictionaries, Vitest/Playwright. The framework variation from Next.js was explicitly approved.
+Four display-language preferences retain business state. Sarvam STT/TTS is verified only in a protected development-only Voice Lab with generated audio, not main-chat voice. Main chat remains browser-based for voice.
 
-### Commercial opportunity
-Initial focus: independent restaurants and cafés. A freemium subscription with paid pricing of ₹299–499/month is **unvalidated**. No willingness-to-pay research, market-size claim, revenue, traction, customer count or endorsement is asserted.
+## A test, not a promise
 
-### Retention hypothesis
-Owners may return because Udaan retains their business context, regularly introduces relevant possibilities and builds on their recorded experiments. Repeated usage and real-world outcome validation are needed.
+At ₹99 selling price and ₹45 variable cost, 100 units over seven days less ₹1,500 promotion produce ₹3,900 modeled contribution. Seventy units produce ₹2,280; 130 produce ₹5,520. Promotion break-even is 28 units total. Rent, salaries, taxes and other overhead are excluded; contribution is not net profit. Synthetic outcomes do not establish growth or causality.
 
-### Expansion hypothesis
-After validating restaurant demand, adjacent possibilities include bakeries, retailers and salons. These are future possibilities, not implemented industry verticals.
+## Evidence and limits
 
-### Roadmap
-**Implemented:** isolated demo sessions, four-language discovery/chat, persisted profile, deterministic money, lifecycle, immutable results, linked learning, provider settings, OpenAI/Anthropic adapters, browser voice support.
+Source checkpoint `ebe3c64` records 71 unit/persistence tests and seven browser journeys, plus lint/typecheck, frontend/API builds and static-only PWA checks. These are historical application results, not fresh paid tests performed by the showcase.
 
-**Verified:** live OpenAI contextual Hinglish and stored-outcome interpretation; expected/actual financial scenarios; credential-free mobile lifecycle; state-preserving language switching; isolated reset; unit tests and TypeScript.
+Native-speaker review, human speech quality, physical-device installation, production durability, customer access controls, real-owner pilots and pricing validation remain open. The owner-supplied `https://udaan-ai-builder.replit.app/` entry point rendered the actual product onboarding; this does not establish end-to-end production readiness. No adoption, revenue, market-size, partnership or endorsement claim is made.
 
-**Unverified/planned:** Anthropic live call, native-speaker/voice review, production persistence, presenter auth for paid public access, real-owner research, authorized GitHub publication and optional Gnani.
+## Future possibilities
 
-### Current limitations
-Read `KNOWN_LIMITATIONS.md`, `TEST_REPORT.md` and `IMPLEMENTATION_STATUS.md`. The objective is a reliable competition demonstration, not a claim of production readiness.
+Proactive daily inspiration, consented commerce/procurement integration, reviewed conversational voice, longer-term business learning and category-specific playbooks are roadmap ideas, not shipped capabilities.
 
-### Late-stage additions, honestly scoped
-Market Inspiration now retrieves actual attributed Whitefield menu facts via the documented IndiaRestros REST API. It separates periodic source facts and dates from AI/Demo hypotheses, and connects to a no-spend pre-order experiment. API retrieval and the actual UI path passed browser testing; market-specific paid inference was not separately run.
+Built for RFS 76 — An AI Companion for Small Business Owners, Product (Un)Conference 2026 Builders' Day. Independent submission; no organizer or investor endorsement implied.
 
-Sarvam voice was requested near the feature freeze. Official Saaras v4/codemix and Bulbul v4 Flash documentation was checked; missing credentials and spending authorization prevent credible real-audio validation. It remains pending, with no voice-integration completion or pronunciation claim.
+See the showcase's content review, image credits and screenshot-update documentation for current evidence and publication boundaries.

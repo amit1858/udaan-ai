@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 980" role="img" aria-labelledby="title description">
+  <title id="title">Udaan AI — actual application architecture</title>
+  <desc id="description">React/Vite public-asset PWA shell sends typed requests through Express validation and signed visitor scope. Server-only credentials support OpenAI and Anthropic; explicitly selected Demo Mode works without keys. Saved Prisma SQLite context, deterministic financials, owner-approved experiments and learning remain separate from reasoning. IndiaRestros uses a five-minute server cache. Sarvam STT/TTS lives in a development-only protected Voice Lab, not main-chat voice. The static showcase hosts none of the application services.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="m0 0 8 4-8 4" fill="none" stroke="#5CC6FF"/></marker>
+  </defs>
+  <style>
+    text{font-family:"Segoe UI",sans-serif;fill:#E8EDF5}
+    .heading{font-size:22px;font-weight:600}
+    .body{font-size:18px;fill:#C3CADA}
+    .label{font-size:16px;letter-spacing:2px;fill:#5CC6FF}
+    .small{font-size:16px;fill:#A6ADBF}
+    .box{fill:#101622;stroke:#263042;stroke-width:2}
+    .flow{fill:none;stroke:#5CC6FF;stroke-width:2;marker-end:url(#arrow)}
+  </style>
+  <rect width="1200" height="980" rx="16" fill="#0A0D16"/>
+  <text x="44" y="45" class="label">BROWSER / PUBLIC PRESENTATION</text>
+  <rect x="44" y="70" width="1112" height="110" rx="12" class="box"/>
+  <text x="72" y="108" class="heading">React 19 / Vite PWA</text>
+  <text x="72" y="139" class="body">Four language preferences · generated React Query / Zod API client · owner controls mutations</text>
+  <text x="72" y="165" class="small">Public static-asset precache only. No offline private API cache, queued writes or synchronization.</text>
+  <path d="M600 181v57" class="flow"/>
+  <rect x="24" y="224" width="1152" height="654" rx="16" fill="none" stroke="#BDF52F" stroke-width="2"/>
+  <text x="44" y="255" class="label" style="fill:#BDF52F">SERVER / CREDENTIALS AND BUSINESS RECORDS STAY HERE</text>
+  <rect x="44" y="275" width="1112" height="80" rx="12" class="box"/>
+  <text x="72" y="309" class="heading">Express / TypeScript API · OpenAPI contract</text>
+  <text x="72" y="337" class="body">Input validation · signed HttpOnly visitor cookie · session-scoped records · origin checks</text>
+  <path d="M600 355v44" class="flow"/>
+  <rect x="44" y="409" width="342" height="158" rx="12" class="box"/>
+  <text x="68" y="444" class="heading">Prisma 6 / SQLite context</text>
+  <text x="68" y="476" class="body">Profile · menu economics</text>
+  <text x="68" y="505" class="body">Conversation · outcomes</text>
+  <text x="68" y="534" class="small">Seeded sales are synthetic.</text>
+  <rect x="429" y="409" width="342" height="158" rx="12" class="box"/>
+  <text x="453" y="444" class="heading">Structured reasoning</text>
+  <text x="453" y="476" class="body">OpenAI / Anthropic SDKs</text>
+  <text x="453" y="505" class="body">Explicit keyless Demo Mode</text>
+  <text x="453" y="534" class="small">Validated output; no mutation tools.</text>
+  <rect x="814" y="409" width="342" height="158" rx="12" class="box"/>
+  <text x="838" y="444" class="heading">IndiaRestros REST</text>
+  <text x="838" y="476" class="body">Read-only menu observations</text>
+  <text x="838" y="505" class="body">Five-minute server cache</text>
+  <text x="838" y="534" class="small">Sources · update / retrieval dates</text>
+  <path d="M386 480h33M814 480h-33" class="flow"/>
+  <path d="M215 567v39M600 567v39" class="flow"/>
+  <rect x="44" y="620" width="342" height="166" rx="12" class="box"/>
+  <text x="68" y="655" class="heading">Deterministic finance</text>
+  <text x="68" y="687" class="body">Integer-paise calculations</text>
+  <text x="68" y="716" class="body">Contribution · break-even</text>
+  <text x="68" y="745" class="small">Rent / salaries / taxes excluded.</text>
+  <rect x="429" y="620" width="342" height="166" rx="12" class="box"/>
+  <text x="453" y="655" class="heading">Experiment → learning</text>
+  <text x="453" y="687" class="body">Owner-confirmed transitions</text>
+  <text x="453" y="716" class="body">Immutable completed results</text>
+  <text x="453" y="745" class="small">Stored facts → next opportunity</text>
+  <path d="M386 699h33" class="flow"/>
+  <rect x="814" y="607" width="342" height="213" rx="12" fill="#101622" stroke="#5CC6FF" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="838" y="643" class="heading">Protected Voice Lab only</text>
+  <text x="838" y="675" class="body">Sarvam Saaras v4 STT</text>
+  <text x="838" y="704" class="body">Bulbul v4 Flash TTS</text>
+  <text x="838" y="735" class="small">Existing conversation route</text>
+  <text x="838" y="761" class="small">Generated-audio verification</text>
+  <text x="838" y="787" class="small">Development-only · paid calls off</text>
+  <path d="M985 607v-18H790V520h-9" class="flow" stroke-dasharray="6 5"/>
+  <path d="M600 787v49H408V557h-12" class="flow"/>
+  <text x="44" y="913" class="body">Main chat uses browser-based voice. Sarvam is not integrated into main-chat voice.</text>
+  <text x="44" y="945" class="small">Separate static website ≠ application host. Production SQLite durability and customer access controls remain unverified.</text>
+</svg>

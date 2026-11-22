@@ -37,3 +37,12 @@ Learning branches: insufficient activity, loss/nonpositive margin, below target,
 The working development preview persists across server restarts. SQLite durability on a public production host has not been validated; do not claim Autoscale or multi-instance production readiness. No public deployment was authorized.
 
 The separate `website/` is static and GitHub Pages-compatible. It does not host the full application or its database.
+
+## PWA and voice boundaries
+- Official `vite-plugin-pwa` 2 / Workbox 7.4 on Vite 7; standalone manifest, branded 192/512 PNGs, maskable icon and Apple touch icon.
+- Only public build assets are precached. No API runtime-cache routes, credentials, business responses, restaurant responses or speech recordings are cached. Cached shell launch does not imply offline business operations.
+- Updates wait for confirmation. Open forms remain mounted during connectivity loss; saved experiments remain on the server. No offline write queue or automatic synchronization exists.
+- The service worker is production-build-only. The embedded development preview is not a claimed installed PWA.
+- The development-only Voice Lab uses a separate secret password, signed HttpOnly visitor-bound sessions, expiration/revocation, explicit spending authorization and persistent attempt accounting.
+- Sarvam STT/TTS feeds the existing contextual conversation route; main-chat browser voice remains unchanged. Audit records contain metadata, not audio/transcripts.
+- The six-attempt ceiling above refers to reasoning. All six were used. Sarvam's separate four-call verification finished and its paid switch was disabled.

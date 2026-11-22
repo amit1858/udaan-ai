@@ -21,10 +21,28 @@ Sanitized full output is saved in ignored `generated-artifacts/live-verification
 
 Three live calls were used for the evidence above. Subsequent authorized UI capture, if performed, is documented in the final test report. The allowance must not be increased without permission.
 
-Final update: two additional genuine UI calls used 2,907 and 3,074 tokens. The second capture completed the whole actual mobile walkthrough. Total five attempts; one remains for deliberate presenter use. Full sanitized UI output is in `generated-artifacts/live-ui-verification.json`.
+Final update: two additional genuine UI calls used 2,907 and 3,074 tokens. The second capture completed the actual mobile walkthrough. Total five OpenAI attempts. The remaining sixth reasoning attempt was subsequently used for the verified Anthropic voice round trip. **No reasoning allowance remains.** Full sanitized UI output is in ignored local artifacts, not release source.
 
 ## Anthropic
-Official SDK adapter implemented under the shared contract. No Anthropic credentials are configured; live verification not performed. The UI labels it unconfigured.
+The direct-key official SDK authenticated successfully and listed available models. A genuine `claude-haiku-5-5` call then ran through the existing `/api/udaan/chat` route with saved fictional restaurant context and transcribed Hinglish input. It returned a contextual combo hypothesis, explicit financial caveats and native-script speech text. Both conversation messages persisted. Sarvam synthesized that actual response; no separate reasoning system or Demo substitution was used. See `SARVAM_VOICE_STATUS.md`.
+
+## IndiaRestros — fresh provider versus cache execution
+Actual application request: `POST /api/udaan/chat` with a nearby-restaurants question, using the credential-free Demo Engine for interpretation. Application HTTP status 200.
+
+Fresh upstream search at **2026-11-22 09:55:02.321 UTC / 15:25:02.321 IST**:
+`GET https://indiarestros.com/api/v1/restaurants?city=bengaluru&locality=whitefield&cuisine=south-indian&limit=2`
+
+Then actual server-side menu calls:
+- `GET https://indiarestros.com/api/v1/restaurants/IRR-YS9NDQYYKC/menu`
+- `GET https://indiarestros.com/api/v1/restaurants/IRR-V1WEQM26XV/menu`
+
+All three upstream responses were **HTTP 200**. Search returned **two restaurants**; their menus contained **90 raw items**. The vegetarian relevance filter and maximum-three-item excerpt retained **one restaurant / three items**: Dhatu Restaurant & Organic Store, with source `zomato`, menu update `2026-10-09T20:43:50Z`, and original prices ₹450, ₹399, ₹399. No premium pricing was copied into Ravi's recommendation.
+
+The first response reported `live_provider`; an immediate second application request at 09:55:02.523 UTC reported `cached_provider`, with the identical original retrieval timestamp and facts. That repeat made no new upstream calls. Cache TTL is **300 seconds**, in memory and shared across visitors; simultaneous requests share a pending fetch. Stored conversation replay is explicitly marked cached snapshot.
+
+The UI distinguishes **Live Provider Data**, **Cached Provider Data** and **Synthetic Demo Data**. Real restaurant facts do not become synthetic because the interpreter is Demo Engine. Ravi's profile, sales and sample outcomes are fictional. A failed/invalid/timed-out provider call yields `unavailable` and no invented competitor facts; it does not silently serve an expired snapshot. Each upstream fetch has a 4.5-second timeout.
+
+Live-model instructions receive these same facts alongside the business profile, saved outcomes and deterministic financials. This particular confirmation used **Demo reasoning**, recommending a no-spend opt-in seven-day preorder test. Market-specific paid-model interpretation was not separately executed.
 
 ## Unverified aspects
 No claim of provider billing reconciliation, Hindi/Kannada live-model validation, voice pronunciation testing or real-world business improvement.

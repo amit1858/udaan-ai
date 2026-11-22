@@ -8,11 +8,13 @@ Image-led discovery, contextual conversation, editable persistent business profi
 
 English, Hinglish, हिन्दी and ಕನ್ನಡ are independent output preferences. Switching language or provider retains business records.
 
-The credential-free **Demo Engine** works without an API key. OpenAI has been genuinely verified with saved business context and both stored result scenarios. Anthropic is implemented but unverified without credentials.
+The credential-free **Demo Engine** works without an API key. OpenAI has been genuinely verified with saved business context and both stored result scenarios. Anthropic was genuinely verified through the same conversation route in the generated-audio Sarvam round trip.
 
 **Market Inspiration** retrieves attributed Whitefield menu facts from the documented IndiaRestros API. It separates source facts, periodic freshness and AI/Demo hypotheses, and connects to an affordable experiment.
 
-**Sarvam voice is pending**, not implemented: official models were researched, but credentials and bounded speech-test authorization were unavailable at the feature freeze. See `docs/SARVAM_VOICE_STATUS.md`.
+**Sarvam is verified within the protected internal Voice Lab**, not integrated into main-chat voice. Four real speech requests passed, including generated Hinglish audio → transcription → Anthropic → speech. Human microphone quality and physical-device pronunciation remain unverified. Speech spending was disarmed afterward. See `docs/SARVAM_VOICE_STATUS.md`.
+
+**Release candidate:** `udaan-rc-2026-11-22`. Start with [`docs/COPILOT_HANDOFF.md`](docs/COPILOT_HANDOFF.md) for final status, setup, device QA and release boundaries. The React/Vite + TypeScript/Express architecture is unchanged. Official `vite-plugin-pwa` precaches only public static assets, not private API responses.
 
 ## Quick start on Replit
 ```sh
@@ -34,7 +36,7 @@ Add direct-provider credentials only through Replit Secrets, or use Replit AI In
 
 `.env.example` documents names, not real values. Without credentials the app still launches in Demo Mode.
 
-Paid requests require `ALLOW_PAID_API_CALLS=true` and a positive `MAX_PAID_API_CALLS`. This competition build hard-caps the total persistent allowance at **six live attempts**, with no automatic retries. The user authorized testing up to ₹100. Check remaining allowance before a live stage demonstration.
+Paid requests require `ALLOW_PAID_API_CALLS=true` and a positive `MAX_PAID_API_CALLS`. The persistent ceiling is **six live reasoning attempts**, with no automatic retries. All six were used: five OpenAI and one Anthropic. **No live stage allowance remains.** Do not increase it without approval. Sarvam has a separate persistent cap and is disarmed; no further paid tests are authorized.
 
 Providers never silently substitute deterministic answers for failed live inference.
 
@@ -66,6 +68,6 @@ Ravi, his business and 90-day sales data are fictional. Sample results do not pr
 
 Browser sessions are isolated. Reset affects only the current demonstration. No actual payments, ads, WhatsApp messages or orders are executed.
 
-No public application deployment, repository push or GitHub Pages publication is authorized by this source preparation. The proposed repository name is not a verified live link.
+The user approved pushing reviewed release-candidate source only to private `amit1858/udaan-ai`, after connection and visibility checks. No public application deployment, public visibility change or GitHub Pages publication is authorized. Repository creation/existence must be verified rather than assumed.
 
 Photo credit: Saind147, South Indian breakfast, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), [source](https://commons.wikimedia.org/wiki/File:South_Indian_Breakast_Idli_Vada_Sambar_Chutney.JPG). All other illustrations are original concept artwork. Full credits are available in the application's `/credits.html`.

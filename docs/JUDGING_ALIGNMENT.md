@@ -20,7 +20,9 @@ The implemented **Market Inspiration** conversation card separates:
 
 No competitor popularity, traffic, sales, causal advantage or current offer is inferred. No protected scraping, undocumented API, contacts, external photos or review text is used. A source failure shows no invented facts and preserves the core app.
 
-The new facts are supplied to the existing live-model context, but an additional paid market-specific inference has not been run: the final authorized call is reserved for the stage. Existing genuine OpenAI context/outcome verification is not misrepresented as a market-specific test.
+The new facts are supplied to the existing live-model context, but additional paid market-specific inference was not run. All six reasoning attempts were used by the separate OpenAI/Anthropic verifications; none is reserved for the stage. Existing context/outcome verification is not misrepresented as a paid market-specific test.
 
-## Voice boundary
-Sarvam is researched and pending, not demonstrated as a completed capability. Missing secure credentials and speech-test authorization prevent real-audio verification before the agreed feature freeze. Current browser read-aloud/microphone support is not presented as Sarvam.
+## Voice and release boundaries
+Sarvam is genuinely verified within the protected internal Voice Lab: four real API calls and one genuine Anthropic conversation completed a generated-audio round trip, with spending disarmed afterward. This is not human microphone/pronunciation validation or completed main-chat Sarvam voice. Browser voice is not mislabeled Sarvam.
+
+Final regression: 71 unit/persistence tests, seven browser journeys, lint, full-workspace TypeScript and both production builds passed. Production-build PWA tests verified eligibility, safe caching, waiting updates and reconnection; no physical iPhone/Android installation is claimed. The stage path uses honestly labeled Demo Mode because the six-call live reasoning allowance is exhausted.

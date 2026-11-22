@@ -1,4 +1,41 @@
 # Udaan AI
+
+## Release-candidate companion experience review
+
+**Candid score: 7.5/10.** This is a product assessment, not an official judging score or a claim of owner research. It is grounded in actual executed mobile journeys, retained profile/outcome behavior and captured running-app screens.
+
+Udaan is more connected than a dashboard with an unrelated chatbot: discovery, discussion, deterministic feasibility and saved learning share the same restaurant context. It does not yet behave like an always-available, fully natural proactive companion.
+
+| Ravi's question | Score | Observed behavior |
+|---|---:|---|
+| Is Home immediately useful? | 8 | Restaurant greeting, breakfast imagery, one affordable ₹99 possibility, budget and an explicit business-specific reason lead the screen. |
+| Does it know my business/history? | 8 | Menu, Whitefield location, weekday challenge, budget, recent conversations and saved outcomes enter the common conversation context. |
+| Are suggestions contextual? | 7 | Business context and outcomes change selection/explanation, but discovery is a curated catalogue and Demo reasoning uses bounded intent rules. |
+| Can a question become an action? | 8 | Conversation opportunity links reach editable feasibility and an owner-confirmed seven-day experiment. |
+| Does it learn from results? | 8 | The same 70/130-unit pipeline persists different facts and recommends different next tests. This is rule-based learning, not model retraining. |
+| Does it feel supportive/proactive? | 7 | A possibility-first Home, follow-up questions and linked next ideas help; fresh context-aware conversational openings are less prominent than explicit user requests. |
+| Is it simple for a busy owner? | 7 | Four-language mobile navigation and visual costs help, but provider/configuration language and multiple financial/approval steps need presenter guidance. |
+| Is value visible within 30 seconds? | 8 | The image-led combo, shop-specific explanation and limited budget communicate a small practical opportunity without requiring a dashboard analysis. |
+
+### Three strengths
+1. **One coherent decision-to-learning loop:** the next recommendation changes after an actual saved outcome, rather than being an unrelated chat answer.
+2. **Concrete, bounded decisions:** a seven-day test, transparent assumptions, exact rupee arithmetic and explicit owner confirmations are more actionable than generic growth advice.
+3. **Language and evidence separation:** four-language state continuity, attributed restaurant observations and explicit AI/Demo/fictional labels support understandable trust.
+
+### Three critical gaps
+1. **Curated/rule-based behavior remains noticeable.** The catalogue is finite, Demo understanding is bounded and the live six-call allowance is exhausted. An unfamiliar question can expose the limits faster than a genuine unrestricted companion would.
+2. **Natural voice access is not complete.** Sarvam's generated-audio API loop works internally, but main-chat Sarvam, real microphone capture and pronunciation have not been validated. A busy owner cannot yet rely on a fully tested voice-first path.
+3. **Continuity and simplicity require too much owner navigation.** Stored context is technically real, but the product could explain the latest remembered outcome and the single next action more plainly; provider terminology and financial detail add cognitive load.
+
+### Small recommendations, not changes in this frozen candidate
+- In a later approved copy-only pass, lead the existing conversation entry with one sentence about the last saved outcome and why the current next idea follows. Use existing stored facts, not a new background process.
+- Put the existing business-specific reason before secondary financial detail, and explain contribution in everyday language while retaining the authoritative financial panel.
+- For the current demo, preselect honestly labeled Demo Mode, prepare the two outcome tabs and keep provider configuration out of the three-minute path. Do not add features, spend calls or promote unverified voice during stabilization.
+
+No redesign or new feature was implemented for this review. Physical iPhone/Safari use and actual restaurant-owner research remain unverified.
+
+---
+
 ## Every small business deserves a big possibility.
 
 **Promise:** An AI companion that understands your business, speaks your language, and grows with you.

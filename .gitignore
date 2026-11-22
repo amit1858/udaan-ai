@@ -54,6 +54,9 @@ Thumbs.db
 .cache/
 .local/
 *.db
+*.sqlite
+*.sqlite3
+*.log
 *.db-journal
 *.db-wal
 *.db-shm

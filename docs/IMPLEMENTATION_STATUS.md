@@ -1,5 +1,20 @@
 # Udaan AI — Implementation status
 
+## Final release candidate — 2026-11-22
+**READY WITH LIMITATIONS for the demonstrated development experience. Feature development is frozen.**
+
+- Final regression: **71 tests / 6 files passed; seven browser journeys passed; lint and full-workspace TypeScript passed; frontend/API production builds passed.** Frozen-lockfile offline install reproduced successfully.
+- Production PWA checks passed: manifest/icons, controlling worker, zero Chromium installation errors, static-only cache, offline shell, retained open inputs, waiting/cancellable updates, reconnection and an unchanged saved draft.
+- Real IndiaRestros execution at 15:25:02 IST: fresh server REST calls, all HTTP 200, followed by a cached repeat. Two search results/90 raw menu items; one restaurant/three relevant items shown. UI provenance is explicit.
+- Five OpenAI plus one Anthropic reasoning attempts used; none remains. Four Sarvam calls verified generated speech → STT → existing Anthropic chat → TTS; conservative ₹1.27 pre-GST speech estimate. Paid speech was disarmed. No paid repeats are authorized.
+- Main-chat Sarvam voice, human microphone/pronunciation and physical-device installation remain incomplete/unverified. Main-chat browser voice is deliberately unchanged.
+- Architecture is unchanged. No production publication occurred; production storage durability remains a deployment gate.
+- Private source push to `amit1858/udaan-ai` is approved, subject to GitHub connection/visibility verification. No public visibility change or Pages/app publication is authorized.
+- Final handoff: `COPILOT_HANDOFF.md`; iPhone QA and fallback-first three-minute path: `DEMO_SCRIPT.md`; exact verification boundaries: `TEST_REPORT.md` and `KNOWN_LIMITATIONS.md`.
+- Checkpoint/tag: `udaan-rc-2026-11-22`, resolvable to an exact Git commit.
+
+**The chronological history below is retained for audit; earlier pending states and remaining-call counts are superseded by this final section.**
+
 Authority: complete UDAAN_MASTER_SPEC.md Version 5.0, read before implementation.
 
 ## Execution order

@@ -1,48 +1,50 @@
-# Udaan AI — Final test report
+# Final release-candidate test report
 
-Executed 2026-11-22; final combined regression completed at about 14:33 IST.
+## Latest executed regression
+- `pnpm test`: **71 passed, 6 files**.
+- `CHROMIUM_PATH=$(command -v chromium) pnpm test:browser`: **7 passed**, latest complete pass approximately 2.4 minutes.
+- `pnpm lint`: **passed**.
+- `pnpm run typecheck`: **passed across the workspace**.
+- `pnpm install --frozen-lockfile --offline`: **passed**; lockfile and cached dependencies reproduced the install.
+- API production build: **passed**.
+- Frontend production build: **passed**; generated manifest, `sw.js`, Workbox runtime and public-asset precache. Nonblocking bundle-size and scaffold sourcemap notices remain.
+- Database migrations and idempotent 90-day synthetic seed were executed earlier. Runtime SQLite files are excluded from Git.
 
-## Passing checks
-- **63 unit, persistence and adapter tests passed** across five files.
-- **6 browser scenarios passed together** in about 2.1 minutes.
-- ESLint: passed.
-- Full-workspace TypeScript: passed.
-- API production build/start: passed.
-- Frontend production build: passed. Nonblocking warnings: large JS bundle and two scaffold sourcemap-location notices.
-- SQLite initialization and 90-day synthetic sales seed: passed; verified idempotent.
+## Seven browser journeys
+1. Credential-free discovery → contextual discussion → evaluation → draft → approval → running → confirmed outcome → learning → linked next experiment.
+2. The same pipeline yields ₹2,280 at 70 units versus ₹5,520 at 130 units and different recommendations. Selling price ₹99, making cost ₹45, promotion ₹1,500; break-even 28 units total.
+3. English, Hinglish, Hindi and Kannada retain profile/experiment state at 390×844 and 360×800 without horizontal overflow; Home primary action remains usable.
+4. Reset affects only the current fictional visitor; another visitor's data remains.
+5. Actual attributed IndiaRestros menu facts, dates and affordable-experiment navigation.
+6. Existing thesis website: mobile/desktop behavior, actual assets, links and downloadable thesis.
+7. Voice Lab public/locked state: no spending controls or private usage data; unauthenticated test request rejected; no speech request on page load.
 
-## Browser scenarios
-1. Complete credential-free Hinglish discovery → conversation → evaluation → draft → approval → running → owner-confirmed results → learning → linked next experiment.
-2. Separate 70-unit and 130-unit experiments yield exact ₹2,280/₹5,520 contribution and different next recommendations.
-3. English/Hinglish/Hindi/Kannada preserve profile and experiment state, with no document overflow at 390×844 and 360×800. Primary Home action is above bottom navigation.
-4. Reset affects only the current fictional session; another browser retains its edited profile.
-5. Actual IndiaRestros Whitefield facts, source links and menu update date appear in Market Inspiration; saved facts survive reload and lead to the ₹0-promotion pre-order evaluation.
-6. Separate thesis website: mobile/desktop layout, actual image assets, valid anchors and thesis download.
+## Production PWA verification
+`CHROMIUM_PATH=$(command -v chromium) node scripts/verify-pwa.mjs` **passed** against a short-lived production-build test server.
+- Manifest, 192/512 icons and maskable purpose validated.
+- Service worker registered and controlled the page in a secure localhost context.
+- Persistent Chromium context returned **zero installability errors**. Incognito inspection was not used for the final eligibility result.
+- A new worker waited; update confirmation could be cancelled without losing an edited financial input.
+- Offline launch succeeded; open inputs survived connectivity loss.
+- Cache enumeration contained only static public assets, no API/private/restaurant/speech responses.
+- Offline API fetch failed rather than returning cached private data.
+- Reconnection restored the current route; a previously saved draft was unchanged.
+- Safari installation guidance rendered. **Physical iOS/Android installation was not performed.**
 
-## Genuine provider evidence
-Five paid OpenAI calls used under the persistent six-attempt cap:
-- Initial retained-business-context Hinglish answer, 2,660 tokens.
-- Stored 70-unit result interpretation, 3,814 tokens.
-- Stored 130-unit result interpretation, 4,852 tokens.
-- Actual UI question, 2,907 tokens; capture script's independent request context did not retain browser session, so that capture assertion failed after the provider succeeded.
-- Repeated UI capture using browser-context fetch and waiting for visible response, 3,074 tokens; complete actual walkthrough succeeded without page errors.
+## Genuine external execution
+- OpenAI: five genuine reasoning calls, including stored 70/130-unit outcome interpretation and an actual UI walkthrough.
+- Anthropic: authenticated model metadata check and one genuine reasoning call through `/api/udaan/chat`, with persisted two-message conversation.
+- Sarvam: four actual calls, all HTTP 200; generated-audio round trip described in `SARVAM_VOICE_STATUS.md`. Conservative combined speech estimate ₹1.27 before GST, not invoice reconciliation. No paid repeat after the user prohibited it.
+- IndiaRestros: fresh request at **2026-11-22 09:55:02 UTC / 15:25:02 IST**, then cached repeat. Three upstream HTTP 200s, two search results, 90 raw menu items; relevant vegetarian excerpt retained one restaurant and three items. This check used Demo reasoning, **not synthetic provider data** and not paid AI.
 
-One authorized live call remains reserved for deliberate presenter use. Costs were not independently reconciled to a provider invoice.
+## Resolved verification issues
+- Nix browser libraries: system Chromium used.
+- PWA installability requires a persistent context; incognito itself reports an installation restriction.
+- Reconnection test initially expected Home while the current URL remained the opportunity route; the assertion was corrected. The application reconnection behavior passed.
+- Workbox introduced an optional Terser peer distinction across Vite plugin instances; matching the sandbox's Terser peer restored full-workspace type consistency.
+- Market cache tests now assert equal facts/original retrieval time and different live/cached provenance, rather than whole-object identity.
 
-Market-specific live-model inference is implemented through the same provider pipeline but not separately paid-tested. Actual source retrieval and deterministic interpretation were browser-tested; these are not mislabeled live AI.
+## Not verified
+Physical-device Safari/Android behavior, human microphone/pronunciation quality, native-speaker review, production durability, public deployment and billing invoices. Market-specific paid-model inference is wired but not separately executed.
 
-## Earlier failures, resolved
-- Downloaded Chromium lacked a Nix shared library; system Chromium works.
-- Read throttling was too aggressive during the language test; reads now have lower request weight.
-- Eight mobile language/width captures exceeded the default timeout; their test has a bounded 120-second limit.
-- Animated thesis phone prevented Playwright's element stability check; reduced-motion testing resolved it.
-- Initial live prose described total break-even as daily; stronger grounding fixed subsequent checked outputs. Financial UI always used the deterministic service.
-
-## Not tested or claimed
-- Anthropic live inference.
-- Sarvam integration or actual audio pronunciation, credit balance, speech latency or full voice loop.
-- Production multi-instance SQLite durability.
-- Native-speaker linguistic review, real restaurant impact, payments/ads/orders/messages.
-- GitHub push, public app deployment or Pages activation.
-
-Actual screenshots, recordings, sanitized live output and combined browser JSON report are in ignored `generated-artifacts/`. Videos are actual silent browser recordings, not narrated or synthetic demonstrations.
+Local screenshots, recordings and sanitized execution evidence remain in ignored `generated-artifacts/`; raw logs, cookies and runtime databases are not release source.

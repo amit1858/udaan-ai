@@ -3,7 +3,13 @@ name: Production release permissions
 description: Why storage hardening, source push and production publication have separate approval gates.
 ---
 
-The owner approved durable PostgreSQL while explicitly withholding application and GitHub Pages publication. Private GitHub source approval never implies public repository or app visibility approval.
+The owner explicitly chose to keep this project's source repository public and authorized pushing the reviewed source.
+
+**Why:** the user said, “no keep it public and push”.
+
+**How to apply:** keep the repository public during future source handoffs; do not restore privacy unless asked. Continue excluding credentials, environment files, private logs and runtime data.
+
+Storage changes, source pushes, application publication and GitHub Pages publication have separate approval gates. Source visibility approval never implies application publication, paid-service or private-data-transfer approval.
 
 **Why:** the owner requires review of recurring hosting/database charges and production safety before enabling hosting; the source handoff and deployment are separate decisions.
 

@@ -65,7 +65,7 @@ The separately proposed **Give Udaan natural Sarvam readouts** remains the imple
 - Original immutable release tag: `udaan-rc-2026-11-22`.
 - Published baseline preserved: `udaan-live-before-ai-restore-2026-11-22`.
 - Candidate branch: `fix/controlled-production-ai`; candidate checkpoint: `udaan-controlled-ai-2026-11-22`.
-- GitHub unexpectedly reported `private:false` during the final check. The candidate remains local until the owner approves restoring privacy or explicitly authorizes a different push scope. Do not claim a private push occurred.
+- GitHub reported `private:false`; the owner explicitly directed **keep it public and push**. Public source handoff is now authorized. Do not change repository visibility or describe this as a private push.
 - No schema migration, database replacement, redesign or public GitHub change.
 - Republish; verify `/api/udaan/live-access`; unlock on iPhone; make one approved request per reasoning provider. Genuine paid verification is pending until that new version is published.
 - One-shot verification: `CONFIRM_PAID_PRODUCTION_TESTS=two-approved-checks pnpm exec tsx scripts/verify-production-ai.ts`. Never run in CI/startup. It uses a fresh fictional session, checks the deployed gate before any billable request, prints metadata only and creates an ignored private marker before the first attempt. Never delete that marker just to retry after an ambiguous timeout.

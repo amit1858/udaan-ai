@@ -1,4 +1,4 @@
 - [Browser verification on Nix](browser-verification.md) — use system Chromium for Playwright; downloaded binaries lack required shared libraries.
 - [Sarvam speech constraints](sarvam-speech.md) — v4 needs persona IDs; preserve English business terms within native-script Indic speech text.
 - [PWA verification](pwa-verification.md) — persistent Chromium avoids incognito eligibility errors; align Vite optional peers after Workbox changes.
-- [Production release permissions](production-release-policy.md) — storage migration and private source push do not authorize publishing, paid services or private-data copying.
+- [Production release permissions](production-release-policy.md) — owner wants public source; hosting, paid services and private-data copying still need separate approval.

@@ -5,7 +5,7 @@
 - **Already-published version is unchanged until Republish.** Actual newly bounded provider calls are not yet verified; no paid calls were repeated during implementation.
 - Main-app Sarvam remains separate; the internal Lab is still inaccessible in production. Browser speech is unchanged.
 - **49 unique targeted checks passed**: 16 new controlled-live checks, five production API checks and 28 finance checks. The latest 16 ran with mocked provider transports only; no paid calls. API/frontend production builds, both application typechecks, lint and the anonymous mobile launch screenshot passed. The screenshot showed onboarding, not the presenter form.
-- GitHub visibility verification unexpectedly returned **public**. No candidate push or visibility change was performed; owner direction is required before pushing. The original release tag was reverified unchanged.
+- GitHub visibility verification returned **public**; the owner explicitly approved keeping it public and pushing the reviewed candidate. Repository visibility will not be changed. The original release tag was reverified unchanged.
 - See `CONTROLLED_LIVE_AI.md` for exact environment, access instructions, prices, model/fallback policy and limitations. This current section supersedes earlier “production always disabled” statements below.
 
 ## Production-readiness update — supersedes historical storage notes below

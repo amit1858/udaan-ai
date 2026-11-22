@@ -17,6 +17,7 @@ The user explicitly approved React/Vite with a server API instead of Next.js; al
 Discovery-first, not restaurant management. Four languages remain distinct: English, Hinglish, Hindi, Kannada.
 Money uses integer paise. Contribution must never be called net profit. AI cannot approve experiments or execute payments, advertisements or messages.
 Keep Demo Mode credential-free, isolate visitor records, and never silently replace failed live inference with demo responses.
+Sarvam is the requested preferred speech provider but remains pending at the competition freeze. Reuse the existing reasoning and business memory; never introduce a separate Samvaad agent. Require secure credentials and explicit bounded speech-test approval.
 
 ## Permission boundaries
 No public deployment, GitHub push or public publication without explicit authorization.

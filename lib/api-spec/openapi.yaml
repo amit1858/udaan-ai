@@ -441,6 +441,33 @@ components:
         createdAt: { type: string }
         model: { type: string }
         tokens: { type: integer }
+        market: { $ref: "#/components/schemas/MarketIntelligence" }
+    MarketIntelligence:
+      type: object
+      required: [status, retrievedAt, facts]
+      properties:
+        status: { type: string, enum: [retrieved, unavailable] }
+        retrievedAt: { type: string }
+        facts:
+          type: array
+          items:
+            type: object
+            required: [name, url, locality, source, menu]
+            properties:
+              name: { type: string }
+              url: { type: string }
+              locality: { type: string }
+              source: { type: string }
+              updated: { type: string }
+              menu:
+                type: array
+                items:
+                  type: object
+                  required: [name, section]
+                  properties:
+                    name: { type: string }
+                    section: { type: string }
+                    price: { type: number }
     ProviderStatus:
       type: object
       required: [id, name, configured, model, status, paidCallsAllowed]

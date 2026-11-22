@@ -174,7 +174,23 @@ export const GetConversationResponseItem = zod.object({
 }).optional(),
   "createdAt": zod.string(),
   "model": zod.string().optional(),
-  "tokens": zod.int().optional()
+  "tokens": zod.int().optional(),
+  "market": zod.object({
+  "status": zod.enum(['retrieved', 'unavailable']),
+  "retrievedAt": zod.string(),
+  "facts": zod.array(zod.object({
+  "name": zod.string(),
+  "url": zod.string(),
+  "locality": zod.string(),
+  "source": zod.string(),
+  "updated": zod.string().optional(),
+  "menu": zod.array(zod.object({
+  "name": zod.string(),
+  "section": zod.string(),
+  "price": zod.number().optional()
+}))
+}))
+}).optional()
 })
 export const GetConversationResponse = zod.array(GetConversationResponseItem)
 
@@ -210,7 +226,23 @@ export const SendChatResponse = zod.object({
 }).optional(),
   "createdAt": zod.string(),
   "model": zod.string().optional(),
-  "tokens": zod.int().optional()
+  "tokens": zod.int().optional(),
+  "market": zod.object({
+  "status": zod.enum(['retrieved', 'unavailable']),
+  "retrievedAt": zod.string(),
+  "facts": zod.array(zod.object({
+  "name": zod.string(),
+  "url": zod.string(),
+  "locality": zod.string(),
+  "source": zod.string(),
+  "updated": zod.string().optional(),
+  "menu": zod.array(zod.object({
+  "name": zod.string(),
+  "section": zod.string(),
+  "price": zod.number().optional()
+}))
+}))
+}).optional()
 })
 
 

@@ -35,9 +35,9 @@ try {
   await page.locator("textarea").fill("Mere restaurant mein weekdays par customers kam aa rahe hain. Kya karun?");
   await page.getByTestId("button-send").click();
   await page.waitForFunction(async () => (await (await fetch("/api/udaan/conversation")).json()).some((m) => m.role === "assistant" && m.provider === "openai"), undefined, { polling: 1000 });
-  await page.waitForTimeout(600);
+  await page.locator('[data-testid^="message-assistant-"]').first().waitFor();
   await shot("05-live-openai-response", true);
-  const conversation = await (await page.request.get(base + "/api/udaan/conversation")).json();
+  const conversation = await page.evaluate(async () => (await fetch("/api/udaan/conversation")).json());
   const live = conversation.find((m) => m.role === "assistant" && m.provider === "openai");
   if (!live?.tokens || !live?.followUp) throw new Error("Live response did not include provider evidence");
   await fs.writeFile("generated-artifacts/live-ui-verification.json", JSON.stringify({ provider: live.provider, model: live.model, content: live.content, followUp: live.followUp, tokens: live.tokens, createdAt: live.createdAt }, null, 2));

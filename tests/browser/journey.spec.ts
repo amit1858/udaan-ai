@@ -97,6 +97,9 @@ test("four languages preserve state without mobile overflow at both widths", asy
       await page.getByTestId("option-language-" + lang).click();
       await expect.poll(async () => (await state(page.request)).preferences.language).toBe(lang);
       await page.goto("/");
+      await expect(page.getByTestId("button-explore-featured")).toBeVisible();
+      const cta = await page.getByTestId("button-explore-featured").boundingBox();
+      expect(cta!.y + cta!.height).toBeLessThan((page.viewportSize()?.height ?? 844) - 80);
       await noOverflow(page);
       await page.screenshot({ path: `generated-artifacts/screenshots/home-${lang}-${width}.png`, fullPage: true });
       await page.goto("/discover"); await noOverflow(page);

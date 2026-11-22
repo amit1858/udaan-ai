@@ -2,6 +2,7 @@ import { z } from "zod";
 import { calculate } from "./finance";
 import { local, opportunities, type Language, type Profile } from "./content";
 import type { serializeExperiment } from "./db";
+import type { Market } from "./market";
 
 export const aiOutput = z.object({
   content: z.string().min(1).max(4500),
@@ -15,6 +16,7 @@ export type Context = {
   profile: Profile; language: Language;
   experiments: ReturnType<typeof serializeExperiment>[];
   history: { role: string; content: string }[];
+  market?: Market;
 };
 
 export function matchIntent(text: string, hasPrevious: boolean): AIOutput["intent"] {
@@ -31,6 +33,16 @@ export function matchIntent(text: string, hasPrevious: boolean): AIOutput["inten
 
 export function demoResponse(message: string, context: Context): AIOutput {
   const { profile: p, language: l } = context;
+  if (context.market) {
+    const available = context.market.status === "retrieved";
+    const content = local(l,
+      `${available ? "The attributed menu facts below were retrieved from IndiaRestros. They do not prove demand or popularity." : "Restaurant data is unavailable. No competitor facts or prices are being shown."} This is a deterministic Demo Engine interpretation, not live AI. A hypothesis for your fictional shop: ask five regular customers about opt-in breakfast pre-orders, with ₹0 promotion. Confirm demand and making costs before a seven-day test. Do not copy premium menu prices.`,
+      `${available ? "Neeche IndiaRestros se retrieved menu facts aur unka source hai. Isse demand ya popularity prove nahi hoti." : "Restaurant data abhi unavailable hai. Koi competitor fact ya price invent nahi kiya gaya."} Yeh Demo Engine ki interpretation hai, live AI nahi. Aapki fictional shop ke liye hypothesis: paanch regular customers se opt-in breakfast pre-orders poochhein, ₹0 promotion ke saath. Seven-day test se pehle demand aur making cost confirm karein. Premium menu prices copy na karein.`,
+      `${available ? "नीचे IndiaRestros से मिले मेनू के तथ्य और स्रोत हैं। ये माँग या लोकप्रियता का प्रमाण नहीं हैं।" : "रेस्तराँ डेटा उपलब्ध नहीं है। कोई प्रतियोगी तथ्य या कीमत नहीं गढ़ी गई है।"} यह Demo Engine का सुझाव है, लाइव AI नहीं। आपकी काल्पनिक दुकान के लिए अनुमान: पाँच नियमित ग्राहकों से सहमति लेकर नाश्ते के प्री-ऑर्डर पूछें, ₹0 प्रचार खर्च। सात-दिन के परीक्षण से पहले माँग और बनाने की लागत जाँचें। महँगी मेनू कीमतों की नकल न करें।`,
+      `${available ? "ಕೆಳಗೆ IndiaRestros ನಿಂದ ಪಡೆದ ಮೆನು ಮಾಹಿತಿ ಮತ್ತು ಮೂಲವಿದೆ. ಇದು ಬೇಡಿಕೆ ಅಥವಾ ಜನಪ್ರಿಯತೆಯ ಸಾಕ್ಷಿಯಲ್ಲ." : "ರೆಸ್ಟೋರೆಂಟ್ ಮಾಹಿತಿ ಲಭ್ಯವಿಲ್ಲ. ಸ್ಪರ್ಧಿಗಳ ಮಾಹಿತಿ ಅಥವಾ ಬೆಲೆಗಳನ್ನು ಕಲ್ಪಿಸಿಲ್ಲ."} ಇದು Demo Engine ಸಲಹೆ, live AI ಅಲ್ಲ. ನಿಮ್ಮ ಕಾಲ್ಪನಿಕ ಅಂಗಡಿಗಾಗಿ ಒಂದು ಊಹೆ: ಐದು ನಿಯಮಿತ ಗ್ರಾಹಕರ ಒಪ್ಪಿಗೆಯೊಂದಿಗೆ ಬೆಳಗಿನ ತಿಂಡಿಯ ಮುಂಗಡ ಆರ್ಡರ್ ಕೇಳಿ; ಪ್ರಚಾರಕ್ಕೆ ₹0. ಏಳು ದಿನದ ಪರೀಕ್ಷೆಗೂ ಮುನ್ನ ಬೇಡಿಕೆ ಮತ್ತು ವೆಚ್ಚ ಪರಿಶೀಲಿಸಿ. ದುಬಾರಿ ಮೆನು ಬೆಲೆಗಳನ್ನು ನಕಲಿಸಬೇಡಿ.`);
+    return { content, followUp: local(l, "Shall we evaluate a no-spend pre-order test?", "₹0 promotion wala pre-order test evaluate karein?", "बिना प्रचार खर्च का प्री-ऑर्डर परीक्षण देखें?", "ಪ್ರಚಾರ ವೆಚ್ಚವಿಲ್ಲದ ಮುಂಗಡ ಆರ್ಡರ್ ಪರೀಕ್ಷೆ ನೋಡೋಣವೇ?"),
+      opportunityId: "preorder", intent: "technology", speechText: content };
+  }
   const intent = matchIntent(message, context.history.length > 0);
   const latest = context.experiments.find((e) => e.learning);
   let opportunityId: AIOutput["opportunityId"] = intent === "story" ? "subscription" : intent === "technology" ? "preorder" : "combo";

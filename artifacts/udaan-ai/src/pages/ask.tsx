@@ -1,3 +1,4 @@
+import { MarketInspiration, marketQuestions } from '@/components/market-inspiration';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Link, useSearch } from 'wouter';
 import { ArrowUp, Mic, Sparkles, ArrowUpRight, CornerDownRight } from 'lucide-react';
@@ -75,6 +76,7 @@ export default function AskPage() {
           <UdaanMark className="size-11 shrink-0" />
           <div><h1 className="font-display text-2xl font-bold">{t('ask.title')}</h1><p className="text-sm text-mist">{t('ask.intro')}</p></div>
         </header>
+        <button data-testid="button-market-question" onClick={() => submit(marketQuestions[lang])} disabled={send.isPending} className="min-h-12 w-full rounded-2xl border border-intel/40 bg-intel/10 p-4 text-left text-sm leading-relaxed text-intel disabled:opacity-50">{marketQuestions[lang]}</button>
 
         {conv.isLoading && <div className="space-y-3"><Skeleton className="ml-auto h-12 w-2/3 rounded-3xl bg-raised" /><Skeleton className="h-40 w-full rounded-3xl bg-raised" /></div>}
         {conv.isError && <ErrorState onRetry={() => conv.refetch()} />}
@@ -156,10 +158,12 @@ function Bubble({ m, opp, onFollow, busy }: { m: Message; opp?: Opportunity; onF
           {live ? t('provider.live') + (m.model ? ' · ' + m.model : '') : t('provider.demo')}
         </span>
       </div>
-      <div className="rounded-[24px] rounded-tl-md border border-line card-sheen p-4">
+      {m.market && <MarketInspiration market={m.market} provider={m.provider} opportunity={opp} interpretation={m.content} />}
+      {!m.market && <div className="rounded-[24px] rounded-tl-md border border-line card-sheen p-4">
         <p className="whitespace-pre-line text-[15px] leading-relaxed text-snow">{m.content}</p>
         <div className="mt-3"><ListenButton id={'msg-' + m.id} text={m.speechText || m.content} /></div>
-      </div>
+      </div>}
+      {m.market && <ListenButton id={'msg-' + m.id} text={m.speechText || m.content} />}
       {opp && (
         <Link href={'/opportunity/' + opp.id} data-testid={'card-chat-opportunity-' + opp.id} className="group flex overflow-hidden rounded-[24px] border border-signal/30 bg-surface transition hover:border-signal/60">
           <OppImage src={opp.image} alt={opp.imageAlt} className="w-28 shrink-0 sm:w-40" />

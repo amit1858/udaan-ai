@@ -110,6 +110,7 @@ export default function OpportunityPage() {
           </div>
           {parent && <div className="rounded-2xl border border-signal/30 bg-signal/5 px-4 py-2.5 text-sm text-signal">{t('opp.followUpOf')}</div>}
           <p className="text-[16px] leading-relaxed text-snow/90">{o.description}</p>
+          {o.actionable && <a href="#evaluate" className="inline-flex min-h-12 items-center justify-center rounded-full bg-signal px-5 text-sm font-semibold text-ink">{t('opp.evaluate')}</a>}
           <div className="flex flex-wrap gap-2"><ListenButton id={'detail-' + o.id} text={[o.title, o.description, o.whyItFits, o.story, o.firstStep].filter(Boolean).join('. ')} /></div>
           <Block title={t('common.whyFits')} accent>{o.whyItFits}</Block>
           {o.story && <Block title={t('opp.story')} note={o.category === 'story' ? t('cat.illustrative') : undefined}>{o.story}</Block>}
@@ -124,7 +125,7 @@ export default function OpportunityPage() {
           </div>
         </section>
 
-        <section className="mt-8 lg:mt-0">
+        <section id="evaluate" className="mt-8 scroll-mt-24 lg:mt-0">
           {o.actionable ? (
             <div className="space-y-4 rounded-[32px] border border-line card-sheen p-5 lg:sticky lg:top-24">
               <div>

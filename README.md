@@ -10,6 +10,10 @@ English, Hinglish, हिन्दी and ಕನ್ನಡ are independent output
 
 The credential-free **Demo Engine** works without an API key. OpenAI has been genuinely verified with saved business context and both stored result scenarios. Anthropic is implemented but unverified without credentials.
 
+**Market Inspiration** retrieves attributed Whitefield menu facts from the documented IndiaRestros API. It separates source facts, periodic freshness and AI/Demo hypotheses, and connects to an affordable experiment.
+
+**Sarvam voice is pending**, not implemented: official models were researched, but credentials and bounded speech-test authorization were unavailable at the feature freeze. See `docs/SARVAM_VOICE_STATUS.md`.
+
 ## Quick start on Replit
 ```sh
 pnpm install --frozen-lockfile

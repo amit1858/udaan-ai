@@ -4,7 +4,7 @@
 1. Open the working application preview at 390×844.
 2. Settings → Reset demo. This resets only this browser's fictional records.
 3. Check Settings: Demo Mode remains available; OpenAI should show configured/connected.
-4. Three paid checks have been used at the time of initial evidence capture; maximum six total. Check the live verification report for subsequent usage before rehearsing paid calls.
+4. Five paid checks have been used; maximum six total. One remains for deliberate live stage use. Do not spend it on another rehearsal.
 5. Select Hinglish. Keep the credential-free recorded walkthrough ready.
 6. Do not spend time debugging live AI on stage. Explicitly switch to Demo Mode if necessary and label it honestly.
 
@@ -40,6 +40,8 @@ Switch to Kannada or Hindi; show unchanged experiment and localized learning.
 “Most business software helps owners manage what their business is today. Udaan helps them imagine what their business could become tomorrow.”
 
 ## Rehearsal rules
+- Optional market moment: Ask Udaan → the nearby-restaurants question. Source facts show restaurant attribution, original menu price and update date. Distinguish AI hypothesis from observed facts. Demo Mode's interpretation is labeled deterministic.
+- Sarvam is pending. Do not claim the existing browser microphone/read-aloud controls are Sarvam or that pronunciation was verified.
 - Synthetic outcomes do not prove real restaurant improvement.
 - Browser recordings are actual interaction videos, without captured speech audio.
 - Do not claim endorsements, traction, official judging scores or a guaranteed top-six place.

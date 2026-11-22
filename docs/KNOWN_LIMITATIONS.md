@@ -13,3 +13,5 @@
 11. **Financial model:** Contribution excludes rent, salaries, taxes and unmodeled fixed costs. Demand and making costs are hypotheses until owner-confirmed. Negative margins and insufficient results are explicitly handled.
 12. **Publication:** No GitHub connection/push, repository creation, GitHub Pages activation or public application deployment has occurred. The proposed repository is unverified. A separate website is prepared only after the core validation.
 13. **Recording:** Actual Chromium walkthrough videos do not contain microphone audio. No voiced demonstration is claimed.
+14. **Sarvam:** Official Saaras v4/codemix and Bulbul v4 Flash documentation verified; integration deliberately pending at the feature freeze. No key, account-credit verification or speech-test authorization; no paid calls or pronunciation claims.
+15. **Market intelligence:** Real IndiaRestros menu facts are periodic listings, not current offers or evidence of demand. Market-specific live-model inference is implemented but not separately paid-tested. The browser test used real retrieved facts with an explicitly deterministic Demo interpretation.

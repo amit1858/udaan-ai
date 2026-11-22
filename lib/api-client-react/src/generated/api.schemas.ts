@@ -302,6 +302,35 @@ export const MessageRole = {
   assistant: 'assistant',
 } as const;
 
+export type MarketIntelligenceStatus = typeof MarketIntelligenceStatus[keyof typeof MarketIntelligenceStatus];
+
+
+export const MarketIntelligenceStatus = {
+  retrieved: 'retrieved',
+  unavailable: 'unavailable',
+} as const;
+
+export type MarketIntelligenceFactsItemMenuItem = {
+  name: string;
+  section: string;
+  price?: number;
+};
+
+export type MarketIntelligenceFactsItem = {
+  name: string;
+  url: string;
+  locality: string;
+  source: string;
+  updated?: string;
+  menu: MarketIntelligenceFactsItemMenuItem[];
+};
+
+export interface MarketIntelligence {
+  status: MarketIntelligenceStatus;
+  retrievedAt: string;
+  facts: MarketIntelligenceFactsItem[];
+}
+
 export interface Message {
   id: string;
   role: MessageRole;
@@ -316,6 +345,7 @@ export interface Message {
   createdAt: string;
   model?: string;
   tokens?: number;
+  market?: MarketIntelligence;
 }
 
 export interface ProviderStatus {

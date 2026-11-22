@@ -1,1 +1,2 @@
 - [Browser verification on Nix](browser-verification.md) — use system Chromium for Playwright; downloaded binaries lack required shared libraries.
+- [Sarvam speech constraints](sarvam-speech.md) — v4 needs persona IDs; preserve English business terms within native-script Indic speech text.

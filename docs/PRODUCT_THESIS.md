@@ -51,3 +51,8 @@ After validating restaurant demand, adjacent possibilities include bakeries, ret
 
 ### Current limitations
 Read `KNOWN_LIMITATIONS.md`, `TEST_REPORT.md` and `IMPLEMENTATION_STATUS.md`. The objective is a reliable competition demonstration, not a claim of production readiness.
+
+### Late-stage additions, honestly scoped
+Market Inspiration now retrieves actual attributed Whitefield menu facts via the documented IndiaRestros REST API. It separates periodic source facts and dates from AI/Demo hypotheses, and connects to a no-spend pre-order experiment. API retrieval and the actual UI path passed browser testing; market-specific paid inference was not separately run.
+
+Sarvam voice was requested near the feature freeze. Official Saaras v4/codemix and Bulbul v4 Flash documentation was checked; missing credentials and spending authorization prevent credible real-audio validation. It remains pending, with no voice-integration completion or pronunciation claim.

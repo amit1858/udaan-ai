@@ -21,6 +21,8 @@ Sanitized full output is saved in ignored `generated-artifacts/live-verification
 
 Three live calls were used for the evidence above. Subsequent authorized UI capture, if performed, is documented in the final test report. The allowance must not be increased without permission.
 
+Final update: two additional genuine UI calls used 2,907 and 3,074 tokens. The second capture completed the whole actual mobile walkthrough. Total five attempts; one remains for deliberate presenter use. Full sanitized UI output is in `generated-artifacts/live-ui-verification.json`.
+
 ## Anthropic
 Official SDK adapter implemented under the shared contract. No Anthropic credentials are configured; live verification not performed. The UI labels it unconfigured.
 

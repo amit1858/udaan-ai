@@ -7,6 +7,7 @@
  */
 import type { Financials } from './financials';
 import type { Language } from './language';
+import type { MarketIntelligence } from './marketIntelligence';
 import type { MessageRole } from './messageRole';
 import type { Provider } from './provider';
 
@@ -24,4 +25,5 @@ export interface Message {
   createdAt: string;
   model?: string;
   tokens?: number;
+  market?: MarketIntelligence;
 }

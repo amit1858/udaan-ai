@@ -5,7 +5,9 @@ import { ErrorBoundary } from '@/components/error-boundary';
 
 import './index.css';
 
-createRoot(document.getElementById('root')!, {
+if (/\/thesis\/?$/.test(window.location.pathname)) {
+  window.location.replace(import.meta.env.BASE_URL + 'thesis/index.html');
+} else createRoot(document.getElementById('root')!, {
   // Keeps caught errors off reportError(), which would raise the dev overlay.
   onCaughtError: (error, errorInfo) => {
     console.error(error, errorInfo.componentStack);

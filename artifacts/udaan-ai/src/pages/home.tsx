@@ -56,17 +56,17 @@ export default function HomePage() {
             <div className="relative -mt-24 space-y-4 p-5 sm:p-6">
               <h2 className="font-display text-[2rem] font-extrabold leading-[1.02] sm:text-4xl" data-testid="text-featured-title">{featured.title}</h2>
               <p className="text-[15px] leading-relaxed text-snow/85">{featured.description}</p>
-              <p className="border-l-2 border-intel pl-3 text-sm text-mist"><span className="text-intel">{t('common.whyFits')}. </span>{featured.whyItFits}</p>
-              <div className="grid grid-cols-2 gap-2">
-                <div className="rounded-2xl border border-line bg-ink/50 p-3"><div className="text-[11px] text-mist">{t('common.budget')}</div><div className="font-mono text-xl text-snow">{inr(featured.budget)}</div></div>
-                <div className="rounded-2xl border border-line bg-ink/50 p-3"><div className="text-[11px] text-mist">{t('common.benefit')}</div><div className="text-sm leading-snug text-signal">{featured.benefit}</div></div>
-              </div>
               <div className="flex gap-2">
                 <Link href={'/opportunity/' + featured.id} data-testid="button-explore-featured"
                   className="group inline-flex min-h-[52px] flex-1 items-center justify-center gap-2 rounded-full bg-signal px-6 font-semibold text-ink transition active:scale-[.98]">
                   {t('home.exploreIdea')}<ArrowRight className="size-5 transition-transform group-hover:translate-x-0.5" />
                 </Link>
                 <ListenButton id="featured" text={featured.title + '. ' + featured.description + ' ' + featured.whyItFits} compact className="min-h-[52px] px-4" />
+              </div>
+              <p className="border-l-2 border-intel pl-3 text-sm text-mist"><span className="text-intel">{t('common.whyFits')}. </span>{featured.whyItFits}</p>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="rounded-2xl border border-line bg-ink/50 p-3"><div className="text-[11px] text-mist">{t('common.budget')}</div><div className="font-mono text-xl text-snow">{inr(featured.budget)}</div></div>
+                <div className="rounded-2xl border border-line bg-ink/50 p-3"><div className="text-[11px] text-mist">{t('common.benefit')}</div><div className="text-sm leading-snug text-signal">{featured.benefit}</div></div>
               </div>
             </div>
           </article>

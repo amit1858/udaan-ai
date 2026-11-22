@@ -16,6 +16,7 @@ import { prisma, ensureSession, getState, preferences, profileOf, serializeExper
 import { calculate, assertTransition, financeInput, toPaise, learningFacts } from "../udaan/finance";
 import { generate, providerStatuses, type ProviderId } from "../udaan/providers";
 import type { Context } from "../udaan/demo";
+import { isMarketQuestion, retrieveMarket } from "../udaan/market";
 
 const router: IRouter = Router();
 router.use("/udaan", cookieParser(process.env.SESSION_SECRET || randomUUID()));
@@ -97,10 +98,11 @@ router.post("/udaan/chat", async (req, res): Promise<void> => {
     const context: Context = { profile, language: lang,
       experiments: experiments.map((e) => serializeExperiment(e, lang, profile)),
       history: history.reverse().map((m) => ({ role: m.role, content: m.content })),
+      ...(isMarketQuestion(message) ? { market: await retrieveMarket() } : {}),
     };
     const output = await generate(s.provider as ProviderId, message, context, id);
     const idea = opportunities(lang, profile).find((o) => o.id === output.opportunityId)!;
-    const metadata = { ...output, financials: calculate(idea) };
+    const metadata = { ...output, financials: calculate(idea), ...(context.market ? { market: context.market } : {}) };
     const [, assistant] = await prisma.$transaction([
       prisma.chatMessage.create({ data: { sessionId: id, role: "user", content: message, language: lang, provider: s.provider, metadata: "{}" } }),
       prisma.chatMessage.create({ data: { sessionId: id, role: "assistant", content: output.content, language: lang, provider: s.provider, metadata: JSON.stringify(metadata) } }),

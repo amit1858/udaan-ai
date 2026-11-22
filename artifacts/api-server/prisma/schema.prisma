@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./udaan.db"
+}
+
+model DemoSession {
+  id           String       @id
+  profile      String
+  language     String       @default("en")
+  provider     String       @default("demo")
+  onboarded    Boolean      @default(false)
+  createdAt    DateTime     @default(now())
+  experiments  Experiment[]
+  messages     ChatMessage[]
+}
+
+model Sale {
+  date          String @id
+  orders        Int
+  revenue       Int
+  variableCosts Int
+}
+
+model Experiment {
+  id                   String      @id @default(cuid())
+  sessionId            String
+  session              DemoSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  opportunityId        String
+  parentExperimentId   String?
+  status               String      @default("Draft")
+  sellingPrice         Int
+  makingCost           Int
+  promotionBudget      Int
+  expectedUnits        Int
+  durationDays         Int         @default(7)
+  actualUnits          Int?
+  actualPromotionSpend Int?
+  feedback             String?
+  observations         String?
+  synthetic            Boolean     @default(false)
+  timeline             String
+  learning             String?
+  createdAt            DateTime    @default(now())
+  @@index([sessionId, createdAt])
+}
+
+model ChatMessage {
+  id            String      @id @default(cuid())
+  sessionId     String
+  session       DemoSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  role          String
+  content       String
+  language      String
+  provider      String
+  metadata      String
+  createdAt     DateTime    @default(now())
+  @@index([sessionId, createdAt])
+}
+
+model ProviderCall {
+  id         String   @id @default(cuid())
+  provider   String
+  sessionId  String
+  status     String
+  tokens     Int      @default(0)
+  createdAt  DateTime @default(now())
+}

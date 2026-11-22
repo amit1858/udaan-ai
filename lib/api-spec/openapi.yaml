@@ -1,0 +1,465 @@
+openapi: 3.1.0
+info:
+  title: Api
+  version: 1.0.0
+  description: Udaan AI discovery-to-learning API. Monetary API amounts are rupees; calculations use integer paise.
+servers:
+  - url: /api
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/HealthStatus" }
+  /udaan/state:
+    get:
+      operationId: getUdaanState
+      responses:
+        "200":
+          description: Cookie-isolated persistent business state
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/BusinessState" }
+  /udaan/profile:
+    patch:
+      operationId: updateProfile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ProfileInput" }
+      responses:
+        "200":
+          description: Updated profile
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Profile" }
+  /udaan/preferences:
+    patch:
+      operationId: updatePreferences
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PreferencesInput" }
+      responses:
+        "200":
+          description: Saved preferences
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Preferences" }
+  /udaan/opportunities:
+    get:
+      operationId: getOpportunities
+      parameters:
+        - in: query
+          name: language
+          schema: { $ref: "#/components/schemas/Language" }
+      responses:
+        "200":
+          description: Contextual discovery
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Opportunity" }
+  /udaan/conversation:
+    get:
+      operationId: getConversation
+      responses:
+        "200":
+          description: Persistent messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Message" }
+  /udaan/chat:
+    post:
+      operationId: sendChat
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ChatInput" }
+      responses:
+        "200":
+          description: Validated contextual response; live errors never silently become demo responses
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Message" }
+  /udaan/evaluate:
+    post:
+      operationId: evaluateFinance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/FinanceInput" }
+      responses:
+        "200":
+          description: Authoritative deterministic calculation
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Financials" }
+  /udaan/experiments:
+    get:
+      operationId: getExperiments
+      responses:
+        "200":
+          description: Experiments with outcomes and linked learning
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Experiment" }
+    post:
+      operationId: createExperiment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ExperimentInput" }
+      responses:
+        "201":
+          description: Saved draft
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Experiment" }
+  /udaan/experiments/{id}/transition:
+    post:
+      operationId: transitionExperiment
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/TransitionInput" }
+      responses:
+        "200":
+          description: Validated lifecycle transition
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Experiment" }
+  /udaan/experiments/{id}/results:
+    post:
+      operationId: recordResults
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ResultsInput" }
+      responses:
+        "200":
+          description: Completed experiment with calculated learning
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Experiment" }
+  /udaan/providers:
+    get:
+      operationId: getProviders
+      responses:
+        "200":
+          description: Safe configuration status, never secrets
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/ProviderStatus" }
+  /udaan/providers/test:
+    post:
+      operationId: testProvider
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ProviderTestInput" }
+      responses:
+        "200":
+          description: Bounded test, gated by server permission and configured credentials
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ProviderStatus" }
+  /udaan/demo/reset:
+    post:
+      operationId: resetDemo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ResetInput" }
+      responses:
+        "200":
+          description: Reset only current isolated demonstration
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/BusinessState" }
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      required: [status]
+      properties:
+        status: { type: string }
+    Language:
+      type: string
+      enum: [en, hinglish, hi, kn]
+    Provider:
+      type: string
+      enum: [demo, openai, anthropic]
+    Preferences:
+      type: object
+      required: [language, provider, onboarded]
+      properties:
+        language: { $ref: "#/components/schemas/Language" }
+        provider: { $ref: "#/components/schemas/Provider" }
+        onboarded: { type: boolean }
+    PreferencesInput:
+      type: object
+      properties:
+        language: { $ref: "#/components/schemas/Language" }
+        provider: { $ref: "#/components/schemas/Provider" }
+        onboarded: { type: boolean }
+    MenuItem:
+      type: object
+      required: [name, price, cost]
+      properties:
+        name: { type: string }
+        price: { type: number }
+        cost: { type: number }
+    Profile:
+      type: object
+      required: [shopName, ownerName, category, location, openingHours, challenge, budget, averageOrders, menu, provenance]
+      properties:
+        shopName: { type: string }
+        ownerName: { type: string }
+        category: { type: string }
+        location: { type: string }
+        openingHours: { type: string }
+        challenge: { type: string }
+        budget: { type: number }
+        averageOrders: { type: number }
+        menu:
+          type: array
+          items: { $ref: "#/components/schemas/MenuItem" }
+        provenance: { type: string }
+    ProfileInput:
+      type: object
+      properties:
+        shopName: { type: string, minLength: 1, maxLength: 100 }
+        ownerName: { type: string, minLength: 1, maxLength: 80 }
+        category: { type: string }
+        location: { type: string }
+        openingHours: { type: string }
+        challenge: { type: string }
+        budget: { type: number, minimum: 0, maximum: 1000000 }
+        averageOrders: { type: number, minimum: 0 }
+        menu:
+          type: array
+          items: { $ref: "#/components/schemas/MenuItem" }
+    Sale:
+      type: object
+      required: [date, orders, revenue, variableCosts, synthetic]
+      properties:
+        date: { type: string }
+        orders: { type: integer }
+        revenue: { type: number }
+        variableCosts: { type: number }
+        synthetic: { type: boolean }
+    Baseline:
+      type: object
+      required: [revenue, orders, averageOrderValue, variableCosts, contribution]
+      properties:
+        revenue: { type: number }
+        orders: { type: integer }
+        averageOrderValue: { type: number }
+        variableCosts: { type: number }
+        contribution: { type: number }
+    BusinessState:
+      type: object
+      required: [profile, preferences, sales, baseline, experimentCount, completedCount, recentLearning]
+      properties:
+        profile: { $ref: "#/components/schemas/Profile" }
+        preferences: { $ref: "#/components/schemas/Preferences" }
+        sales:
+          type: array
+          items: { $ref: "#/components/schemas/Sale" }
+        baseline: { $ref: "#/components/schemas/Baseline" }
+        experimentCount: { type: integer }
+        completedCount: { type: integer }
+        recentLearning:
+          type: array
+          items: { $ref: "#/components/schemas/Learning" }
+    Opportunity:
+      type: object
+      required: [id, title, category, description, whyItFits, image, imageAlt, budget, benefit, assumptions, story, firstStep, actionable, sellingPrice, makingCost, expectedUnits, promotionBudget, durationDays]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        category: { type: string, enum: [experiment, story, technology] }
+        description: { type: string }
+        whyItFits: { type: string }
+        image: { type: string }
+        imageAlt: { type: string }
+        budget: { type: number }
+        benefit: { type: string }
+        assumptions:
+          type: array
+          items: { type: string }
+        story: { type: string }
+        firstStep: { type: string }
+        actionable: { type: boolean }
+        sellingPrice: { type: number }
+        makingCost: { type: number }
+        expectedUnits: { type: integer }
+        promotionBudget: { type: number }
+        durationDays: { type: integer }
+    FinanceInput:
+      type: object
+      required: [sellingPrice, makingCost, promotionBudget, expectedUnits]
+      properties:
+        sellingPrice: { type: number, minimum: 0, maximum: 100000 }
+        makingCost: { type: number, minimum: 0, maximum: 100000 }
+        promotionBudget: { type: number, minimum: 0, maximum: 1000000 }
+        expectedUnits: { type: integer, minimum: 1, maximum: 100000 }
+    Financials:
+      type: object
+      required: [units, unitContribution, revenue, variableCosts, promotionCost, contributionBeforePromotion, contributionAfterPromotion, breakEvenUnits, overheadExcluded]
+      properties:
+        units: { type: integer }
+        unitContribution: { type: number }
+        revenue: { type: number }
+        variableCosts: { type: number }
+        promotionCost: { type: number }
+        contributionBeforePromotion: { type: number }
+        contributionAfterPromotion: { type: number }
+        breakEvenUnits: { type: [integer, "null"] }
+        overheadExcluded: { type: boolean }
+    ExperimentInput:
+      allOf:
+        - { $ref: "#/components/schemas/FinanceInput" }
+        - type: object
+          required: [opportunityId, durationDays]
+          properties:
+            opportunityId: { type: string }
+            durationDays: { type: integer, enum: [7] }
+            parentExperimentId: { type: string }
+    TransitionInput:
+      type: object
+      required: [status, confirmed]
+      properties:
+        status: { type: string, enum: [Approved, Running, Cancelled] }
+        confirmed: { type: boolean }
+    ResultsInput:
+      type: object
+      required: [actualUnits, actualPromotionSpend, feedback, confirmed, synthetic]
+      properties:
+        actualUnits: { type: integer, minimum: 0, maximum: 100000 }
+        actualPromotionSpend: { type: number, minimum: 0, maximum: 1000000 }
+        feedback: { type: string, maxLength: 2000 }
+        observations: { type: string, maxLength: 2000 }
+        confirmed: { type: boolean }
+        synthetic: { type: boolean }
+    LifecycleEvent:
+      type: object
+      required: [status, at]
+      properties:
+        status: { type: string }
+        at: { type: string }
+    Learning:
+      type: object
+      required: [experimentId, outcome, whatHappened, whatWeLearned, nextAction, nextOpportunityId, nextBudget, achievement, unitVariance, contributionVariance]
+      properties:
+        experimentId: { type: string }
+        outcome: { type: string, enum: [below, above, loss, insufficient, on_target] }
+        whatHappened: { type: string }
+        whatWeLearned: { type: string }
+        nextAction: { type: string }
+        nextOpportunityId: { type: string }
+        nextBudget: { type: number }
+        achievement: { type: number }
+        unitVariance: { type: number }
+        contributionVariance: { type: number }
+    Experiment:
+      type: object
+      required: [id, opportunityId, title, status, sellingPrice, makingCost, promotionBudget, expectedUnits, durationDays, expected, createdAt, timeline]
+      properties:
+        id: { type: string }
+        opportunityId: { type: string }
+        parentExperimentId: { type: [string, "null"] }
+        title: { type: string }
+        status: { type: string, enum: [Draft, Approved, Running, Completed, Cancelled] }
+        sellingPrice: { type: number }
+        makingCost: { type: number }
+        promotionBudget: { type: number }
+        expectedUnits: { type: integer }
+        durationDays: { type: integer }
+        expected: { $ref: "#/components/schemas/Financials" }
+        actual: { $ref: "#/components/schemas/Financials" }
+        actualUnits: { type: integer }
+        actualPromotionSpend: { type: number }
+        feedback: { type: string }
+        observations: { type: string }
+        synthetic: { type: boolean }
+        learning: { $ref: "#/components/schemas/Learning" }
+        createdAt: { type: string }
+        timeline:
+          type: array
+          items: { $ref: "#/components/schemas/LifecycleEvent" }
+    ChatInput:
+      type: object
+      required: [message]
+      properties:
+        message: { type: string, minLength: 1, maxLength: 2000 }
+    Message:
+      type: object
+      required: [id, role, content, language, provider, createdAt]
+      properties:
+        id: { type: string }
+        role: { type: string, enum: [user, assistant] }
+        content: { type: string }
+        speechText: { type: string }
+        language: { $ref: "#/components/schemas/Language" }
+        provider: { $ref: "#/components/schemas/Provider" }
+        intent: { type: string }
+        opportunityId: { type: string }
+        followUp: { type: string }
+        financials: { $ref: "#/components/schemas/Financials" }
+        createdAt: { type: string }
+        model: { type: string }
+        tokens: { type: integer }
+    ProviderStatus:
+      type: object
+      required: [id, name, configured, model, status, paidCallsAllowed]
+      properties:
+        id: { $ref: "#/components/schemas/Provider" }
+        name: { type: string }
+        configured: { type: boolean }
+        model: { type: string }
+        status: { type: string }
+        paidCallsAllowed: { type: boolean }
+        lastTest: { type: string }
+    ProviderTestInput:
+      type: object
+      required: [provider, confirmed]
+      properties:
+        provider: { $ref: "#/components/schemas/Provider" }
+        confirmed: { type: boolean }
+    ResetInput:
+      type: object
+      required: [confirmed]
+      properties:
+        confirmed: { type: boolean }

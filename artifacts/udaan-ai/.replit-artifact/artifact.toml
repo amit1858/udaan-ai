@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Udaan AI"
+description = "A multilingual AI companion for Indian restaurant owners to discover new possibilities, evaluate small experiments and learn from business outcomes."
+version = "1.0.0"
+id = "artifacts/udaan-ai"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25711
+
+[services.development]
+run = "pnpm --filter @workspace/udaan-ai run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/udaan-ai", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/udaan-ai/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25711"
+BASE_PATH = "/"

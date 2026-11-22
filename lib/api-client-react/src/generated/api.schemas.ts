@@ -5,6 +5,27 @@
  * Udaan AI discovery-to-learning API. Monetary API amounts are rupees; calculations use integer paise.
  * OpenAPI spec version: 1.0.0
  */
+export interface PresenterPasswordInput {
+  /**
+     * @minLength 1
+     * @maxLength 256
+     */
+  password: string;
+}
+
+export interface LiveAccess {
+  requiresUnlock: boolean;
+  configured: boolean;
+  enabled: boolean;
+  unlocked: boolean;
+  dailyLimit: number;
+  dailyRemaining: number;
+  sessionLimit: number;
+  sessionRemaining: number;
+  message: string;
+  expiresAt?: string;
+}
+
 export interface HealthStatus {
   status: string;
 }

@@ -82,7 +82,8 @@ describe("initial production safety and PostgreSQL journey", () => {
     expect(stateB.preferences.language).toBe("en");
   });
   it("completes Demo conversations and distinct 70/130-unit outcomes without inference", async () => {
-    const callsBefore = await db.prisma.providerCall.count();
+    const owner = await db.prisma.demoSession.findFirstOrThrow({ where: { profile: { contains: `${fixture} A` } } });
+    const callsBefore = await db.prisma.providerCall.count({ where: { sessionId: owner.id } });
     const speechBefore = await db.prisma.voiceRequest.count();
     expect((await request("/chat", "POST", { message: "Weekday customers are low. Suggest a small test." })).status).toBe(200);
     const conversation = await request("/conversation");
@@ -113,7 +114,7 @@ describe("initial production safety and PostgreSQL journey", () => {
       })).status).toBe(409);
     }
     expect(next[0]).not.toBe(next[1]);
-    expect(await db.prisma.providerCall.count()).toBe(callsBefore);
+    expect(await db.prisma.providerCall.count({ where: { sessionId: owner.id } })).toBe(callsBefore);
     expect(await db.prisma.voiceRequest.count()).toBe(speechBefore);
   });
 });

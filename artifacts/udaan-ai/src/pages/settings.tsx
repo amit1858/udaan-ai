@@ -4,7 +4,7 @@ import { Check, Cpu, RotateCcw, Volume2, PlugZap, AudioLines, ChevronRight } fro
 import { useQueryClient } from '@tanstack/react-query';
 import {
   useGetProviders, getGetProvidersQueryKey, useTestProvider, useResetDemo, getGetUdaanStateQueryKey,
-  useGetUdaanState, type ProviderStatus,
+  useGetUdaanState, useGetLiveAccess, getGetLiveAccessQueryKey, type ProviderStatus,
 } from '@workspace/api-client-react';
 import { useI18n, LANGS } from '@/lib/i18n';
 import { speechSupported } from '@/lib/speech';
@@ -15,6 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 import { errMsg } from '@/lib/format';
 import { cn } from '@/lib/utils';
 import { PwaInstall } from '@/components/pwa-support';
+import { PresenterAccess } from '@/components/presenter-access';
 
 export default function SettingsPage() {
   const { t, lang, setLang, setPrefs } = useI18n();
@@ -23,6 +24,7 @@ export default function SettingsPage() {
   const [, nav] = useLocation();
   const st = useGetUdaanState({ query: { queryKey: getGetUdaanStateQueryKey() } });
   const prov = useGetProviders({ query: { queryKey: getGetProvidersQueryKey() } });
+  const live = useGetLiveAccess({ query: { queryKey: getGetLiveAccessQueryKey() } });
   const test = useTestProvider();
   const reset = useResetDemo();
   const [testing, setTesting] = useState<ProviderStatus | null>(null);
@@ -58,6 +60,7 @@ export default function SettingsPage() {
         </div>
       </section>
 
+      <PresenterAccess />
       <section>
         <h2 className="flex items-center gap-2 font-display text-xl font-semibold"><Cpu className="size-5 text-intel" />{t('settings.providers')}</h2>
         <p className="mb-3 text-sm text-mist">{t('settings.providersNote')}</p>
@@ -66,7 +69,8 @@ export default function SettingsPage() {
         <div className="space-y-3">
           {prov.data?.map((p) => {
             const inUse = current === p.id;
-            const canUse = p.id === 'demo' || p.configured;
+            const presenterAllowed = live.data && (!live.data.requiresUnlock || live.data.unlocked);
+            const canUse = p.id === 'demo' || (p.configured && p.paidCallsAllowed && presenterAllowed);
             return (
               <div key={p.id} data-testid={'card-provider-' + p.id} className={cn('rounded-3xl border p-4', inUse ? 'border-signal/50 bg-signal/[.03]' : 'border-line bg-surface')}>
                 <div className="flex flex-wrap items-center justify-between gap-2">
@@ -86,7 +90,7 @@ export default function SettingsPage() {
                     {inUse ? t('settings.inUse') : t('settings.use')}
                   </button>
                   {p.id !== 'demo' && (
-                    <button data-testid={'button-test-' + p.id} disabled={!p.configured || !p.paidCallsAllowed || test.isPending} onClick={() => setTesting(p)}
+                    <button data-testid={'button-test-' + p.id} disabled={!canUse || test.isPending} onClick={() => setTesting(p)}
                       className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 text-sm disabled:opacity-40"><PlugZap className="size-4" />{failedId === p.id ? t('common.retry') : t('settings.test')}</button>
                   )}
                   {failedId === p.id && current !== 'demo' && <button data-testid="button-back-demo" onClick={() => setPrefs({ provider: 'demo' })} className="min-h-11 rounded-full border border-line px-4 text-sm text-intel">{t('ask.switchDemo')}</button>}

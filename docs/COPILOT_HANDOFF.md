@@ -1,5 +1,8 @@
 # Udaan AI release-candidate handoff
 
+## Latest controlled-live candidate
+See `CONTROLLED_LIVE_AI.md` before changing production inference. The user approved a 10-attempt, two-hour presenter-gated reasoning window ending 6:50 PM IST on 2026-11-22. Republish is still required; prior production hard-block statements below describe the original release. OpenAI is primary, Anthropic is manually selected, with no automatic paid retries. Main-app Sarvam remains unimplemented; keep all Lab routes 404 in production. No schema changes.
+
 **Status: READY FOR RESTRICTED DEMO PUBLISH APPROVAL, with limitations.**
 **Release tag/checkpoint:** `udaan-rc-2026-11-22` (resolve with `git rev-parse udaan-rc-2026-11-22`).
 The user approved the production-storage migration only. No new features, paid retesting, public visibility change or application/Pages publication is authorized. See `PRODUCTION_READINESS.md` for preservation evidence, costs, rollback and exact publishing steps.

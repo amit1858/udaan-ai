@@ -1,6 +1,6 @@
 import { Router, type IRouter, type Request, type Response, type NextFunction } from "express";
 import cookieParser from "cookie-parser";
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { z } from "zod";
 import {
   UpdateProfileBody, UpdateProfileResponse, UpdatePreferencesBody, UpdatePreferencesResponse,
@@ -18,6 +18,7 @@ import { generate, providerStatuses, type ProviderId } from "../udaan/providers"
 import type { Context } from "../udaan/demo";
 import { isMarketQuestion, retrieveMarket } from "../udaan/market";
 import voiceLabRouter, { requireVoiceLabAdmin } from "./voice-lab";
+import liveAccessRouter, { requirePresenter } from "./live-access";
 
 const router: IRouter = Router();
 const sessionSecret = process.env.SESSION_SECRET;
@@ -56,6 +57,7 @@ router.use("/udaan", async (req: Request, res: Response, next: NextFunction): Pr
 });
 
 router.use("/udaan/voice-lab", voiceLabRouter);
+router.use("/udaan/live-access", liveAccessRouter);
 router.get("/udaan/state", async (req, res): Promise<void> => {
   res.json(GetUdaanStateResponse.parse(await getState(sessionId(req))));
 });
@@ -106,6 +108,7 @@ router.post("/udaan/chat", async (req, res): Promise<void> => {
   chatBusy.add(id);
   try {
     const s = await ensureSession(id);
+    if (s.provider !== "demo") requirePresenter(req);
     const profile = profileOf(s);
     const lang = s.language as Language;
     const experiments = await prisma.experiment.findMany({ where: { sessionId: id }, orderBy: { createdAt: "desc" }, take: 10 });
@@ -115,9 +118,26 @@ router.post("/udaan/chat", async (req, res): Promise<void> => {
       history: history.reverse().map((m) => ({ role: m.role, content: m.content })),
       ...(isMarketQuestion(message) ? { market: await retrieveMarket() } : {}),
     };
+    const requestHash = createHash("sha256").update(JSON.stringify({
+      message, profile, language: lang, provider: s.provider, experiments: context.experiments,
+    })).digest("hex");
+    // Reuse only this visitor's identical recent answer, never another user's.
+    const recent = await prisma.chatMessage.findFirst({ where: {
+      sessionId: id, role: "assistant", provider: s.provider, createdAt: { gte: new Date(Date.now() - 30000) },
+    }, orderBy: { createdAt: "desc" } });
+    if (recent) {
+      const metadata = JSON.parse(recent.metadata);
+      if (metadata.requestHash === requestHash) {
+        if (metadata.market?.status === "retrieved") metadata.market = { ...metadata.market, provenance: "cached_provider", servedAt: new Date().toISOString() };
+        res.setHeader("X-Udaan-Replayed", "true");
+        res.json(SendChatResponse.parse({ id: recent.id, role: "assistant", language: lang,
+          provider: s.provider, createdAt: recent.createdAt.toISOString(), ...metadata }));
+        return;
+      }
+    }
     const output = await generate(s.provider as ProviderId, message, context, id);
     const idea = opportunities(lang, profile).find((o) => o.id === output.opportunityId)!;
-    const metadata = { ...output, financials: calculate(idea), ...(context.market ? { market: context.market } : {}) };
+    const metadata = { ...output, requestHash, financials: calculate(idea), ...(context.market ? { market: context.market } : {}) };
     const [, assistant] = await prisma.$transaction([
       prisma.chatMessage.create({ data: { sessionId: id, role: "user", content: message, language: lang, provider: s.provider, metadata: "{}" } }),
       prisma.chatMessage.create({ data: { sessionId: id, role: "assistant", content: output.content, language: lang, provider: s.provider, metadata: JSON.stringify(metadata) } }),
@@ -195,6 +215,7 @@ router.get("/udaan/providers", async (_req, res): Promise<void> => {
 router.post("/udaan/providers/test", async (req, res): Promise<void> => {
   const { provider, confirmed } = TestProviderBody.parse(req.body);
   if (!confirmed) { res.status(400).json({ error: "Confirm before testing a provider" }); return; }
+  if (provider !== "demo") requirePresenter(req);
   const s = await ensureSession(sessionId(req));
   const profile = profileOf(s);
   const rows = await prisma.experiment.findMany({ where: { sessionId: s.id }, orderBy: { createdAt: "desc" }, take: 4 });

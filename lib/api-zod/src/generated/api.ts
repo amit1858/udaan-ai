@@ -8,6 +8,56 @@
 import * as zod from 'zod';
 
 
+export const GetLiveAccessResponse = zod.object({
+  "requiresUnlock": zod.boolean(),
+  "configured": zod.boolean(),
+  "enabled": zod.boolean(),
+  "unlocked": zod.boolean(),
+  "dailyLimit": zod.int(),
+  "dailyRemaining": zod.int(),
+  "sessionLimit": zod.int(),
+  "sessionRemaining": zod.int(),
+  "message": zod.string(),
+  "expiresAt": zod.string().optional()
+})
+
+
+export const unlockLiveAccessBodyPasswordMax = 256;
+
+
+
+export const UnlockLiveAccessBody = zod.object({
+  "password": zod.string().min(1).max(unlockLiveAccessBodyPasswordMax)
+})
+
+export const UnlockLiveAccessResponse = zod.object({
+  "requiresUnlock": zod.boolean(),
+  "configured": zod.boolean(),
+  "enabled": zod.boolean(),
+  "unlocked": zod.boolean(),
+  "dailyLimit": zod.int(),
+  "dailyRemaining": zod.int(),
+  "sessionLimit": zod.int(),
+  "sessionRemaining": zod.int(),
+  "message": zod.string(),
+  "expiresAt": zod.string().optional()
+})
+
+
+export const LockLiveAccessResponse = zod.object({
+  "requiresUnlock": zod.boolean(),
+  "configured": zod.boolean(),
+  "enabled": zod.boolean(),
+  "unlocked": zod.boolean(),
+  "dailyLimit": zod.int(),
+  "dailyRemaining": zod.int(),
+  "sessionLimit": zod.int(),
+  "sessionRemaining": zod.int(),
+  "message": zod.string(),
+  "expiresAt": zod.string().optional()
+})
+
+
 export const GetVoiceLabStatusResponse = zod.object({
   "access": zod.enum(['disabled', 'locked', 'admin']),
   "state": zod.enum(['not_configured', 'ready_to_test', 'connected', 'error']),

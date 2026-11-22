@@ -1,3 +1,6 @@
+# Controlled live-AI candidate
+The owner approved a new bounded OpenAI/Anthropic activation, prepared behind presenter access and atomic usage limits. It still requires Republish and genuine post-publish verification. Main-app Sarvam is **not complete**; do not present the internal Lab as an integrated companion. See `CONTROLLED_LIVE_AI.md`. Earlier release claims below are historical.
+
 # Production-readiness clarification
 The separately approved persistence hardening now uses managed PostgreSQL. Existing development records were checksum-verified, saved HTTP responses survived an actual API restart unchanged, and 36 targeted financial/persistence/production tests passed. This strengthens **It works** without claiming new features or customer validation. Initial production remains restricted Demo Mode with paid inference and the internal Voice Lab blocked. Physical iPhone and actual published-host checks remain pending; see `PRODUCTION_READINESS.md`.
 

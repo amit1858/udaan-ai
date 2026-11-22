@@ -4,11 +4,14 @@ import { aiOutput, demoResponse, type Context } from "./demo";
 import { opportunities } from "./content";
 import { calculate } from "./finance";
 import { prisma } from "./db";
+import { isProduction, productionLiveEnabled, productionLimits, reserveProviderCall } from "./live-policy";
 
 export type ProviderId = "demo" | "openai" | "anthropic";
-// The initial production release is deliberately credential-free Demo Mode.
-// Re-enabling production inference requires a separately reviewed release.
-export const paidAllowed = () => process.env.NODE_ENV !== "production" && process.env.ALLOW_PAID_API_CALLS === "true";
+// Off by default. Production activation additionally needs approved limits and
+// presenter authentication at every paid HTTP entry point.
+export const paidAllowed = () => isProduction()
+  ? productionLiveEnabled() && productionLimits().valid && productionLimits().daily > 0 && productionLimits().session > 0
+  : process.env.ALLOW_PAID_API_CALLS === "true";
 export function providerConfig(id: ProviderId) {
   if (id === "demo") return { id, name: "Demo Engine", configured: true, model: "Deterministic multilingual intents", status: "ready", paidCallsAllowed: false };
   const isOpenAI = id === "openai";
@@ -22,14 +25,16 @@ export function providerConfig(id: ProviderId) {
   };
 }
 export async function providerStatuses() {
-  const used = await prisma.providerCall.count({ where: { provider: { not: "demo" } } });
-  const allowed = Math.min(6, Math.max(0, Number(process.env.MAX_PAID_API_CALLS ?? 0) || 0));
+  const limits = productionLimits();
+  const used = await prisma.providerCall.count({ where: { provider: { not: "demo" }, ...(isProduction() ? { createdAt: { gte: limits.since } } : {}) } });
+  const allowed = isProduction() ? limits.daily : Math.min(6, Math.max(0, Number(process.env.MAX_PAID_API_CALLS ?? 0) || 0));
   const remaining = Math.max(0, allowed - used);
   return Promise.all((["demo", "openai", "anthropic"] as ProviderId[]).map(async (id) => {
     const cfg = providerConfig(id);
     const last = await prisma.providerCall.findFirst({ where: { provider: id }, orderBy: { createdAt: "desc" } });
     return { ...cfg,
-      ...(last ? { status: last.status, lastTest: `${last.createdAt.toISOString()} — ${last.status}${id !== "demo" ? ` · ${remaining} authorized call(s) remaining` : ""}` } : {}),
+      ...(last ? { ...(id === "demo" || (cfg.configured && paidAllowed()) ? { status: last.status } : {}),
+        lastTest: `${last.createdAt.toISOString()} — ${last.status}${id !== "demo" ? ` · ${remaining} authorized call(s) remaining` : ""}` } : {}),
       ...(id !== "demo" && cfg.configured && paidAllowed() && remaining === 0 ? { status: "authorized_call_limit_reached" } : {}),
     };
   }));
@@ -62,12 +67,13 @@ export async function generate(provider: ProviderId, message: string, c: Context
   active = true;
   let callId: string | undefined;
   try {
-    const allowance = Math.min(6, Math.max(0, Number(process.env.MAX_PAID_API_CALLS ?? 0) || 0));
-    const used = await prisma.providerCall.count({ where: { provider: { not: "demo" } } });
-    if (used >= allowance) throw Object.assign(new Error("The authorized live-test call allowance is exhausted. Switch to Demo Mode; ask the presenter before increasing it."), { status: 429 });
-    const call = await prisma.providerCall.create({ data: { provider, sessionId, status: "processing" } });
+    const history = c.history.slice(-4).map((m) => ({ role: m.role === "assistant" ? "assistant" as const : "user" as const, content: m.content.slice(0, 1000) }));
+    const system = `${instructions({ ...c, experiments: c.experiments.slice(0, 3) })}\nKeep the answer below 140 words and speechText below 900 characters.`;
+    if (Buffer.byteLength(system + JSON.stringify(history) + message, "utf8") > 30000) {
+      throw Object.assign(new Error("This context exceeds the bounded live-demo input budget. Demo Mode remains available."), { status: 413 });
+    }
+    const call = await reserveProviderCall(provider, sessionId);
     callId = call.id;
-    const history = c.history.slice(-8).map((m) => ({ role: m.role === "assistant" ? "assistant" as const : "user" as const, content: m.content.slice(0, 4500) }));
     let raw = "";
     let tokens = 0;
     if (provider === "openai") {
@@ -75,8 +81,8 @@ export async function generate(provider: ProviderId, message: string, c: Context
       const client = new OpenAI({ apiKey: ownKey || process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
         ...(ownKey ? {} : { baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL }), timeout: 35000, maxRetries: 0 });
       const answer = await client.chat.completions.create({
-        model: config.model, max_completion_tokens: 8192, response_format: { type: "json_object" },
-        messages: [{ role: "system", content: instructions(c) }, ...history, { role: "user", content: message }],
+        model: config.model, max_completion_tokens: 2048, reasoning_effort: "minimal", response_format: { type: "json_object" },
+        messages: [{ role: "system", content: system }, ...history, { role: "user", content: message }],
       });
       raw = answer.choices[0]?.message.content ?? "";
       tokens = answer.usage?.total_tokens ?? 0;
@@ -85,7 +91,7 @@ export async function generate(provider: ProviderId, message: string, c: Context
       const client = new Anthropic({ apiKey: ownKey || process.env.AI_INTEGRATIONS_ANTHROPIC_API_KEY,
         ...(ownKey ? {} : { baseURL: process.env.AI_INTEGRATIONS_ANTHROPIC_BASE_URL }), timeout: 35000, maxRetries: 0 });
       const answer = await client.messages.create({
-        model: config.model, max_tokens: 8192, system: instructions(c),
+        model: config.model, max_tokens: 2048, system,
         messages: [...history, { role: "user", content: message }],
       });
       raw = answer.content.filter((b) => b.type === "text").map((b) => b.text).join("");
@@ -97,7 +103,8 @@ export async function generate(provider: ProviderId, message: string, c: Context
   } catch (error) {
     if (callId) await prisma.providerCall.update({ where: { id: callId }, data: { status: "failed" } });
     const e = error as { status?: number; name?: string };
-    const status = e.status === 429 ? 429 : e.status === 403 ? 403 : 502;
+    if (!callId && [403, 413, 429].includes(e.status ?? 0)) throw error;
+    const status = e.status === 429 ? 429 : e.status === 403 ? 403 : e.status === 413 ? 413 : 502;
     throw Object.assign(new Error(status === 429 ? "Provider rate limit or authorized call limit reached. Retry later or explicitly choose Demo Mode."
       : e.name?.includes("Timeout") ? "The live provider timed out. Retry or explicitly choose Demo Mode."
       : "Live AI request failed or returned an invalid structure. No demo response was substituted. Retry or choose Demo Mode."), { status });

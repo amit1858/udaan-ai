@@ -36,7 +36,7 @@ Add direct-provider credentials only through Replit Secrets, or use Replit AI In
 
 `.env.example` documents names, not real values. Without credentials the app still launches in Demo Mode.
 
-Paid requests require `ALLOW_PAID_API_CALLS=true` and a positive `MAX_PAID_API_CALLS`. The persistent ceiling is **six live reasoning attempts**, with no automatic retries. All six were used: five OpenAI and one Anthropic. **No live stage allowance remains.** Do not increase it without approval. Sarvam has a separate persistent cap and is disarmed; no further paid tests are authorized.
+Development paid requests require `ALLOW_PAID_API_CALLS=true` and a positive `MAX_PAID_API_CALLS`; its original six-attempt allowance is exhausted. A separately approved **production** window now has presenter authentication, 10 combined OpenAI/Anthropic attempts, five/session and a hard end at **6:50 PM IST on 2026-11-22**. It requires Republish. See [controlled live-AI configuration, costs and limitations](docs/CONTROLLED_LIVE_AI.md). Never silently renew the window. Sarvam remains development-Lab-only; main-app speech is still browser-native.
 
 Providers never silently substitute deterministic answers for failed live inference.
 

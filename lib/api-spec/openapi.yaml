@@ -6,6 +6,40 @@ info:
 servers:
   - url: /api
 paths:
+  /udaan/live-access:
+    get:
+      operationId: getLiveAccess
+      responses:
+        "200":
+          description: Non-billable live-AI access and bounded usage status; usage hidden until unlocked
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/LiveAccess" }
+  /udaan/live-access/login:
+    post:
+      operationId: unlockLiveAccess
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PresenterPasswordInput" }
+      responses:
+        "200":
+          description: Presenter session unlocked without making a provider request
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/LiveAccess" }
+        "401": { description: Incorrect presenter password }
+        "429": { description: Too many unlock attempts }
+  /udaan/live-access/logout:
+    post:
+      operationId: lockLiveAccess
+      responses:
+        "200":
+          description: Presenter cookie cleared and preference returned to Demo
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/LiveAccess" }
   /udaan/voice-lab/status:
     get:
       operationId: getVoiceLabStatus
@@ -306,6 +340,25 @@ paths:
               schema: { $ref: "#/components/schemas/BusinessState" }
 components:
   schemas:
+    PresenterPasswordInput:
+      type: object
+      required: [password]
+      properties:
+        password: { type: string, minLength: 1, maxLength: 256 }
+    LiveAccess:
+      type: object
+      required: [requiresUnlock, configured, enabled, unlocked, dailyLimit, dailyRemaining, sessionLimit, sessionRemaining, message]
+      properties:
+        requiresUnlock: { type: boolean }
+        configured: { type: boolean }
+        enabled: { type: boolean }
+        unlocked: { type: boolean }
+        dailyLimit: { type: integer }
+        dailyRemaining: { type: integer }
+        sessionLimit: { type: integer }
+        sessionRemaining: { type: integer }
+        message: { type: string }
+        expiresAt: { type: string }
     HealthStatus:
       type: object
       required: [status]

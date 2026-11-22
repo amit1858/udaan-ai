@@ -33,10 +33,12 @@ import type {
   Financials,
   GetOpportunitiesParams,
   HealthStatus,
+  LiveAccess,
   Message,
   Opportunity,
   Preferences,
   PreferencesInput,
+  PresenterPasswordInput,
   Profile,
   ProfileInput,
   ProviderStatus,
@@ -79,6 +81,251 @@ const withQueryKey = <T extends object, K>(query: T, queryKey: K): T & { queryKe
   }
   return result;
 };
+
+export const getGetLiveAccessUrl = () => {
+
+
+
+
+  return `/api/udaan/live-access`
+}
+
+export const getLiveAccess = async ( options?: Parameters<typeof customFetch>[1]): Promise<LiveAccess> => {
+
+  return customFetch<LiveAccess>(getGetLiveAccessUrl(),
+  {
+    ...options,
+    method: 'GET'
+
+
+  }
+);}
+
+
+
+
+
+export const getGetLiveAccessQueryKey = () => {
+    return [
+    `/api/udaan/live-access`
+    ] as const;
+    }
+
+
+export const getGetLiveAccessQueryOptions = <TData = Awaited<ReturnType<typeof getLiveAccess>>, TError = ErrorType<unknown>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLiveAccess>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetLiveAccessQueryKey();
+
+
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getLiveAccess>>> = ({ signal }) => getLiveAccess({ signal, ...requestOptions });
+
+
+
+
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getLiveAccess>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GetLiveAccessQueryResult = NonNullable<Awaited<ReturnType<typeof getLiveAccess>>>
+export type GetLiveAccessQueryError = ErrorType<unknown>
+
+
+export function useGetLiveAccess<TData = Awaited<ReturnType<typeof getLiveAccess>>, TError = ErrorType<unknown>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLiveAccess>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getLiveAccess>>,
+          TError,
+          Awaited<ReturnType<typeof getLiveAccess>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetLiveAccess<TData = Awaited<ReturnType<typeof getLiveAccess>>, TError = ErrorType<unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLiveAccess>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getLiveAccess>>,
+          TError,
+          Awaited<ReturnType<typeof getLiveAccess>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetLiveAccess<TData = Awaited<ReturnType<typeof getLiveAccess>>, TError = ErrorType<unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLiveAccess>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+
+export function useGetLiveAccess<TData = Awaited<ReturnType<typeof getLiveAccess>>, TError = ErrorType<unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getLiveAccess>>, TError, TData>>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGetLiveAccessQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  return withQueryKey(query, queryOptions.queryKey);
+}
+
+
+
+
+
+
+
+export const getUnlockLiveAccessUrl = () => {
+
+
+
+
+  return `/api/udaan/live-access/login`
+}
+
+export const unlockLiveAccess = async (presenterPasswordInput: PresenterPasswordInput, options?: Parameters<typeof customFetch>[1]): Promise<LiveAccess> => {
+
+    const getHeaders = (h?: NonNullable<RequestInit['headers']>): Record<string, string | readonly string[]> => {
+    if (!h) return {};
+    if (h instanceof Headers) return Object.fromEntries(h.entries());
+    if (Symbol.iterator in h) {
+      return Object.fromEntries(
+        Array.from(h as Iterable<Iterable<string>>, (entry) => Array.from(entry) as [string, string]),
+      );
+    }
+    const headers: Record<string, string | readonly string[]> = {};
+    for (const [name, value] of Object.entries<string | readonly string[] | undefined>(h)) {
+      if (value !== undefined) headers[name] = value;
+    }
+    return headers;
+  };
+return customFetch<LiveAccess>(getUnlockLiveAccessUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...getHeaders(options?.headers) },
+    body: JSON.stringify(presenterPasswordInput)
+  }
+);}
+
+
+
+
+
+export const getUnlockLiveAccessMutationKey = () => ['unlockLiveAccess'] as const;
+
+export const getUnlockLiveAccessMutationOptions = <TError = ErrorType<void>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof unlockLiveAccess>>, TError,UnlockLiveAccessMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof unlockLiveAccess>>, TError,UnlockLiveAccessMutationVariables, TContext> => {
+
+const mutationKey = getUnlockLiveAccessMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof unlockLiveAccess>>, UnlockLiveAccessMutationVariables> = (props) => {
+          const {data} = props ?? {};
+
+          return  unlockLiveAccess(data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type UnlockLiveAccessMutationResult = NonNullable<Awaited<ReturnType<typeof unlockLiveAccess>>>
+    export type UnlockLiveAccessMutationBody = BodyType<PresenterPasswordInput>
+    export type UnlockLiveAccessMutationError = ErrorType<void>
+    export type UnlockLiveAccessMutationVariables = {data: BodyType<PresenterPasswordInput>}
+
+    export const useUnlockLiveAccess = <TError = ErrorType<void>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof unlockLiveAccess>>, TError,UnlockLiveAccessMutationVariables, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof unlockLiveAccess>>,
+        TError,
+        UnlockLiveAccessMutationVariables,
+        TContext
+      > => {
+      return useMutation(getUnlockLiveAccessMutationOptions(options), queryClient);
+    }
+
+export const getLockLiveAccessUrl = () => {
+
+
+
+
+  return `/api/udaan/live-access/logout`
+}
+
+export const lockLiveAccess = async ( options?: Parameters<typeof customFetch>[1]): Promise<LiveAccess> => {
+
+  return customFetch<LiveAccess>(getLockLiveAccessUrl(),
+  {
+    ...options,
+    method: 'POST'
+
+
+  }
+);}
+
+
+
+
+
+export const getLockLiveAccessMutationKey = () => ['lockLiveAccess'] as const;
+
+export const getLockLiveAccessMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof lockLiveAccess>>, TError,void, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof lockLiveAccess>>, TError,void, TContext> => {
+
+const mutationKey = getLockLiveAccessMutationKey();
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof lockLiveAccess>>, void> = () => {
+
+
+          return  lockLiveAccess(requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type LockLiveAccessMutationResult = NonNullable<Awaited<ReturnType<typeof lockLiveAccess>>>
+
+    export type LockLiveAccessMutationError = ErrorType<unknown>
+
+
+    export const useLockLiveAccess = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof lockLiveAccess>>, TError,void, TContext>, request?: SecondParameter<typeof customFetch>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof lockLiveAccess>>,
+        TError,
+        void,
+        TContext
+      > => {
+      return useMutation(getLockLiveAccessMutationOptions(options), queryClient);
+    }
 
 export const getGetVoiceLabStatusUrl = () => {
 

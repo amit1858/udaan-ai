@@ -1,5 +1,13 @@
 # Udaan AI — Implementation status
 
+## Controlled-live activation candidate — 2026-11-22
+- The user approved activation after cost estimates. Production OpenAI/Anthropic restoration is prepared with a two-hour window ending **6:50 PM IST**, 10 combined attempts, five per presenter session, password protection and durable atomic quotas.
+- **Already-published version is unchanged until Republish.** Actual newly bounded provider calls are not yet verified; no paid calls were repeated during implementation.
+- Main-app Sarvam remains separate; the internal Lab is still inaccessible in production. Browser speech is unchanged.
+- **49 unique targeted checks passed**: 16 new controlled-live checks, five production API checks and 28 finance checks. The latest 16 ran with mocked provider transports only; no paid calls. API/frontend production builds, both application typechecks, lint and the anonymous mobile launch screenshot passed. The screenshot showed onboarding, not the presenter form.
+- GitHub visibility verification unexpectedly returned **public**. No candidate push or visibility change was performed; owner direction is required before pushing. The original release tag was reverified unchanged.
+- See `CONTROLLED_LIVE_AI.md` for exact environment, access instructions, prices, model/fallback policy and limitations. This current section supersedes earlier “production always disabled” statements below.
+
 ## Production-readiness update — supersedes historical storage notes below
 - User approved the smallest PostgreSQL migration; all seven tables imported with matching field checksums. Original SQLite file, consistent protected backups and original GitHub release tag remain intact.
 - All 373 original GitHub blobs matched the saved release before changing anything.

@@ -20,6 +20,8 @@ import OpportunityPage from '@/pages/opportunity';
 import ShopPage from '@/pages/shop';
 import SettingsPage from '@/pages/settings';
 import VoiceLabPage from '@/pages/voice-lab';
+import { OfflineLaunch, PwaRuntime } from '@/components/pwa-support';
+import { useOnline } from '@/lib/pwa';
 
 const queryClient = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFocus: false, staleTime: 15_000 } } });
 
@@ -48,9 +50,11 @@ function RoutedErrorBoundary({ children }: { children: ReactNode }) {
 }
 
 function Gate() {
-  const st = useGetUdaanState({ query: { queryKey: getGetUdaanStateQueryKey() } });
+  const online = useOnline();
+  const st = useGetUdaanState({ query: { queryKey: getGetUdaanStateQueryKey(), enabled: online } });
+  if (!online && !st.data) return <OfflineLaunch />;
   if (st.isLoading) return <div className="grid min-h-[100dvh] place-items-center"><UdaanMark className="size-12 animate-pulse" /></div>;
-  if (st.isError || !st.data) return <div className="mx-auto max-w-md p-6 pt-24"><ErrorState onRetry={() => st.refetch()} /></div>;
+  if (!st.data) return <div className="mx-auto max-w-md p-6 pt-24"><ErrorState onRetry={() => st.refetch()} /></div>;
   if (!st.data.preferences.onboarded) return <Onboarding />;
   return <AppShell><Router /></AppShell>;
 }
@@ -60,7 +64,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-          <I18nProvider><Gate /></I18nProvider>
+          <I18nProvider><PwaRuntime /><Gate /></I18nProvider>
         </WouterRouter>
         <Toaster />
       </TooltipProvider>

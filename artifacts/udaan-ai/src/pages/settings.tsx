@@ -14,6 +14,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { errMsg } from '@/lib/format';
 import { cn } from '@/lib/utils';
+import { PwaInstall } from '@/components/pwa-support';
 
 export default function SettingsPage() {
   const { t, lang, setLang, setPrefs } = useI18n();
@@ -96,6 +97,7 @@ export default function SettingsPage() {
         </div>
       </section>
 
+      <PwaInstall />
       <section className="rounded-3xl border border-line bg-surface p-5">
         <h2 className="flex items-center gap-2 font-display text-xl font-semibold"><Volume2 className="size-5 text-intel" />{t('settings.voice')}</h2>
         <p className={cn('mt-1 text-sm', speechSupported ? 'text-signal' : 'text-[#ffb86b]')}>{speechSupported ? t('settings.voiceAvailable') : t('settings.voiceMissing')}</p>

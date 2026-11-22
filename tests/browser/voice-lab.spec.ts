@@ -15,6 +15,7 @@ test("internal Voice Lab keeps configuration and paid controls behind admin acce
   await expect(page.getByTestId("input-max-requests")).toHaveCount(0);
   expect(speechPosts).toEqual([]);
   const state = await page.evaluate(async () => (await fetch("/api/udaan/voice-lab/status")).json());
+  // Configured secrets must remain redacted even after the creator has added real keys.
   expect(state).toMatchObject({ access: "locked", configured: false, paidEnabled: false, requests: [] });
   const denied = await page.request.post("/api/udaan/voice-lab/test", { data: { confirmed: true } });
   expect(denied.status()).toBe(401);

@@ -372,7 +372,8 @@ function AdminLab({ s, lang, refresh, refreshing, onStatus, toast }: {
 
   const provider = st.data?.preferences.provider ?? 'demo';
   const pStatus = prov.data?.find((p) => p.id === provider);
-  const reasoningOk = provider !== 'demo' && !!pStatus?.configured && !!pStatus?.paidCallsAllowed;
+  const reasoningOk = provider !== 'demo' && !!pStatus?.configured && !!pStatus?.paidCallsAllowed
+    && pStatus.status !== 'authorized_call_limit_reached';
   const langMeta = LANGS.find((l) => l.id === lang);
 
   const afterOp = () => qc.invalidateQueries({ queryKey: getGetVoiceLabStatusQueryKey() });

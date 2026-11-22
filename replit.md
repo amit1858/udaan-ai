@@ -1,45 +1,28 @@
-# [Project name]
+# Udaan AI
+An AI companion helping Indian restaurant owners discover possibilities, test small ideas and learn from outcomes.
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+## Authoritative scope
+Follow the complete Version 5.0 specification in `attached_assets/UDAAN_MASTER_SPEC_1795335173739.md`.
+The user explicitly approved React/Vite with a server API instead of Next.js; all other architecture and product requirements remain governed by the specification.
 
-## Run & Operate
+## Run and verify
+- Managed workflows: `artifacts/api-server: API Server`, `artifacts/udaan-ai: web`.
+- `pnpm db:init` — generate Prisma client and deploy committed SQLite migrations.
+- `pnpm seed` — idempotent synthetic sales seed.
+- `pnpm test`, `pnpm lint`, `pnpm run typecheck`.
+- `CHROMIUM_PATH=$(command -v chromium) pnpm test:browser` — actual mobile browser scenarios.
+- `pnpm --filter @workspace/api-spec run codegen` after every API contract change.
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+## Product boundaries
+Discovery-first, not restaurant management. Four languages remain distinct: English, Hinglish, Hindi, Kannada.
+Money uses integer paise. Contribution must never be called net profit. AI cannot approve experiments or execute payments, advertisements or messages.
+Keep Demo Mode credential-free, isolate visitor records, and never silently replace failed live inference with demo responses.
 
-## Stack
+## Permission boundaries
+No public deployment, GitHub push or public publication without explicit authorization.
+Paid testing was approved up to ₹100. Live attempts are persistently capped at six; never increase this without authorization.
 
-- pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
-- DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
-- API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
-
-## Where things live
-
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
-
-## Architecture decisions
-
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
-
-## Product
-
-_Describe the high-level user-facing capabilities of this app once they exist._
-
-## User preferences
-
-_Populate as you build — explicit user instructions worth remembering across sessions._
-
-## Gotchas
-
-_Populate as you build — sharp edges, "always run X before Y" rules._
-
-## Pointers
-
-- See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details
+## Documentation
+Maintain `docs/IMPLEMENTATION_STATUS.md` and `docs/JUDGING_ALIGNMENT.md`.
+Report actual tests and provider evidence, never inferred passes or fictional business impact.
+The separate static `website/` is prepared only after the core application is validated.

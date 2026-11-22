@@ -14,6 +14,7 @@ export function OppImage({ src, alt, className }: { src: string; alt: string; cl
       ) : (
         <img src={imgSrc(src)} alt={alt} loading="lazy" decoding="async" onError={() => setFailed(true)} className="absolute inset-0 h-full w-full object-cover" />
       )}
+      {src.includes('breakfast-photo') && <span title="Image credit; full license and source in /credits.html" className="absolute right-2 top-2 z-10 rounded bg-black/70 px-2 py-1 text-[9px] text-white">Saind147 · CC BY-SA 4.0</span>}
     </div>
   );
 }

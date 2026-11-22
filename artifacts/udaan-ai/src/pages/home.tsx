@@ -25,7 +25,8 @@ export default function HomePage() {
 
   const s = state.data;
   const list = opps.data;
-  const featured = list.find((o) => o.actionable) ?? list[0];
+  const nextId = s.recentLearning[0]?.nextOpportunityId;
+  const featured = list.find((o) => o.id === nextId) ?? list.find((o) => o.actionable) ?? list[0];
   const story = list.find((o) => o.category === 'story');
   const tech = list.find((o) => o.category === 'technology');
   const other = list.find((o) => o.category === 'experiment' && o.id !== featured?.id);

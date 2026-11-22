@@ -1,0 +1,1 @@
+- [Browser verification on Nix](browser-verification.md) — use system Chromium for Playwright; downloaded binaries lack required shared libraries.

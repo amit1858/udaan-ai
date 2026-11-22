@@ -13,7 +13,7 @@ export function Onboarding() {
     <div className="pt-safe pb-safe relative min-h-[100dvh] overflow-hidden">
       <div className="mx-auto flex min-h-[100dvh] max-w-md flex-col px-5 pb-6 pt-6">
         <div className="rise flex items-center gap-2.5"><UdaanMark /><span className="font-display text-lg font-bold">Udaan<span className="text-intel"> AI</span></span></div>
-        <SunriseArt className="rise -mx-5 mt-2 w-[calc(100%+2.5rem)]" />
+        <SunriseArt className="rise -mx-5 mt-2 max-h-[155px] w-[calc(100%+2.5rem)]" />
         <h1 className="rise font-display text-[2rem] font-bold leading-[1.05] text-snow" style={{ animationDelay: '80ms' }}>{t('onboard.title')}</h1>
         <p className="rise mt-3 text-[15px] leading-relaxed text-mist" style={{ animationDelay: '140ms' }}>{t('onboard.meet')}</p>
         <h2 className="rise mt-6 text-xs font-medium uppercase tracking-[0.18em] text-intel" style={{ animationDelay: '200ms' }}>{t('onboard.pick')}</h2>

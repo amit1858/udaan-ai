@@ -90,14 +90,15 @@ export function opportunities(lang: Language, profile: Profile) {
       id: idea.id, category: idea.category, title: c.title, description: c.description, story: c.story,
       firstStep: c.firstStep, benefit: c.benefit, assumptions: [c.assumption],
       whyItFits: local(lang,
-        `For ${profile.shopName} in ${profile.location}: fits your ${profile.category.toLowerCase()} and tests "${profile.challenge}" within a ₹${profile.budget.toLocaleString("en-IN")} promotion budget.`,
+        `For ${profile.shopName} in ${profile.location}: a small test for your ${profile.category.toLowerCase()} and "${profile.challenge}". Your available promotion budget is ₹${profile.budget.toLocaleString("en-IN")}; confirm this idea's proposed spend before trying it.`,
         `${profile.shopName}, ${profile.location}: aapke menu aur "${profile.challenge}" ke liye chhota test. Promotion budget ₹${profile.budget.toLocaleString("en-IN")} hai.`,
         `${profile.shopName}, ${profile.location}: आपके menu और "${profile.challenge}" के लिए छोटा test। Promotion budget ₹${profile.budget.toLocaleString("en-IN")} है।`,
         `${profile.shopName}, ${profile.location}: ನಿಮ್ಮ menu ಮತ್ತು "${profile.challenge}" ಗೆ ಸಣ್ಣ test. Promotion budget ₹${profile.budget.toLocaleString("en-IN")}.`),
-      image: `/images/${idea.id}.svg`, imageAlt: `${c.title} — original concept illustration`,
+      image: idea.id === "combo" ? "/images/breakfast-photo.jpg" : `/images/${idea.id}.svg`,
+      imageAlt: idea.id === "combo" ? "South Indian breakfast with idli, vada, sambar and chutney; illustrative serving, not Ravi's restaurant" : `${c.title} — original concept illustration`,
       budget: idea.budget, sellingPrice: idea.sellingPrice, makingCost: idea.makingCost,
       expectedUnits: idea.expectedUnits, promotionBudget: idea.budget, durationDays: 7,
-      actionable: idea.category === "experiment",
+      actionable: idea.category === "experiment" || idea.id === "preorder",
     };
   });
   const combo = list[0]!;

@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "lint": "eslint artifacts/api-server/src artifacts/udaan-ai/src tests playwright.config.ts",
     "seed": "pnpm --filter @workspace/api-server run seed",
     "db:init": "pnpm --filter @workspace/api-server run db:init",
     "test": "vitest run --exclude 'tests/browser/**'",

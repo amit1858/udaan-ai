@@ -108,6 +108,7 @@ export default function SettingsPage() {
           <button data-testid="button-replay-intro" onClick={() => setPrefs({ onboarded: false })} className="min-h-11 rounded-full border border-line px-4 text-sm">{t('settings.replayIntro')}</button>
           <button data-testid="button-reset-demo" disabled={reset.isPending} onClick={() => setResetOpen(true)} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#ff7a6b]/40 px-4 text-sm text-[#ff7a6b]"><RotateCcw className="size-4" />{t('settings.reset')}</button>
         </div>
+        <a href={import.meta.env.BASE_URL + 'credits.html'} className="mt-4 inline-flex min-h-11 items-center text-xs text-intel">Image credits · CC BY-SA 4.0</a>
       </section>
 
       {testing && <ConfirmDialog open onOpenChange={(v) => !v && setTesting(null)} title={t('settings.test')} body={t('settings.testBody', { name: testing.name })} onConfirm={() => { runTest(testing); setTesting(null); }} />}

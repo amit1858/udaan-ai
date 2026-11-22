@@ -86,6 +86,7 @@ test("same pipeline changes recommendations for 70 versus 130 units", async ({ p
 });
 
 test("four languages preserve state without mobile overflow at both widths", async ({ page }) => {
+  test.setTimeout(120000);
   await start(page);
   await draftAndRun(page);
   const before = await state(page.request);

@@ -41,7 +41,7 @@ router.use("/udaan", async (req: Request, res: Response, next: NextFunction): Pr
   if (buckets.size > 10000) for (const [key, b] of buckets) if (b.until < now) buckets.delete(key);
   let b = buckets.get(id);
   if (!b || b.until < now) { b = { count: 0, until: now + 60000 }; buckets.set(id, b); }
-  b.count++;
+  b.count += req.method === "GET" ? 0.1 : 1;
   if (b.count > 100) { res.status(429).json({ error: "Too many requests. Please wait a minute." }); return; }
   (req as ScopedRequest)[sessionKey] = id;
   await ensureSession(id);

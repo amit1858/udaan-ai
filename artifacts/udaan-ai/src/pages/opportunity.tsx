@@ -34,6 +34,7 @@ export default function OpportunityPage() {
 
   const [inp, setInp] = useState<Inputs | null>(null);
   const [fin, setFin] = useState<Financials | null>(null);
+  const [finKey, setFinKey] = useState('');
   const [finErr, setFinErr] = useState<string | null>(null);
   const evalM = useEvaluateFinance();
   const evalRef = useRef(evalM.mutate); evalRef.current = evalM.mutate;
@@ -57,7 +58,7 @@ export default function OpportunityPage() {
     if (!key || !valid || !o?.actionable) return;
     const tm = setTimeout(() => {
       setFin(null);
-      evalRef.current({ data: JSON.parse(key) as FinanceInput }, { onSuccess: (r) => { setFin(r); setFinErr(null); }, onError: (e) => { setFin(null); setFinErr(errMsg(e, t('error.generic'))); } });
+      evalRef.current({ data: JSON.parse(key) as FinanceInput }, { onSuccess: (r) => { setFin(r); setFinKey(key); setFinErr(null); }, onError: (e) => { setFin(null); setFinKey(''); setFinErr(errMsg(e, t('error.generic'))); } });
     }, 350);
     return () => clearTimeout(tm);
   }, [key, valid, o?.actionable, t]);
@@ -67,7 +68,7 @@ export default function OpportunityPage() {
   if (!o) return <ErrorState message={t('opp.notFound')} />;
 
   const createDraft = () => {
-    if (!parsed || !valid) return;
+    if (!parsed || !valid || finKey !== key) return;
     create.mutate({ data: { ...parsed, opportunityId: o.id, durationDays: 7, ...(parent ? { parentExperimentId: parent } : {}) } }, {
       onSuccess: (e) => {
         qc.invalidateQueries({ queryKey: getGetExperimentsQueryKey() });
@@ -152,7 +153,7 @@ export default function OpportunityPage() {
                   )}
                 </div>
               </>) : valid && <Skeleton className="h-64 w-full rounded-2xl bg-raised" />}
-              <button data-testid="button-create-draft" disabled={!valid || !fin || create.isPending} onClick={createDraft}
+              <button data-testid="button-create-draft" disabled={!valid || !fin || finKey !== key || create.isPending} onClick={createDraft}
                 className="flex min-h-14 w-full items-center justify-center rounded-full bg-signal font-semibold text-ink transition active:scale-[.98] disabled:opacity-50">
                 {create.isPending ? t('common.loading') : t('opp.createDraft')}
               </button>

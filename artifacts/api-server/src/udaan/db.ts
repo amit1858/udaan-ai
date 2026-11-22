@@ -1,12 +1,11 @@
 import { PrismaClient, type Experiment as Row } from "@prisma/client";
-import { existsSync } from "node:fs";
-import path from "node:path";
 import { baseline, defaultProfile, learningCopy, opportunities, type Language, type Profile } from "./content";
 import { calculate, learningFacts, toRupees } from "./finance";
 
-const prismaPath = existsSync(path.resolve("prisma/schema.prisma"))
-  ? path.resolve("prisma/udaan.db") : path.resolve("artifacts/api-server/prisma/udaan.db");
-export const prisma = new PrismaClient({ datasources: { db: { url: `file:${prismaPath}` } } });
+if (!/^postgres(?:ql)?:\/\//.test(process.env.DATABASE_URL ?? "")) {
+  throw new Error("Udaan requires the managed PostgreSQL DATABASE_URL. SQLite is retained only for rollback.");
+}
+export const prisma = new PrismaClient();
 
 export async function seedSales() {
   const pattern = [230, 125, 120, 130, 135, 145, 210];

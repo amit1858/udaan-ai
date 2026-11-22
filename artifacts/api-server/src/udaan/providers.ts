@@ -6,7 +6,9 @@ import { calculate } from "./finance";
 import { prisma } from "./db";
 
 export type ProviderId = "demo" | "openai" | "anthropic";
-export const paidAllowed = () => process.env.ALLOW_PAID_API_CALLS === "true";
+// The initial production release is deliberately credential-free Demo Mode.
+// Re-enabling production inference requires a separately reviewed release.
+export const paidAllowed = () => process.env.NODE_ENV !== "production" && process.env.ALLOW_PAID_API_CALLS === "true";
 export function providerConfig(id: ProviderId) {
   if (id === "demo") return { id, name: "Demo Engine", configured: true, model: "Deterministic multilingual intents", status: "ready", paidCallsAllowed: false };
   const isOpenAI = id === "openai";

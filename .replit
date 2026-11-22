@@ -1,4 +1,4 @@
-modules = ["nodejs-24", "python-base-3.13"]
+modules = ["nodejs-24", "python-base-3.13", "postgresql-16"]
 
 [deployment]
 router = "application"
@@ -22,8 +22,8 @@ timeoutMs = 20000
 [userenv]
 
 [userenv.shared]
-ALLOW_PAID_API_CALLS = "true"
-MAX_PAID_API_CALLS = "6"
+ALLOW_PAID_API_CALLS = "false"
+MAX_PAID_API_CALLS = "0"
 OPENAI_MODEL = "gpt-5-mini"
 
 [nix]

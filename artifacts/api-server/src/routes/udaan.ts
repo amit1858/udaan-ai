@@ -20,7 +20,11 @@ import { isMarketQuestion, retrieveMarket } from "../udaan/market";
 import voiceLabRouter, { requireVoiceLabAdmin } from "./voice-lab";
 
 const router: IRouter = Router();
-router.use("/udaan", cookieParser(process.env.SESSION_SECRET || randomUUID()));
+const sessionSecret = process.env.SESSION_SECRET;
+if (process.env.NODE_ENV === "production" && (sessionSecret?.length ?? 0) < 32) {
+  throw new Error("Production requires a stable SESSION_SECRET of at least 32 characters through Replit Secrets.");
+}
+router.use("/udaan", cookieParser(sessionSecret || randomUUID()));
 const sessionKey = Symbol("udaanSession");
 type ScopedRequest = Request & { [sessionKey]: string };
 const sessionId = (req: Request) => (req as ScopedRequest)[sessionKey];

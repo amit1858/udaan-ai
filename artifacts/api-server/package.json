@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "seed": "tsx src/udaan/seed.ts",
-    "db:init": "prisma generate && prisma migrate deploy",
+    "db:init": "tsx src/udaan/init-dev-db.ts",
     "test": "vitest run src/udaan",
     "dev": "export NODE_ENV=development && pnpm run build && pnpm run start",
-    "build": "node ./build.mjs",
+    "build": "prisma generate && node ./build.mjs",
     "start": "node --enable-source-maps ./dist/index.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },

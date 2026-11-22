@@ -12,6 +12,13 @@ const cookieName = "udaan_voice_admin";
 const cookiePath = "/api/udaan";
 const adminSessions = new Map<string, { expires: number; session: string }>();
 export function voiceLabEnabled() { return process.env.NODE_ENV === "development" && process.env.ENABLE_SARVAM_LAB !== "false"; }
+// Block every direct Lab endpoint, including status/login and unknown paths.
+router.use((_req, res, next) => {
+  if (process.env.NODE_ENV === "production") {
+    res.status(404).json({ error: "Not found" }); return;
+  }
+  next();
+});
 const authConfigured = () => (process.env.VOICE_LAB_ADMIN_PASSWORD?.length ?? 0) >= 12 && !!process.env.SESSION_SECRET;
 function admin(req: Request) {
   const value = req.signedCookies?.[cookieName];

@@ -1,5 +1,7 @@
 # Stable three-minute demonstration and iPhone QA
 
+**Production update:** PostgreSQL migration and targeted production checks passed. Use `PRODUCTION_READINESS.md` for costs, publishing approval and the exact private HTTPS/iPhone installation steps. This document's URL below remains a temporary development preview; there is no published URL yet.
+
 ## Immediate iPhone access
 Open this exact temporary HTTPS development URL in **Safari**, outside the Replit embedded preview:
 

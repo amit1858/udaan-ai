@@ -27,7 +27,7 @@ Start the managed **API Server** and **Udaan AI** workflows. The web application
 Replit's managed services supply `PORT` and `BASE_PATH`. Do not start a duplicate root development server. Outside Replit, provide equivalent reverse-proxy routing to the separate frontend and API services.
 
 ## Stack and approved architecture
-React 19/Vite, Express, TypeScript, Tailwind, shadcn/ui, Lucide, Recharts, Prisma 6/SQLite, Zod/OpenAPI code generation, official OpenAI/Anthropic SDKs, Vitest and Playwright.
+React 19/Vite, Express, TypeScript, Tailwind, shadcn/ui, Lucide, Recharts, Prisma 6/managed PostgreSQL, Zod/OpenAPI code generation, official OpenAI/Anthropic SDKs, Vitest and Playwright. Original SQLite release/data are preserved; see [production readiness](docs/PRODUCTION_READINESS.md).
 
 The user explicitly approved React/Vite with a server API instead of the master specification's Next.js. No change to the specified persistence or core behavior was needed.
 
@@ -57,7 +57,7 @@ After an OpenAPI change: `pnpm --filter @workspace/api-spec run codegen`.
 - `attached_assets/UDAAN_MASTER_SPEC_1795335173739.md` — authoritative Version 5.0 specification.
 - `artifacts/udaan-ai/` — mobile-first application.
 - `artifacts/api-server/src/udaan/` — finance, learning, AI and persistence.
-- `artifacts/api-server/prisma/` — SQLite schema and migrations.
+- `artifacts/api-server/prisma/` — PostgreSQL schema and development migrations. Production schema changes use Replit Publish, never build/startup DDL.
 - `lib/api-spec/openapi.yaml` — API contract.
 - `website/` — separate static product thesis for GitHub Pages.
 - `docs/` — architecture, implementation status, judging evidence, tests, demo and limitations.

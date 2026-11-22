@@ -1,3 +1,6 @@
+# Current production-readiness clarification
+The earlier local-SQLite deployment gate has been resolved through the user-approved, checksum-verified PostgreSQL migration. The original SQLite release and protected local backups remain recoverable. Production publication itself, first managed production-schema application and physical iPhone installation are still pending. Initial production paid inference and all internal Voice Lab endpoints are intentionally blocked. `PRODUCTION_READINESS.md` supersedes historical storage-readiness statements below.
+
 # Release-candidate limitations
 
 1. **Production is not published or cleared for durable hosting.** SQLite persistence is verified across development restarts, not on ephemeral or multi-instance production storage. Do not deploy a persistence-dependent public app until storage and backup/restore are validated. Do not silently replace the database.

@@ -1,3 +1,6 @@
+# Production-readiness clarification
+The separately approved persistence hardening now uses managed PostgreSQL. Existing development records were checksum-verified, saved HTTP responses survived an actual API restart unchanged, and 36 targeted financial/persistence/production tests passed. This strengthens **It works** without claiming new features or customer validation. Initial production remains restricted Demo Mode with paid inference and the internal Voice Lab blocked. Physical iPhone and actual published-host checks remain pending; see `PRODUCTION_READINESS.md`.
+
 # Judging alignment — actual evidence only
 
 No invented official weights, scores or qualification guarantee.

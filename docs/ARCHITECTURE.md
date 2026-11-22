@@ -3,19 +3,19 @@
 ## Approved stack
 - React 19 + Vite, TypeScript, Tailwind 4, shadcn/ui, Lucide, Recharts.
 - Shared Express API; OpenAPI-first contracts, generated React Query hooks and Zod schemas.
-- Prisma 6 and SQLite, with committed reproducible migrations. The template's unused PostgreSQL library is not used for Udaan records.
+- Prisma 6 and managed PostgreSQL, with committed development migrations. The original SQLite release/data are preserved for rollback; see `PRODUCTION_READINESS.md`.
 - Official OpenAI and Anthropic SDKs. OpenAI can use either a direct server secret or Replit AI Integrations; Anthropic adapter supports both routes when configured.
 - Vitest and Playwright, plus ESLint.
 
-The user explicitly approved React/Vite with a server API rather than the specification's Next.js App Router. This is the only material architecture deviation.
+The user explicitly approved React/Vite with a server API rather than the specification's Next.js App Router, then separately approved SQLite-to-PostgreSQL migration for production durability. Product behavior and API contracts remain unchanged.
 
 ## Request path
-Mobile UI → generated typed API client → validation and signed-cookie scope → domain services → Prisma/SQLite.
+Mobile UI → generated typed API client → validation and signed-cookie scope → domain services → Prisma/PostgreSQL.
 
 AI requests additionally prepare saved business profile, recent conversation, experiment records, deterministic financials and learning. Validated structured model output chooses only a known opportunity ID. AI has no mutation tools.
 
 ## Persistence
-SQLite stores isolated fictional-shop profiles, independent language/provider preferences, conversations, lifecycle events, experiment inputs, outcomes, linked learning facts and a global paid-call audit. Ninety shared sales records are explicitly synthetic.
+PostgreSQL stores isolated fictional-shop profiles, independent language/provider preferences, conversations, lifecycle events, experiment inputs, outcomes, linked learning facts and a global paid-call audit. Ninety shared sales records are explicitly synthetic. Existing development records were imported transactionally and verified field-by-field.
 
 All money stored for experiments and sales is integer paise. Public API amounts are INR rupees with at most two decimal places.
 
@@ -34,7 +34,7 @@ The deterministic service calculates unit contribution, total revenue, variable 
 Learning branches: insufficient activity, loss/nonpositive margin, below target, above target, on target. Below-target positive contribution suggests a ₹600 visibility test as a hypothesis; above-target positive contribution suggests repeat-customer testing or controlled expansion. Loss/insufficient evidence suggests no-spend validation.
 
 ## Hosting boundary
-The working development preview persists across server restarts. SQLite durability on a public production host has not been validated; do not claim Autoscale or multi-instance production readiness. No public deployment was authorized.
+The PostgreSQL-backed development preview was verified across the migration/restart with identical saved HTTP responses. Managed production schema is applied by Replit Publish, never startup DDL. Initial production is restricted-access Demo Mode: inference and every Lab endpoint are blocked in production. Actual hosting, HTTPS and physical-device checks await the user's approved publish.
 
 The separate `website/` is static and GitHub Pages-compatible. It does not host the full application or its database.
 

@@ -1,5 +1,13 @@
 # Udaan AI — Implementation status
 
+## Production-readiness update — supersedes historical storage notes below
+- User approved the smallest PostgreSQL migration; all seven tables imported with matching field checksums. Original SQLite file, consistent protected backups and original GitHub release tag remain intact.
+- All 373 original GitHub blobs matched the saved release before changing anything.
+- Saved profile/preferences/conversation/complete results survived the API migration/restart identically. Verified ₹2,280 and ₹5,520.
+- 36 targeted finance/persistence/production checks passed, plus API typecheck/lint and exact database/schema comparison. Production configuration loaded with existing Secrets.
+- Every production Lab endpoint is blocked; production inference remains disabled even under accidental enabling environment flags. No paid calls or new billable production service were started.
+- See `PRODUCTION_READINESS.md` for the separate checkpoint, recurring-cost illustration, rollback and publishing/iPhone steps. **Not published; final approval required.**
+
 ## Final release candidate — 2026-11-22
 **READY WITH LIMITATIONS for the demonstrated development experience. Feature development is frozen.**
 

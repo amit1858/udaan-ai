@@ -9,6 +9,24 @@ permissions:
 jobs:
   unit-and-build:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: udaan_test
+          POSTGRES_PASSWORD: fixture-password-only
+          POSTGRES_DB: udaan_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U udaan_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://udaan_test:fixture-password-only@localhost:5432/udaan_test
+      ALLOW_PAID_API_CALLS: "false"
+      MAX_PAID_API_CALLS: "0"
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

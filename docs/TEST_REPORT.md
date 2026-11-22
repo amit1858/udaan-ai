@@ -1,5 +1,10 @@
 # Final release-candidate test report
 
+## Post-migration targeted verification
+The approved production-readiness change uses PostgreSQL without altering API contracts or financial behavior. **31 existing finance/persistence checks and five new production-mode API checks passed**; API typecheck, repository lint and exact Prisma/database schema comparison passed. The latter five verify production paid-call blocking, direct Lab-route rejection, secure cookies/no-store, multilingual visitor isolation and the complete Demo conversation/70-versus-130 lifecycle with immutable results.
+
+All imported fields across seven tables matched SQLite checksums. Existing profile/preferences/conversation/full result HTTP payloads matched before and after the actual API restart and cutover. The real production configuration loaded with existing Secrets. Proxy health returned 200 and unknown API paths 404 without the SPA fallback; production manifest/worker/icons were present and the 390 px screenshot was healthy. No additional paid calls or full browser rerun. See `PRODUCTION_READINESS.md`; actual hosted HTTPS, first publish and physical-device behavior remain unverified.
+
 ## Latest executed regression
 - `pnpm test`: **71 passed, 6 files**.
 - `CHROMIUM_PATH=$(command -v chromium) pnpm test:browser`: **7 passed**, latest complete pass approximately 2.4 minutes.

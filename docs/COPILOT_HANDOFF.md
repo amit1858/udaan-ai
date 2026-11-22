@@ -1,11 +1,11 @@
 # Udaan AI release-candidate handoff
 
-**Status: READY WITH LIMITATIONS for the demonstrated development experience.**
+**Status: READY FOR RESTRICTED DEMO PUBLISH APPROVAL, with limitations.**
 **Release tag/checkpoint:** `udaan-rc-2026-11-22` (resolve with `git rev-parse udaan-rc-2026-11-22`).
-No feature development, paid retesting, architecture migration, public visibility change or publication is authorized.
+The user approved the production-storage migration only. No new features, paid retesting, public visibility change or application/Pages publication is authorized. See `PRODUCTION_READINESS.md` for preservation evidence, costs, rollback and exact publishing steps.
 
 ## Architecture
-React 19 / Vite 7 / TypeScript mobile web app; Express/TypeScript API; contract-first OpenAPI with generated React Query/Zod clients; Prisma 6 / SQLite with committed migrations. Official OpenAI/Anthropic SDKs; server-only Sarvam REST; keyless IndiaRestros REST. The approved React/Vite + server architecture remains unchanged.
+React 19 / Vite 7 / TypeScript mobile web app; Express/TypeScript API; contract-first OpenAPI with generated React Query/Zod clients; Prisma 6 / managed PostgreSQL with committed development migrations. Official OpenAI/Anthropic SDKs; server-only Sarvam REST; keyless IndiaRestros REST. React/Vite + server architecture and all API contracts remain unchanged.
 
 Paths: frontend `artifacts/udaan-ai`, API `artifacts/api-server`, contract `lib/api-spec/openapi.yaml`, static thesis `website/` and frontend `public/thesis/`. See `ARCHITECTURE.md`.
 
@@ -20,7 +20,7 @@ Paths: frontend `artifacts/udaan-ai`, API `artifacts/api-server`, contract `lib/
 - Official PWA manifest, controlling service worker, no private API caching, offline shell, reconnection, waiting-update confirmation and zero Chromium installability errors. **Not physically installed on Android/iPhone.**
 
 ## Tests and reproducibility
-Final regression: **71 unit/persistence tests passed; 7 browser journeys passed; lint/typecheck and frontend/API production builds passed.** Frozen-lockfile offline install passed. PWA production-build verification passed separately. See `TEST_REPORT.md`.
+Original regression: **71 unit/persistence tests passed; 7 browser journeys passed; lint/typecheck and frontend/API production builds passed.** After PostgreSQL migration: **36 targeted financial/persistence/production checks passed**, API typecheck/lint passed, schema matched, and saved HTTP responses survived the real API restart unchanged. No full browser/paid retest. See `TEST_REPORT.md`.
 
 ```sh
 pnpm install --frozen-lockfile
@@ -33,7 +33,7 @@ pnpm --filter @workspace/api-server run build
 PORT=25711 BASE_PATH=/ NODE_ENV=production pnpm --filter @workspace/udaan-ai run build
 ```
 
-On Replit start the existing managed API Server and Udaan AI workflows. Outside Replit supply frontend `PORT`/`BASE_PATH`, API `PORT`, and a reverse proxy routing `/api` to Express. Serve the built frontend `dist/public/` over HTTPS with SPA fallback, correct JS/manifest MIME types and service-worker scope; never route `/api` failures to index.html.
+Before the commands above, configure a development PostgreSQL `DATABASE_URL` through Secrets or the included managed database. `db:init` rejects production. On Replit start the existing managed API Server and Udaan AI workflows. Production schema changes use Replit Publish, not those development commands. Outside Replit supply frontend `PORT`/`BASE_PATH`, API `PORT`, and a reverse proxy routing `/api` to Express. Serve the built frontend `dist/public/` over HTTPS with SPA fallback, correct JS/manifest MIME types and service-worker scope; never route `/api` failures to index.html.
 
 Browser tests require the running application. On Nix use `CHROMIUM_PATH=$(command -v chromium) pnpm test:browser`; conventional CI installs Playwright Chromium. `scripts/verify-pwa.mjs` uses a temporary production-test server and the running API. Do not run `verify-voice.ts` as part of CI/startup: it is explicitly paid and one-shot guarded.
 
@@ -44,11 +44,11 @@ Browser tests require the running application. On Nix use `CHROMIUM_PATH=$(comma
 - Anthropic: `ANTHROPIC_API_KEY`, or provisioned `AI_INTEGRATIONS_ANTHROPIC_API_KEY` and `AI_INTEGRATIONS_ANTHROPIC_BASE_URL`; optional `ANTHROPIC_MODEL`.
 - Reasoning controls: `ALLOW_PAID_API_CALLS`, `MAX_PAID_API_CALLS`. Default off; hard ceiling six. Do not enable/increase without approval.
 - Lab: `SARVAM_API_KEY`, `VOICE_LAB_ADMIN_PASSWORD` (12+ characters), optional `ENABLE_SARVAM_LAB`. Production Lab remains disabled.
-- `DATABASE_URL` in the template/example is not Udaan's SQLite configuration.
+- Required `DATABASE_URL` now points to managed PostgreSQL; never hardcode or expose it. The old SQLite source/file remain available at the original release tag.
 
 ## Honest limitations and next priorities
 1. Physical iPhone/Android QA and human microphone/listening review; do not promote Lab speech to main chat yet.
-2. Validate durable production storage, backups and appropriate customer/presenter access controls before publishing. Development SQLite durability does not establish production safety.
+2. Development storage migration, backup verification and restricted production guards are complete; first production schema application and physical-device checks still require approved publishing.
 3. Native-speaker review and additional live-model language coverage require separate scope/budget approval.
 4. Discovery remains curated/context-ranked; deterministic learning is not autonomous continuous model training. No real-world impact is established.
 5. No offline private-business cache, synchronization or queued mutations. Saved server records survive updates; explicit reloads can discard unsaved inputs.

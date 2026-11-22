@@ -80,10 +80,13 @@ router.get("/udaan/opportunities", async (req, res): Promise<void> => {
 });
 router.get("/udaan/conversation", async (req, res): Promise<void> => {
   const messages = await prisma.chatMessage.findMany({ where: { sessionId: sessionId(req) }, orderBy: { createdAt: "asc" }, take: 200 });
-  res.json(GetConversationResponse.parse(messages.map((m) => ({
-    id: m.id, role: m.role, content: m.content, language: m.language, provider: m.provider,
-    createdAt: m.createdAt.toISOString(), ...JSON.parse(m.metadata),
-  }))));
+  res.json(GetConversationResponse.parse(messages.map((m) => {
+    const metadata = JSON.parse(m.metadata);
+    // Replayed conversation facts are a saved snapshot, not a new provider call.
+    if (metadata.market?.status === "retrieved") metadata.market = { ...metadata.market, provenance: "cached_provider", servedAt: new Date().toISOString() };
+    return { id: m.id, role: m.role, content: m.content, language: m.language, provider: m.provider,
+      createdAt: m.createdAt.toISOString(), ...metadata };
+  })));
 });
 const chatBusy = new Set<string>();
 router.post("/udaan/chat", async (req, res): Promise<void> => {

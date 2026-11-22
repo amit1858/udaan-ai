@@ -6,10 +6,18 @@
  * OpenAPI spec version: 1.0.0
  */
 import type { MarketIntelligenceFactsItem } from './marketIntelligenceFactsItem';
+import type { MarketIntelligenceProvenance } from './marketIntelligenceProvenance';
+import type { MarketIntelligenceRequestsItem } from './marketIntelligenceRequestsItem';
 import type { MarketIntelligenceStatus } from './marketIntelligenceStatus';
 
 export interface MarketIntelligence {
   status: MarketIntelligenceStatus;
   retrievedAt: string;
+  provenance?: MarketIntelligenceProvenance;
+  servedAt?: string;
+  cacheTtlSeconds?: number;
+  providerRestaurantCount?: number;
+  providerMenuItemCount?: number;
+  requests?: MarketIntelligenceRequestsItem[];
   facts: MarketIntelligenceFactsItem[];
 }

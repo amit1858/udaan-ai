@@ -1,0 +1,16 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "XJ_te1ixGp6mHWTe7nbws"
+uri = "file://generated-artifacts/mobile-qa/udaan-mobile-preview-qr.png"
+type = "image"
+title = "Open Udaan on your iPhone"
+description = "Temporary HTTPS development preview, not a published deployment. The app and guest API returned HTTP 200 in checks. If Safari asks for Replit access, sign in with your project account. Physical iPhone Safari has not been tested. URL: https://5d2ab9b6-290e-4024-b4bd-09459a94d4e4-00-vgmsxm4qfhmt.pike.replit.dev/"
+logical_id = "85645b81-4c66-4a0c-bf05-d3b6f8a891a1"
+content_hash = "sha256:dab6d1037e8aeedbfe3a6e9054d82020f3cb1fcaca755529d38d43ccb66cb2b1"
+size = 5623
+mtime_ms = 1795341176387
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:5d2ab9b6-290e-4024-b4bd-09459a94d4e4/85645b81-4c66-4a0c-bf05-d3b6f8a891a1/790d7e22-cb3a-4757-8d62-a262ab4da766"
+storage_version_token = "1795341188142167"
+content_type = "image/png"

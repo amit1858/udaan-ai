@@ -24,6 +24,8 @@ export * from './lifecycleEvent';
 export * from './marketIntelligence';
 export * from './marketIntelligenceFactsItem';
 export * from './marketIntelligenceFactsItemMenuItem';
+export * from './marketIntelligenceProvenance';
+export * from './marketIntelligenceRequestsItem';
 export * from './marketIntelligenceStatus';
 export * from './menuItem';
 export * from './message';

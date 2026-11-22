@@ -397,6 +397,16 @@ export const GetConversationResponseItem = zod.object({
   "market": zod.object({
   "status": zod.enum(['retrieved', 'unavailable']),
   "retrievedAt": zod.string(),
+  "provenance": zod.enum(['live_provider', 'cached_provider', 'unavailable']).optional(),
+  "servedAt": zod.string().optional(),
+  "cacheTtlSeconds": zod.int().optional(),
+  "providerRestaurantCount": zod.int().optional(),
+  "providerMenuItemCount": zod.int().optional(),
+  "requests": zod.array(zod.object({
+  "endpoint": zod.string(),
+  "requestedAt": zod.string(),
+  "httpStatus": zod.int()
+})).optional(),
   "facts": zod.array(zod.object({
   "name": zod.string(),
   "url": zod.string(),
@@ -450,6 +460,16 @@ export const SendChatResponse = zod.object({
   "market": zod.object({
   "status": zod.enum(['retrieved', 'unavailable']),
   "retrievedAt": zod.string(),
+  "provenance": zod.enum(['live_provider', 'cached_provider', 'unavailable']).optional(),
+  "servedAt": zod.string().optional(),
+  "cacheTtlSeconds": zod.int().optional(),
+  "providerRestaurantCount": zod.int().optional(),
+  "providerMenuItemCount": zod.int().optional(),
+  "requests": zod.array(zod.object({
+  "endpoint": zod.string(),
+  "requestedAt": zod.string(),
+  "httpStatus": zod.int()
+})).optional(),
   "facts": zod.array(zod.object({
   "name": zod.string(),
   "url": zod.string(),

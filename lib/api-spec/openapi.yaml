@@ -546,6 +546,20 @@ components:
       properties:
         status: { type: string, enum: [retrieved, unavailable] }
         retrievedAt: { type: string }
+        provenance: { type: string, enum: [live_provider, cached_provider, unavailable] }
+        servedAt: { type: string }
+        cacheTtlSeconds: { type: integer }
+        providerRestaurantCount: { type: integer }
+        providerMenuItemCount: { type: integer }
+        requests:
+          type: array
+          items:
+            type: object
+            required: [endpoint, requestedAt, httpStatus]
+            properties:
+              endpoint: { type: string }
+              requestedAt: { type: string }
+              httpStatus: { type: integer }
         facts:
           type: array
           items:

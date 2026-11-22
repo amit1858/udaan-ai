@@ -9,7 +9,7 @@ describe("read-only restaurant adapter", () => {
     expect(isMarketQuestion("explain the combo")).toBe(false);
   });
   it("validates attributed facts, retains original prices and caches at the published 300 seconds", async () => {
-    const fetcher = vi.fn().mockResolvedValueOnce({ ok: true, json: async () => search }).mockResolvedValueOnce({ ok: true, json: async () => menu });
+    const fetcher = vi.fn().mockResolvedValueOnce({ ok: true, status: 200, json: async () => search }).mockResolvedValueOnce({ ok: true, status: 200, json: async () => menu });
     vi.stubGlobal("fetch", fetcher);
     const { retrieveMarket } = await import("./market");
     const result = await retrieveMarket();
@@ -17,7 +17,13 @@ describe("read-only restaurant adapter", () => {
     expect(result.facts[0].menu).toEqual([{ name: "Toast", section: "Breakfast", price: 450 }]);
     expect(result.facts[0].source).toBe("fixture, not live");
     expect(result.facts[0].updated).toBe(menu.updated);
-    expect(await retrieveMarket()).toEqual(result);
+    expect(result.provenance).toBe("live_provider");
+    expect(result.requests?.every((request) => request.httpStatus === 200)).toBe(true);
+    const next = await retrieveMarket();
+    expect(next.provenance).toBe("cached_provider");
+    expect(next.facts).toEqual(result.facts);
+    expect(next.retrievedAt).toBe(result.retrievedAt);
+    expect(next.cacheTtlSeconds).toBe(300);
     expect(fetcher).toHaveBeenCalledTimes(2);
     for (const [url, init] of fetcher.mock.calls) { expect(url).toMatch(/^https:\/\/indiarestros.com\/api\/v1\//); expect(init.method).toBeUndefined(); }
   });

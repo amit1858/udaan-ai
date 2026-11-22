@@ -21,6 +21,7 @@ export function MarketInspiration({ market, provider, opportunity, interpretatio
   return <section data-testid="card-market-inspiration" className="overflow-hidden rounded-3xl border border-intel/40 bg-gradient-to-br from-intel/10 via-surface to-signal/5 p-5">
     <div className="mb-3 flex items-center gap-2 text-intel"><Globe2 className="size-5" /><h2 className="font-display text-xl font-semibold">{c[0]}</h2></div>
     <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-signal">{market.status === 'retrieved' ? c[1] : c[2]}</p>
+    {market.status === 'retrieved' && <p data-testid="market-provenance" className="mb-3 inline-flex rounded-full border border-intel/40 px-3 py-1 font-mono text-[11px] text-intel">{market.provenance === 'live_provider' ? 'Live Provider Data' : 'Cached Provider Data'} · IndiaRestros</p>}
     {market.facts.map((f) => <div key={f.url} className="mb-4 rounded-2xl border border-line bg-ink/60 p-4">
       <a href={f.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-start gap-1 font-semibold text-snow underline decoration-intel/50 underline-offset-4">{f.name}<ArrowUpRight className="mt-1 size-4 shrink-0 text-intel" /></a>
       <p className="mt-1 text-xs text-mist">{f.locality}, Bengaluru · {c[10]}: {f.source}</p>
@@ -31,6 +32,7 @@ export function MarketInspiration({ market, provider, opportunity, interpretatio
     <p className="mt-3 text-[11px] text-mist">Restaurant data: <a className="underline" href="https://indiarestros.com" target="_blank" rel="noopener noreferrer">IndiaRestros</a> · © OpenStreetMap contributors</p>
     <div className="mt-4 border-t border-line pt-4">
       <p className="text-xs font-semibold text-intel">{provider === 'demo' ? c[6] : c[5]}</p>
+      <p className="mt-2 text-[11px] text-mist">Synthetic Demo Data: Ravi’s shop, sales and sample experiment outcomes. {provider === 'demo' ? 'The interpretation below is deterministic Demo Mode; restaurant facts above are real provider data when available.' : 'The AI interprets source facts alongside fictional business context; facts are not proof of demand.'}</p>
       <p className="my-3 whitespace-pre-line text-sm leading-relaxed text-snow">{interpretation}</p>
       <p className="mt-1 text-sm text-snow">{opportunity?.title}</p>
       <Link href={'/opportunity/' + (opportunity?.id || 'preorder')} className="mt-3 inline-flex min-h-12 items-center gap-2 rounded-full bg-signal px-5 text-sm font-semibold text-ink">{c[7]} · {inr(opportunity?.budget ?? 0)}<ArrowUpRight className="size-4" /></Link>

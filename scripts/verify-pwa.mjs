@@ -58,10 +58,21 @@ try {
   assert.equal(await page.evaluate(() => !!navigator.serviceWorker.controller), true);
   evidence.serviceWorker = { registered: true, controlling: true, secureContext: await page.evaluate(() => isSecureContext) };
   const cdp = await context.newCDPSession(page);
-  try { evidence.installability = await cdp.send('Page.getInstallabilityErrors'); } catch { evidence.installability = 'CDP installability inspection unsupported; manifest and worker independently verified'; }
-  const before = await page.evaluate(async () => (await fetch('/api/udaan/experiments')).json());
+  try {
+    const eligibility = await cdp.send('Page.getInstallabilityErrors');
+    evidence.installability = eligibility;
+    assert.deepEqual(eligibility.installabilityErrors, []);
+  } catch (error) {
+    if (error.code === 'ERR_ASSERTION') throw error;
+    evidence.installability = 'CDP installability inspection unsupported; manifest and worker independently verified';
+  }
   await page.goto(base + '/opportunity/combo');
   const input = page.getByTestId('input-sellingPrice');
+  await page.getByTestId('button-create-draft').click();
+  await page.getByTestId('button-approve').waitFor();
+  const before = await page.evaluate(async () => (await fetch('/api/udaan/experiments')).json());
+  assert.ok(before.length >= 1);
+  await page.goto(base + '/opportunity/combo');
   await input.fill('109');
   swVersion++;
   await page.evaluate(async () => { const registration = await navigator.serviceWorker.getRegistration(); await registration.update(); });
@@ -86,7 +97,7 @@ try {
   assert.equal(apiUnavailable, true);
   evidence.privateApiNotServedFromCache = true;
   await context.setOffline(false);
-  await page.reload(); await page.getByTestId('button-explore-featured').waitFor();
+  await page.reload(); await page.getByTestId('input-sellingPrice').waitFor();
   const after = await page.evaluate(async () => (await fetch('/api/udaan/experiments')).json());
   assert.deepEqual(after, before);
   evidence.savedExperimentsUnchanged = true;

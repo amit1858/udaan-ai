@@ -311,6 +311,21 @@ export const MarketIntelligenceStatus = {
   unavailable: 'unavailable',
 } as const;
 
+export type MarketIntelligenceProvenance = typeof MarketIntelligenceProvenance[keyof typeof MarketIntelligenceProvenance];
+
+
+export const MarketIntelligenceProvenance = {
+  live_provider: 'live_provider',
+  cached_provider: 'cached_provider',
+  unavailable: 'unavailable',
+} as const;
+
+export type MarketIntelligenceRequestsItem = {
+  endpoint: string;
+  requestedAt: string;
+  httpStatus: number;
+};
+
 export type MarketIntelligenceFactsItemMenuItem = {
   name: string;
   section: string;
@@ -329,6 +344,12 @@ export type MarketIntelligenceFactsItem = {
 export interface MarketIntelligence {
   status: MarketIntelligenceStatus;
   retrievedAt: string;
+  provenance?: MarketIntelligenceProvenance;
+  servedAt?: string;
+  cacheTtlSeconds?: number;
+  providerRestaurantCount?: number;
+  providerMenuItemCount?: number;
+  requests?: MarketIntelligenceRequestsItem[];
   facts: MarketIntelligenceFactsItem[];
 }
 

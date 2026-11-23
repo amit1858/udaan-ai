@@ -1,0 +1,40 @@
+{
+  "url": "https://udaan-ai-builder.replit.app/",
+  "capturedAt": "2026-11-23T08:35:52.264Z",
+  "policy": "GET/HEAD only; no clicks, no form submissions, no provider calls, no state injection",
+  "captures": [
+    {
+      "file": "screenshots/live/onboarding-mobile.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "deviceScaleFactor": 2,
+      "status": 200,
+      "sha256": "743fbea6e2061574f4c11c4158e9d1ad735222d5c0b50c930ae0824bc2078d13",
+      "renderedText": "Udaan AI\nEvery small business deserves a big possibility.\n\nYou are Ravi, who runs a fictional breakfast café in Whitefield, Bengaluru. Udaan will show you one new possibility at a time.\n\nCHOOSE HOW UDAAN SPEAKS TO YOU\nAa\nEnglish\nSimple Indian English\nHi\nHinglish\nAapki apni language\nअ\nहिन्दी\nअपनी भाषा में\nಕ\nಕನ್ನಡ\nನಿಮ್ಮ ಭಾಷೆಯಲ್ಲಿ\nStart the demo\n\nFictional business, synthetic data"
+    },
+    {
+      "file": "screenshots/live/onboarding-desktop.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "deviceScaleFactor": 2,
+      "status": 200,
+      "sha256": "385f8130c68911c94d2b80f4556adeaf943ae9b43853288220c305461bd06bf4",
+      "renderedText": "Udaan AI\nEvery small business deserves a big possibility.\n\nYou are Ravi, who runs a fictional breakfast café in Whitefield, Bengaluru. Udaan will show you one new possibility at a time.\n\nCHOOSE HOW UDAAN SPEAKS TO YOU\nAa\nEnglish\nSimple Indian English\nHi\nHinglish\nAapki apni language\nअ\nहिन्दी\nअपनी भाषा में\nಕ\nಕನ್ನಡ\nನಿಮ್ಮ ಭಾಷೆಯಲ್ಲಿ\nStart the demo\n\nFictional business, synthetic data"
+    }
+  ],
+  "blockedRequests": [
+    {
+      "method": "POST",
+      "url": "https://i.replit.com/api/send"
+    },
+    {
+      "method": "POST",
+      "url": "https://i.replit.com/api/send"
+    }
+  ],
+  "limitations": "Only deployed onboarding is verified. Entering Demo changes visitor preferences; this capture intentionally stops before it. Downstream workflow screenshots are inherited release-candidate evidence, not fresh production captures."
+}

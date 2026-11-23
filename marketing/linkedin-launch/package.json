@@ -1,0 +1,16 @@
+{
+  "name": "udaan-linkedin-launch-kit",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Read-only evidence capture and reproducible marketing exports; never runs the application.",
+  "scripts": {
+    "capture": "node tools/capture.mjs",
+    "author": "node tools/author.mjs",
+    "render": "node tools/render.mjs",
+    "validate": "node tools/bounds.mjs && python tools/validate.py"
+  },
+  "dependencies": {
+    "playwright": "1.58.2",
+    "sharp": "0.34.5"
+  }
+}

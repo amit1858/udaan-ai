@@ -1,0 +1,105 @@
+{
+  "layout": {
+    "width": 1080,
+    "height": 1350,
+    "exportScale": 2
+  },
+  "fonts": {
+    "heading": "Segoe UI Semibold",
+    "body": "Segoe UI",
+    "portability": "Segoe UI installed on Windows; install a compatible font or change source SVGs on other systems. No font files redistributed."
+  },
+  "colors": {
+    "navy": "#080D18",
+    "panel": "#111C2D",
+    "cyan": "#55C8FF",
+    "lime": "#BDF52F",
+    "white": "#F2F5FA",
+    "muted": "#B0BCD0",
+    "line": "#2A3B52"
+  },
+  "model": {
+    "price": 99,
+    "variableCost": 45,
+    "promotion": 1500,
+    "days": 7,
+    "target": 100,
+    "breakEvenTotalUnits": 28,
+    "outcomes": [
+      {
+        "units": 70,
+        "revenue": 6930,
+        "variableCosts": 3150,
+        "contributionAfterPromotion": 2280
+      },
+      {
+        "units": 100,
+        "revenue": 9900,
+        "variableCosts": 4500,
+        "contributionAfterPromotion": 3900
+      },
+      {
+        "units": 130,
+        "revenue": 12870,
+        "variableCosts": 5850,
+        "contributionAfterPromotion": 5520
+      }
+    ]
+  },
+  "crops": [
+    {
+      "file": "screenshots/crops/home-top.png",
+      "source": "screenshots/release-candidate/home-en-390.png",
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 650,
+      "transformation": "Unaltered pixel crop; no UI recreation"
+    },
+    {
+      "file": "screenshots/crops/business-insights.png",
+      "source": "screenshots/release-candidate/home-en-390.png",
+      "x": 16,
+      "y": 1130,
+      "width": 358,
+      "height": 330,
+      "transformation": "Unaltered pixel crop; no UI recreation"
+    },
+    {
+      "file": "screenshots/crops/ask-udaan.png",
+      "source": "screenshots/release-candidate/07-demo-conversation.png",
+      "x": 16,
+      "y": 425,
+      "width": 358,
+      "height": 380,
+      "transformation": "Unaltered pixel crop; no UI recreation"
+    },
+    {
+      "file": "screenshots/crops/experiment-evaluation.png",
+      "source": "screenshots/release-candidate/07-demo-conversation.png",
+      "x": 16,
+      "y": 958,
+      "width": 358,
+      "height": 471,
+      "transformation": "Unaltered pixel crop; no UI recreation"
+    },
+    {
+      "file": "screenshots/crops/learning-70.png",
+      "source": "screenshots/release-candidate/10-learning-low.png",
+      "x": 16,
+      "y": 224,
+      "width": 358,
+      "height": 390,
+      "transformation": "Unaltered pixel crop; no UI recreation"
+    },
+    {
+      "file": "screenshots/crops/learning-130.png",
+      "source": "screenshots/release-candidate/11-learning-high.png",
+      "x": 16,
+      "y": 224,
+      "width": 358,
+      "height": 390,
+      "transformation": "Unaltered pixel crop; no UI recreation"
+    }
+  ]
+}

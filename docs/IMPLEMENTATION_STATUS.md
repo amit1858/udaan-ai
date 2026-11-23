@@ -1,5 +1,13 @@
 # Udaan AI — Implementation status
 
+## Final handoff — 23 November 2026
+- Published app confirmed public/Autoscale; OpenAI/Anthropic configured but blocked by the expired approved window. Main-app Sarvam remains unimplemented, not a configuration-only fix.
+- Application source tree is synchronized on the candidate branch; the publication-only commit and final documentation are included in the handoff. Separate `main`/merged showcase PR are preserved.
+- Public reachable history check: 16 commits/520 blobs, no flagged credential patterns or private runtime paths. This is not exhaustive secret assurance.
+- A private one-time row export of all seven production application tables was prepared through the read-only replica. It is ignored by Git/deployment, not a full database backup, and not restore-tested.
+- Added `FINAL_HANDOFF.md`, external restoration instructions and a reusable read-only export query. No application code/configuration, paid allowance, infrastructure, deployment or shutdown changes. No repeated suites/paid tests.
+- Final source tag: `udaan-final-handoff-2026-11-23`. All earlier status sections are historical.
+
 ## Controlled-live activation candidate — 2026-11-22
 - The user approved activation after cost estimates. Production OpenAI/Anthropic restoration is prepared with a two-hour window ending **6:50 PM IST**, 10 combined attempts, five per presenter session, password protection and durable atomic quotas.
 - **Already-published version is unchanged until Republish.** Actual newly bounded provider calls are not yet verified; no paid calls were repeated during implementation.

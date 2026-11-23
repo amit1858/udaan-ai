@@ -32,6 +32,10 @@ React 19/Vite, Express, TypeScript, Tailwind, shadcn/ui, Lucide, Recharts, Prism
 The user explicitly approved React/Vite with a server API instead of the master specification's Next.js. No change to the specified persistence or core behavior was needed.
 
 ## AI configuration and spending
+**Final handoff:** [current status, costs and shutdown](docs/FINAL_HANDOFF.md);
+[restore outside Replit](docs/RESTORE_OUTSIDE_REPLIT.md). The app is published,
+but the approved AI window has expired. Do not renew it automatically.
+
 Add direct-provider credentials only through Replit Secrets, or use Replit AI Integrations. Never put keys in chat or source.
 
 `.env.example` documents names, not real values. Without credentials the app still launches in Demo Mode.

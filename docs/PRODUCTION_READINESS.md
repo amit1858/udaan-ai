@@ -1,5 +1,11 @@
 # Production readiness and publishing handoff
 
+**Historical preparation report from 22 November.** Publication subsequently
+succeeded and source visibility was explicitly changed to public by the owner.
+Read `FINAL_HANDOFF.md` for current deployment, expired AI access, private data
+export and cost-control instructions; earlier pending-publication statements
+below are retained as historical evidence.
+
 ## Status
 Ready for **owner-approved, restricted-access Demo Mode publishing**, not a public customer launch. Nothing has been published by the agent. No additional paid database service was provisioned: only the included development PostgreSQL was used.
 

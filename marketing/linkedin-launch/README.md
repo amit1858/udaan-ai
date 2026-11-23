@@ -4,6 +4,8 @@
 
 Seven-slide, mobile-first launch story in Udaan's deep navy, cyan and lime identity. This is marketing artwork, not an application rebuild or deployment.
 
+**Publication revision:** a first-person builder hook and personal caption; a four-part product thesis (business context, AI reasoning, deterministic financial evaluation, outcome-driven learning); Ravi's illustrative combo question next to the journey; larger genuine screenshot excerpts; and a stronger live invitation with a single-line URL. This revision reuses the saved evidence — no new app session or server-state interaction was needed.
+
 ![Carousel preview](previews/carousel-contact-sheet.png)
 
 ## Ready-to-use deliverables
@@ -14,10 +16,11 @@ Seven-slide, mobile-first launch story in Udaan's deep navy, cyan and lime ident
 | [slides/](slides/) | Seven individually exported **2160 × 2700** PNGs; base composition 1080 × 1350 |
 | [source/](source/) | Eight editable, self-contained SVGs, plus design/model/crop manifest |
 | [linkedin-cover.png](linkedin-cover.png) | **2400 × 1254** feed/link cover; 1200 × 627 source. Not a profile-banner crop |
-| [screenshots/](screenshots/) | Two fresh live entry captures, four unaltered inherited workflow captures, six pixel crops |
+| [screenshots/](screenshots/) | Two live entry captures saved on 23 Nov 2026, four unaltered inherited workflow captures, ten exact pixel crops |
+| [390px mobile proofs](previews/mobile-390/) / [320px mobile proofs](previews/mobile-320/) | All seven final slides at native mobile viewing sizes |
 | [demo-storyboard.pdf](demo-storyboard.pdf) | Six-frame, **55-second** demonstration storyboard with narration and provenance |
 | [demo-storyboard.md](demo-storyboard.md) | Editable timing, narration, shot plan and recording instructions |
-| [linkedin-caption.md](linkedin-caption.md) | Concise post draft |
+| [linkedin-caption.md](linkedin-caption.md) | First-person product-building story, ready for review |
 | [EVIDENCE.md](EVIDENCE.md) | Capture provenance, financial grounding and production/prototype boundaries |
 | [CREDITS.md](CREDITS.md) | Image attribution, adaptation notices and share-alike licenses |
 | [VALIDATION.md](VALIDATION.md) | Output checks and visual fix/reverification record |
@@ -42,7 +45,7 @@ npm.cmd run render
 npm.cmd run validate
 ```
 
-`render` reads the committed SVGs, rasterizes them at 2×, and makes the PDFs/contact sheet. It preserves manual SVG edits. **`npm.cmd run author` regenerates and overwrites SVG sources**, using the existing `website\assets` files and committed live captures; only run it when intentionally revising the authored layout. Change `tools\author.mjs` for reproducible design changes.
+`render` reads the committed SVGs, rasterizes them at 2×, and makes the PDFs, contact sheet and 390px/320px mobile proofs. It preserves manual SVG edits. **`npm.cmd run author` regenerates and overwrites SVG sources**, using the existing `website\assets` files and committed live captures; only run it when intentionally revising the authored layout. Change `tools\author.mjs` for reproducible design changes.
 
 On Windows Segoe UI/Segoe UI Semibold are used without redistributing font files. For other platforms, install a compatible font or explicitly change the SVG font family and recheck line wrapping. PDF/PNG exports do not require the reader to install fonts.
 
@@ -64,6 +67,8 @@ At ₹99 selling price and ₹45 variable making cost, a seven-day test with ₹
 
 Ravi, the café and business records are fictional. Pictured people are contextual photographs, not Ravi or customers. Next steps are hypotheses. The 70/130 recommendations are documented demo branches; the 100-unit next step is explicitly **editorial advice**, not a captured AI response.
 
-The only freshly verified deployed UI is onboarding. Other screenshots are genuine inherited release-candidate evidence. No Sarvam production integration, award status, endorsement, adoption or proven impact is asserted.
+The only independently captured deployed UI is onboarding, saved on 23 Nov 2026. Other screenshots are genuine inherited release-candidate evidence. The larger excerpts do not change any application text. Slide 4's owner question is explicitly illustrative editorial copy outside the screenshot, not a fabricated chat exchange. The four-part differentiation is the product thesis; the depicted Ask Udaan response remains labeled **Demo Mode**, not a new live-model call. Outcome-driven learning is retained results informing suggestions, not model retraining.
+
+Sarvam remains **internal Voice Lab-only**, not integrated into the main production chat. No award status, endorsement, adoption or proven impact is asserted.
 
 Only `marketing/linkedin-launch/` changes. No application, API, database, production setting or deployment workflow was edited, rebuilt or redeployed; no paid service was triggered. Repository visibility was observed as public and was not changed. The app enforced **`amit1858-udaan-linkedin-launch-kit`**, rather than the requested exact `feature/udaan-linkedin-launch-kit`.

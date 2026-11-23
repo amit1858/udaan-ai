@@ -4,6 +4,18 @@
 
 This package was authored from main revision **`a477deec7ffa85474365b36a05ddc65369e1e8da`**. Financial figures come from [`docs/FINANCIAL_VERIFICATION.md`](../../docs/FINANCIAL_VERIFICATION.md), with product thinking and event origin from `README.md`, `docs/PRODUCT_THESIS.md` and `docs/DEMO_SCRIPT.md`. The showcase's `website/CONTENT_REVIEW.md` and `website/credits.html` establish inherited asset provenance. Historical status sentences in older documents are not silently upgraded into deployment claims.
 
+## Publication revision
+
+The final revision changes marketing copy/layout only. It adds a first-person builder perspective, explicitly identifies the four-part product thesis, and enlarges pixel crops from the **same saved original evidence**. No live application page, synthetic session or provider was contacted during this revision.
+
+Slide 3 combines business context, AI reasoning, deterministic financial evaluation and outcome-driven learning as the product thesis. Its enlarged Ask Udaan excerpt is explicitly **Demo Mode / release-candidate**; it is not evidence of a newly executed paid model. Learning means stored outcomes influencing the next suggestion, not autonomous model retraining.
+
+Slide 4's “Could a ₹99 breakfast combo bring more weekday customers?” is **illustrative editorial owner perspective**, labeled as such outside the screenshot. It is not claimed to be a captured owner message or a submitted API request. No interface elements or application text were invented to show it.
+
+The personal caption describes the documented product-building choices and a reflective takeaway, not an award, judging result, customer interview, or invented photograph of the builder. Sarvam's status stays internal **Voice Lab-only**, not integrated into the main production chat.
+
+Four additional exact crops are recorded in `source/design.json`: `reasoning-excerpt.png` (context/reasoning), `combo-discovery.png` (idea card), `finance-table.png` (deterministic evaluation) and `live-onboarding-hero.png` (entry-point detail). Excerpt boundaries do not pretend to show the full screen; original images remain available. No screenshot pixels or application wording were rewritten.
+
 ## Screenshot inventory
 
 | Evidence | Origin | Treatment / boundary |
@@ -27,6 +39,8 @@ Entering Demo is not just a browser-local preference:
 - `artifacts/api-server/src/routes/udaan.ts:75–78` handles `PATCH /udaan/preferences` with `prisma.demoSession.update`.
 
 The capture therefore stops before that server-state mutation. Ordinary GET page loading may initialize a synthetic visitor session/cookie; no application code, stored business outcome or deployment was changed intentionally. No chat submission, research invocation, voice request, plan approval or result save occurred. No model allowance was changed. No API mocking or client-state injection was used.
+
+This revision did **not** enter Demo, change preferences or create a new live capture. If deeper current-production captures become necessary later, document the exact proposed preference/experiment/result mutations and request approval **before** sending them; the current request does not pre-authorize those writes. Paid APIs remain prohibited.
 
 ### Important screen-reading nuance
 

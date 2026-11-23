@@ -7,12 +7,15 @@ import sharp from 'sharp';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const files = (await fs.readdir(path.join(root, 'source'))).filter(f => /^\d{2}-.+\.svg$/.test(f)).sort();
 if (files.length !== 7) throw new Error(`Expected seven carousel sources, got ${files.length}`);
-for (const folder of ['slides', 'previews']) await fs.mkdir(path.join(root, folder), { recursive: true });
+for (const folder of ['slides', 'previews', 'previews/mobile-390', 'previews/mobile-320']) await fs.mkdir(path.join(root, folder), { recursive: true });
 const thumbs = [];
 for (const [i, file] of files.entries()) {
   const buffer = await fs.readFile(path.join(root, 'source', file));
   const name = file.replace('.svg', '.png');
   await sharp(buffer, { density: 144 }).png().toFile(path.join(root, 'slides', name));
+  for (const width of [390, 320]) {
+    await sharp(path.join(root, 'slides', name)).resize(width).png().toFile(path.join(root, 'previews', `mobile-${width}`, name));
+  }
   const preview = await sharp(buffer).resize(432, 540).png().toBuffer();
   thumbs.push({ input: preview, left: (i % 4) * 456 + 24, top: Math.floor(i / 4) * 580 + 24 });
 }

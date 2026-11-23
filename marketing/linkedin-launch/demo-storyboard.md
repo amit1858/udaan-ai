@@ -2,6 +2,8 @@
 
 **Deliverable: a storyboard and recording guide, not a generated MP4 or a current-production screencast.** The storyboard PDF contains six still-frame plans with narration. Genuine workflow screenshots are release-candidate captures; the invitation uses freshly captured live onboarding.
 
+The publication revision re-exports these frames from the revised artwork; it does not make new live captures. Slide 4 now places Ravi's illustrative owner question next to the journey, Slide 5 enlarges the genuine financial table, and Slide 7 uses a larger detail from the saved 23 Nov 2026 onboarding capture with a full single-line URL.
+
 | Time | Visual / camera | Narration | On-screen trust label |
 | --- | --- | --- | --- |
 | **00–07s** | Slide 2: restaurant context, slow push toward the owner's question | “Meet Ravi. A fictional breakfast café owner with fewer weekday customers — and no strategy team.” | Fictional story. Context photograph, not a customer |
@@ -9,7 +11,7 @@
 | **15–24s** | Slide 5 / full financial crop: move attention from ₹99 and ₹45 to 100 units and ₹1,500 promotion | “Ninety-nine rupees price. Forty-five making cost. Fifty-four contribution per combo. One hundred combos; fifteen hundred promotion.” | Illustrative assumptions. RC capture |
 | **24–33s** | Hold on ₹3,900 and 28 total units; use a readable editorial callout separate from the actual UI | “That's thirty-nine hundred modeled contribution after promotion. Break-even is twenty-eight combos across the whole test — not net profit.” | Promotion break-even, seven days total. Overhead excluded |
 | **33–45s** | Slide 6 comparison; optionally use full low/high RC captures with a clear label; never call their expected ₹3,900 panel the actual result | “At seventy combos, twenty-two eighty suggests a visibility test. At one-thirty, fifty-five twenty suggests testing repeat customers.” | Synthetic outcomes. Next steps are hypotheses |
-| **45–55s** | Slide 7: genuine live onboarding, then full product URL held at least four seconds | “Built during Product (Un)Conference Builders' Day. Every small business deserves a big possibility. Explore Udaan AI.” | Live onboarding captured 23 Nov 2026. No award/endorsement claim |
+| **45–55s** | Slide 7: genuine live onboarding detail, then full product URL held at least four seconds | “Built during Product (Un)Conference Builders' Day. Every small business deserves a big possibility. Explore Udaan AI.” | Live onboarding captured 23 Nov 2026. No award/endorsement claim |
 
 The 100-unit comparison remains ₹3,900; cautiously repeating to validate demand is editorial next-test advice, not claimed AI output.
 

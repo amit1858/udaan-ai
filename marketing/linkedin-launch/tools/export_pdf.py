@@ -15,7 +15,8 @@ pdf.setAuthor("Udaan AI")
 for index, slide in enumerate(slides):
     pdf.drawImage(ImageReader(str(slide)), 0, 0, width=540, height=675)
     if index == 6:
-        pdf.linkURL("https://udaan-ai-builder.replit.app/", (36, 160, 286, 280), relative=0)
+        pdf.linkURL("https://udaan-ai-builder.replit.app/", (36, 87, 504, 137), relative=0)
+        pdf.linkURL("https://udaan-ai-builder.replit.app/", (36, 44, 504, 74), relative=0)
     pdf.showPage()
 pdf.save()
 

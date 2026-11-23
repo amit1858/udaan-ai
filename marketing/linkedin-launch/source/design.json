@@ -18,6 +18,14 @@
     "muted": "#B0BCD0",
     "line": "#2A3B52"
   },
+  "revision": "Publication revision: builder hook, decision-loop differentiation, experiential question and larger authentic crops. No new application interaction.",
+  "mobileReview": {
+    "widths": [
+      390,
+      320
+    ],
+    "note": "Inspect the exported mobile previews at native size. Critical editorial story, numbers and URL must not require zoom; dense historical UI is supporting evidence."
+  },
   "model": {
     "price": 99,
     "variableCost": 45,
@@ -99,6 +107,42 @@
       "y": 224,
       "width": 358,
       "height": 390,
+      "transformation": "Unaltered pixel crop; no UI recreation"
+    },
+    {
+      "file": "screenshots/crops/reasoning-excerpt.png",
+      "source": "screenshots/release-candidate/07-demo-conversation.png",
+      "x": 32,
+      "y": 443,
+      "width": 326,
+      "height": 165,
+      "transformation": "Unaltered pixel crop; no UI recreation"
+    },
+    {
+      "file": "screenshots/crops/combo-discovery.png",
+      "source": "screenshots/release-candidate/home-en-390.png",
+      "x": 16,
+      "y": 214,
+      "width": 358,
+      "height": 435,
+      "transformation": "Unaltered pixel crop; no UI recreation"
+    },
+    {
+      "file": "screenshots/crops/finance-table.png",
+      "source": "screenshots/release-candidate/07-demo-conversation.png",
+      "x": 32,
+      "y": 1112,
+      "width": 326,
+      "height": 205,
+      "transformation": "Unaltered pixel crop; no UI recreation"
+    },
+    {
+      "file": "screenshots/crops/live-onboarding-hero.png",
+      "source": "screenshots/live/onboarding-mobile.png",
+      "x": 40,
+      "y": 40,
+      "width": 700,
+      "height": 762,
       "transformation": "Unaltered pixel crop; no UI recreation"
     }
   ]

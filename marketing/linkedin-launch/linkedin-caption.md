@@ -1,17 +1,21 @@
+At Product (Un)Conference 2026 Builders' Day, I built Udaan AI around one question:
+
+What would help a small-business owner decide what to try next?
+
+Not another dashboard. Not a chatbot that forgets the business behind the question.
+
+My product thesis: combine business context, AI reasoning, deterministic financial evaluation and outcome-driven learning in one connected experience.
+
+I made that concrete with Ravi, a fictional breakfast café owner: discover a ₹99 combo, explore whether it fits, evaluate the numbers, approve a small test, record the result and decide what comes next.
+
+The same seven-day model produces ₹2,280, ₹3,900 or ₹5,520 contribution after promotion at 70, 100 or 130 combos. The 70/130 demo outcomes lead to different next-test hypotheses.
+
+My biggest product-building takeaway: generating an idea is only the start. The experience has to connect the idea, its assumptions, the owner's decision and the learning afterward.
+
 Every small business deserves a big possibility.
-
-Meet Udaan AI — a working companion built during Product (Un)Conference 2026 Builders' Day.
-
-For a restaurant owner like Ravi, the question isn't “Where's my dashboard?” It's “What should I try next?”
-
-Discover → Explore → Evaluate → Try → Measure → Learn.
-
-One illustrative ₹99 breakfast-combo test makes the idea tangible: 70, 100 or 130 combos lead to ₹2,280, ₹3,900 or ₹5,520 modeled contribution after promotion — and different next decisions.
-
-Small experiments. Transparent trade-offs. A next step grounded in what happened.
 
 Explore: https://udaan-ai-builder.replit.app/
 
-Ravi and the business data are fictional. Modeled contribution is not net profit or proven customer impact. Carousel UI uses labeled release-candidate captures plus fresh live onboarding.
+Fictional café, synthetic data and illustrative outcomes — not net profit or proven customer impact. Carousel UI combines labeled release-candidate captures with live onboarding captured on 23 Nov 2026. Sarvam remains internal Voice Lab-only, not integrated into the main production chat.
 
 #UdaanAI #SmallBusiness #ProductThinking #AI

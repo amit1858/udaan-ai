@@ -1,9 +1,14 @@
-# Udaan AI product demonstration - planning and local preparation
+# Udaan AI product demonstration
 
-Stage 1 planning is complete. The subsequently selected Option B local-only
-recording is **blocked during exact-tag dependency restoration**; no genuine
-product footage exists yet. Voice synthesis, final editing and delivery remain
-approval-gated and incomplete.
+The complete genuine local journey is recorded, including the native
+expected/actual tooltip and saved recommendation. A branded 72-second **silent
+rough cut**, cover, visual-timed SRT and repeatable FFmpeg build are prepared.
+This is not the final Gnani-narrated video. Private operator key entry is
+pending after one unsuccessful synthesis attempt.
+
+See [PRODUCTION_STATUS.md](PRODUCTION_STATUS.md) for current evidence, artifact
+paths and blockers. Earlier planning gates below are historical where later
+direct user authorization superseded them.
 
 | Review material | Purpose |
 | --- | --- |
@@ -12,8 +17,10 @@ approval-gated and incomplete.
 | [SCRIPT.md](SCRIPT.md) | Draft narration, pronunciation and trust boundaries |
 | [GNANI_RESEARCH.md](GNANI_RESEARCH.md) | Official API findings, pricing/licensing blockers and secure provisioning |
 | [VALIDATION.md](VALIDATION.md) | Actual Stage 1 evidence; not final-video QA |
-| [LOCAL_PREPARATION.md](LOCAL_PREPARATION.md) | Option B preparation, verified source integrity and exact dependency blocker |
-| [scripts/](scripts/) | No-write recorder probe, draft local runner, offline preparation and gated Gnani generator |
+| [LOCAL_PREPARATION.md](LOCAL_PREPARATION.md) | Option B source integrity, historical blocker and successful external dependency adaptation |
+| [PRODUCTION_STATUS.md](PRODUCTION_STATUS.md) | Actual runtime, footage, rough-cut evidence and remaining voice blocker |
+| [CREDITS.md](CREDITS.md) | Photograph, artwork and OFL typography attribution |
+| [scripts/](scripts/) | Genuine local runtime/recorder, rough-cut compositor and default-no-call Gnani generator |
 
 ## Source of truth
 
@@ -39,23 +46,25 @@ The requested branch was `feature/udaan-product-demo-video`. App-managed rename
 enforced **`amit1858-feature/udaan-product-demo-video`**. No raw Git rename,
 history rewrite, release-tag change or deployment was performed.
 
-## Current boundary and next decision
+## Current boundary
 
-**Option B has been selected:** actual tagged source, a strictly isolated local
-PostgreSQL database, deterministic Demo interactions, and preserved local-only
-raw recording. This does not authorize production interaction or paid providers.
-The earlier live/local alternatives in RECORDING_PLAN.md are historical Stage 1
-planning, not a renewed request for live access.
+The latest user direction prohibits further production application/database
+changes and new paid infrastructure. The successful local build uses unchanged
+tagged source and an external compatibility dependency graph; it is **not a
+lockfile-exact or deployed artifact**. No application API responses were mocked.
 
-An accessible package source containing the exact handoff's pinned dependencies
-is needed before this path can run. Do not silently change versions, manifests,
-build configuration, or replace missing SDKs with mocks; see LOCAL_PREPARATION.md.
+The user separately authorized account-credit use, commercial narration sharing
+and autonomous sample/full production. No tariff, account balance or monetary
+ceiling is claimed verified. One sample attempt failed without a saved WAV;
+its HTTP/billing outcome is unknown and it was not retried. Corrected diagnostics
+now preserve safe categories, and a validated WAV is preserved before additional
+pacing checks. A continuation permits only the remaining full-text attempt,
+not another sample, within two cumulative synthesis attempts.
 
-Voice approval is separate: confirm account-specific billing and rights first,
-then authorize one sample request with a numeric spending cap. Full narration
-requires another approval after listening to the sample. No credentials are
-requested now. No production AI, infrastructure, public publishing or final PR
-is included in the current local-only scope.
+The separate masked Windows dialog stores an entered key in temporary encrypted
+Windows Credential Manager. No key goes into chat, arguments, `.env`, source
+or assets. Entry makes no API call. The final narrated MP4 and delivery PR remain
+incomplete; there is no LinkedIn autopublishing.
 
 ## Reproduce Stage 1 checks
 
@@ -78,7 +87,8 @@ is a deliberately restricted loading/warning state, **not production footage**.
 The Stage 1 offline preparer does not read a key, make requests or generate audio.
 The reusable `generate-voiceover.py` also defaults to no-call preparation; its
 opt-in execution and private-console approval requirements are documented in
-GNANI_RESEARCH.md. No real execution has occurred.
+GNANI_RESEARCH.md. Its historical no-call evidence predates the later failed
+sample attempt described in PRODUCTION_STATUS.md.
 
 Probe binaries remain in session artifacts. Future raw/audio/output directories
 are ignored to prevent accidental large-file or unreviewed-asset commits. Decide

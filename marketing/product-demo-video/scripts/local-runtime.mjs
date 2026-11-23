@@ -17,7 +17,9 @@ if (!relativeRoot || (!path.isAbsolute(relativeRoot) && relativeRoot !== '..'
   throw new Error('Runtime extraction and database must be outside the repository.');
 }
 const source = path.join(root, 'source');
-const databaseDir = path.join(root, 'postgres-data');
+const instance = process.env.LOCAL_DB_INSTANCE ?? 'default';
+if (!/^[a-z0-9-]{1,40}$/.test(instance)) throw new Error('Invalid private database instance name.');
+const databaseDir = path.join(root, instance === 'default' ? 'postgres-data' : `postgres-data-${instance}`);
 const artifacts = path.join(root, 'evidence');
 const ports = { database: 55432, backend: 4318, browser: 4317 };
 const database = 'udaan_demo_local';
@@ -41,6 +43,7 @@ Object.assign(process.env, cleanEnv, {
   PRODUCTION_AI_ENABLED: 'false', ENABLE_SARVAM_LAB: 'false',
   SESSION_SECRET: randomBytes(32).toString('hex'),
 });
+process.chdir(source);
 await mkdir(artifacts, { recursive: true });
 const password = randomBytes(32).toString('hex');
 process.env.DATABASE_URL = `postgresql://postgres:${password}@127.0.0.1:${ports.database}/${database}`;
@@ -103,8 +106,8 @@ try {
     return originalFetch(input, options);
   };
   const { tsImport } = await import(pathToFileURL(tsxApi).href);
-  const module = await tsImport(path.join(source, 'artifacts', 'api-server', 'src', 'app.ts'), import.meta.url);
-  const db = await tsImport(path.join(source, 'artifacts', 'api-server', 'src', 'udaan', 'db.ts'), import.meta.url);
+  const module = await tsImport(pathToFileURL(path.join(source, 'artifacts', 'api-server', 'src', 'app.ts')).href, import.meta.url);
+  const db = await tsImport(pathToFileURL(path.join(source, 'artifacts', 'api-server', 'src', 'udaan', 'db.ts')).href, import.meta.url);
   prisma = db.prisma;
   await db.seedSales();
   backend = module.default.listen(ports.backend, '127.0.0.1');

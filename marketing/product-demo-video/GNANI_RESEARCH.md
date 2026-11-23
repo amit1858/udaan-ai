@@ -1,7 +1,27 @@
 # Gnani.ai narration research and approval gates
 
-Official public sources checked **23 November 2026**. No Gnani account login,
-key provisioning, API request, voice generation or charge occurred.
+Official public sources checked **23 November 2026**. The original Stage 1
+no-call research and approval proposal below are historical. Later the user
+authorized account-credit use, commercial sharing and autonomous narration.
+One sample synthesis attempt stopped without a saved WAV; its original
+HTTP/billing outcome was not retained. No retry or successful audio generation
+is claimed. Current operational evidence is in PRODUCTION_STATUS.md.
+
+`generate-narration-workflow.py` supports that task-specific authorization,
+defaults to no-call, and reads only the scoped temporary Windows credential.
+Its `--previous-attempt` continuation accepts the exact single failed sample
+ledger and permits only the remaining full-text attempt, within two cumulative
+synthesis attempts. Eight labeled offline tests cover no-call defaults, text
+gates, two-call completion, safe failure/cleanup, pacing, preserved returned WAV
+and the one-remaining-attempt continuation, including distinct safe HTTP/TLS/
+format and missing-credential diagnostics. No test fixture is narration.
+
+`gnani-credential.py --dialog` opens a separate masked Windows input dialog
+supporting paste into Password. It does not ask for a Windows login password
+or make an API call. The task-specific credential is encrypted by Windows for
+the logon session and deleted after execution. No terminal canvas is advertised
+as a certified private input channel; Python string erasure is not guaranteed.
+The corrected password buffer respects the native credential-dialog limit.
 
 ## Confirmed official transport
 

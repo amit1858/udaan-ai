@@ -53,6 +53,78 @@ Windows native-package preparation and Prisma engine generation may present
 additional issues after restoration; they have not been tested and are not
 claimed to work.
 
+### Narrow trusted-HTTPS recovery
+
+Official `https://registry.npmjs.org/minimatch/11.0.9` metadata and
+`https://registry.npmjs.org/minimatch/-/minimatch-11.0.9.tgz` were tested without
+requesting any provider or production endpoint:
+
+| Trusted HTTPS route | Exact observed result |
+| --- | --- |
+| Windows `Invoke-WebRequest` to metadata and tarball | Could not create SSL/TLS secure channel; no HTTP response |
+| Native `curl.exe` 8.22.0 / Schannel to both URLs | Exit 35; `SEC_E_ILLEGAL_MESSAGE (0x80090326)` during handshake |
+| Explicit TLS 1.2 with both Windows clients, metadata only | Same secure-channel/Schannel handshake failure |
+| Node 24 `--use-system-ca`, metadata only | `EPROTO`, TLS alert 40, handshake failure |
+
+Therefore **official upstream existence of minimatch 11.0.9 remains unknown**.
+A mirror 404 is not proof of upstream absence. No official metadata or tarball
+was recovered, and no tarball was substituted or accepted without verification.
+No TLS verification bypass, certificate installation, broad reinstall, package
+version change or production/provider request followed these checks.
+
+Existing private package contents were compared by their actual package
+name/version with the lockfile, accounting for hashed Windows store paths and
+broken links. The following **37 non-platform-specific pinned entries** still
+lack readable matching package metadata. This is an incomplete-install
+inventory, not a claim that each package returned an upstream HTTP 404:
+
+```text
+@anthropic-ai/sdk@1.12.0
+@babel/generator@7.29.15
+@babel/helper-string-parser@7.29.15
+@babel/helper-wrap-function@7.29.15
+@babel/parser@7.29.15
+@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@7.29.7
+@babel/plugin-transform-block-scoping@7.29.15
+@babel/plugin-transform-computed-properties@7.29.15
+@babel/plugin-transform-duplicate-keys@7.29.15
+@babel/plugin-transform-explicit-resource-management@7.29.15
+@babel/plugin-transform-export-namespace-from@7.29.15
+@babel/plugin-transform-for-of@7.29.15
+@babel/plugin-transform-modules-systemjs@7.29.15
+@babel/plugin-transform-regenerator@7.29.15
+@babel/plugin-transform-spread@7.29.15
+@babel/traverse@7.29.15
+@babel/types@7.29.15
+@typescript-eslint/eslint-plugin@8.73.0
+@typescript-eslint/parser@8.73.0
+@typescript-eslint/project-service@8.73.0
+@typescript-eslint/scope-manager@8.73.0
+@typescript-eslint/tsconfig-utils@8.73.0
+@typescript-eslint/type-utils@8.73.0
+@typescript-eslint/types@8.73.0
+@typescript-eslint/typescript-estree@8.73.0
+@typescript-eslint/utils@8.73.0
+@typescript-eslint/visitor-keys@8.73.0
+@vitest/mocker@5.1.1
+@vitest/spy@5.1.1
+ignore@7.0.16
+minimatch@11.0.9
+openai@7.62.0
+standardwebhooks@1.3.0
+terser@5.51.4
+tinybench@6.2.4
+typescript-eslint@8.73.0
+vitest@5.1.1
+```
+
+Seven absent platform entries are classified separately rather than attributed
+to the HTTPS failure: esbuild linux-x64 0.28.2, napi-rs lzma linux-x64-gnu
+1.5.1, Rollup linux-x64-gnu 4.64.5, Tailwind oxide linux-x64-gnu and
+wasm32-wasi 4.3.3, fsevents 2.3.3, and lightningcss linux-x64-gnu 1.32.0.
+The earlier 822 figure is the installer's cache counter, not a finished or
+integrity-verified application installation.
+
 ## Prepared runtime wrapper - not end-to-end verified
 
 `scripts/local-runtime.mjs` is an **unexecuted application-runtime draft**.
@@ -112,3 +184,9 @@ No credential has been requested or provisioned and no synthesis has occurred.
 Use a verified secure operator channel later, never a key in chat. Authorize
 the capped sample only after billing/rights are established; approval of that
 sample is required before full narration. No final video or delivery PR yet.
+
+Independent implementation progressed without lifting those gates:
+`scripts/generate-voiceover.py` now implements the official REST transport with
+a no-call default, private-console key entry and labeled offline fixture tests.
+See GNANI_RESEARCH.md for the exact conditional operator invocation. No real
+provider request or credential collection was used to implement or test it.

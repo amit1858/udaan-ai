@@ -13,7 +13,7 @@ approval-gated and incomplete.
 | [GNANI_RESEARCH.md](GNANI_RESEARCH.md) | Official API findings, pricing/licensing blockers and secure provisioning |
 | [VALIDATION.md](VALIDATION.md) | Actual Stage 1 evidence; not final-video QA |
 | [LOCAL_PREPARATION.md](LOCAL_PREPARATION.md) | Option B preparation, verified source integrity and exact dependency blocker |
-| [scripts/](scripts/) | Reproducible no-write recorder probe and offline-only voice request preparation |
+| [scripts/](scripts/) | No-write recorder probe, draft local runner, offline preparation and gated Gnani generator |
 
 ## Source of truth
 
@@ -75,7 +75,10 @@ The probe allows only same-origin static app files, blocks **all APIs**, externa
 requests and service workers, and records a separate offline recorder test card.
 It never fulfills an app API with synthetic data or enters Demo. Its app image
 is a deliberately restricted loading/warning state, **not production footage**.
-The voice scaffold does not read a key, make requests or generate audio.
+The Stage 1 offline preparer does not read a key, make requests or generate audio.
+The reusable `generate-voiceover.py` also defaults to no-call preparation; its
+opt-in execution and private-console approval requirements are documented in
+GNANI_RESEARCH.md. No real execution has occurred.
 
 Probe binaries remain in session artifacts. Future raw/audio/output directories
 are ignored to prevent accidental large-file or unreviewed-asset commits. Decide

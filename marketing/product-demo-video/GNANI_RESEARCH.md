@@ -103,7 +103,7 @@ rights after account expiry and any restrictions relevant to a CC BY-SA
 photographic video composition. Do not place the Gnani logo in the video as
 an endorsement. Stop before sample generation/sharing if rights remain unclear.
 
-## Safe integration prepared now
+## Offline preparation and gated reusable generator
 
 `scripts/prepare-voiceover.py` builds an offline review JSON using only the
 confirmed endpoint/fields. It validates a documented English model/voice pair,
@@ -112,29 +112,97 @@ It intentionally has **no HTTP transport, execute flag, credential loading or
 audio-generation claim**, so Stage 1 cannot accidentally spend.
 
 Three focused offline tests cover the selected payload, mismatched model/voice
-and empty text. This is safe preparation, not the completed reusable generator
-required in Stage 3.
+and empty text. This remains the no-transport Stage 1 preparer.
 
-After cost/rights approval, extend or add a generator under this marketing
-folder only:
+The independent local-preparation follow-up added
+`scripts/generate-voiceover.py`, reusing that documented payload builder.
+It implements the actual REST integration, but **no API request or credential
+collection has occurred**. Twelve labeled offline-fixture tests cover no-call
+defaults, approval gates, non-TTY/fallback rejection, strict binary WAV parsing,
+official request/auth fields, redirection refusal, sanitized HTTP failures,
+one-attempt behavior and output preservation. Test silence is generated only
+in memory/temporary test files, not used as narration or product evidence.
 
-- Securely read a TTS-scoped key from a verified operator terminal or approved
-  secret store; never accept it as a CLI argument or read a committed `.env`.
-- Use one REST request, TLS validation, explicit timeout and **no retry**.
-  Fail closed on redirects rather than forward the key to another host.
-- Validate HTTP success, allowed binary content type, WAV signature/nonempty
-  frames; save via a local temporary audio file and atomic rename, preserving
-  approved outputs instead of overwriting them.
-- Do not print request headers, key, provider error bodies or raw exceptions
-  that could contain secrets. Report sanitized HTTP status/category and
-  output duration/bytes/latency; errors are failures, never placeholder audio.
-- Record attempt count before dispatch, narration hash/model/voice/format,
-  approved budget reference and reported usage where available. Do not
-  invent actual costs if billing data is absent.
-- Verify a 5-10-second playable sample, share only after rights clearance,
-  report actual elapsed latency (not streaming marketing claims), then stop.
-- After voice approval, generate once from the approved script, then clean
-  credentials and reconcile sample + final usage.
+The generator defaults to JSON preparation on stdout. It does not read an
+approval file, prompt for a key, call a provider, or create audio in that mode:
+
+```powershell
+python marketing\product-demo-video\scripts\generate-voiceover.py --input marketing\product-demo-video\sample.txt --output C:\private\udaan-audio\sample.wav --dry-run
+python marketing\product-demo-video\scripts\test-generate-voiceover.py
+```
+
+Execution requires `--execute` and a separately reviewed **nonsecret approval
+JSON** matching stage, SHA-256 of the trimmed UTF-8 text, exact model and voice.
+Rights, voice selection and verified/bounded account billing must be explicitly
+true; a finite nonnegative decimal monetary cap, currency and review reference
+are mandatory. Exactly one request is authorized per invocation; full narration
+also requires `sample_approved:true`.
+
+This disabled example is **not approval** and must not be used to invent a cap:
+
+```json
+{
+  "stage": "sample",
+  "text_sha256": "2b866ace96edf4a7d6ba21164f0221da60c55963654408f02be44d8c694c6196",
+  "model": "timbre-v2.5",
+  "voice": "Shlok",
+  "rights_confirmed": false,
+  "voice_selection_approved": false,
+  "billing_verified_and_bounded": false,
+  "max_requests": 1,
+  "max_cost": "REPLACE_ONLY_AFTER_BILLING_VERIFICATION",
+  "currency": "INR",
+  "approval_reference": "PENDING - NOT APPROVED"
+}
+```
+
+**The script cannot impose a monetary cap on the provider account.** Those
+fields attest to independently reviewed account rates/credits/overage and an
+effective provider-side billing bound. Do not set them true without that
+verification. Audio-duration checks occur after the request and cannot prevent
+a charge. Changing output paths does not authorize more requests; reconcile
+remaining budget and obtain any required new approval first.
+
+Only after those gates, the operator can run the reviewed script in their own
+**private native Windows console**, outside app tools/input history, with no
+terminal transcript or screen recording. Create the private audio directory
+first. The conditional invocation is:
+
+```powershell
+python marketing\product-demo-video\scripts\generate-voiceover.py --input marketing\product-demo-video\sample.txt --output C:\private\udaan-audio\sample.wav --stage sample --voice Shlok --approval C:\private\udaan-approvals\sample.json --execute
+```
+
+No key appears in that command. The script accepts a key only through interactive
+`getpass`; it requires stdin/stderr TTYs and treats `GetPassWarning` as fatal.
+It does not accept a key flag, read a key file, or use an environment key.
+An inherited `GNANI_API_KEY` is removed from this process on execution.
+No `.env` or credential file is written. The operator must independently review
+console privacy; fixture tests and TTY checks do not certify it.
+
+The transport uses the fixed official HTTPS endpoint, JSON and `X-API-Key-ID`,
+normal certificate validation, a 30-second timeout and **no retry**. It disables
+inherited proxy routing and rejects redirects. Errors expose only sanitized
+categories/status, never headers, keys or provider bodies. HTTP 200 must contain
+`audio/wav`, consistent RIFF/header/frame lengths, nonempty mono 48kHz 16-bit PCM
+and <=10 seconds for the sample or <=75 seconds for full narration.
+Eight MiB bounds response reading. Unsuitable duration/audio is a failure, not
+a reason for automatic synthesis.
+
+The new WAV path and `<output>.attempt.json` must not exist. The latter is
+exclusively created before dispatch with text/model/voice/approval metadata and
+`actual_cost:"unknown"`. It remains after failure to prevent accidental retries
+to the same path. Existence does not prove the request reached the provider.
+Validated audio is atomically published without replacing an existing file;
+successful metadata adds audio SHA-256, duration, bytes, frames and elapsed
+request latency. It contains no key. A timeout, failed validation or output error
+may still have incurred a charge; stop and reconcile privately.
+
+The request headers and key references are cleared in `finally`. Python cannot
+guarantee erasure of immutable strings, so process exit and appropriate scoped
+key revocation remain important. After an approved sample is generated, verify
+playability/5-10-second pacing, share only under cleared rights, and **stop for
+listening approval**. Full narration needs a separate matching approval JSON,
+`stage:"full"`, `sample_approved:true`, and a distinct output path.
 
 ## Secure provisioning feasibility, not provisioning
 
@@ -148,10 +216,10 @@ not prove host transcript/input privacy.** Before requesting a real key:
 2. Prefer direct user entry into that trusted terminal, never agent
    `send_terminal_input`, a shell command, chat or copied command argument.
    The captured PowerShell execution tool is not a secure input interface.
-3. Keep the key in the generator process memory, or inject `GNANI_API_KEY`
-   for that process only from an already approved secret store. Do not use
-   `setx`, persist it in a profile, ask for a secret-store export, or put it in
-   browser code. Do not create a credential file for convenience.
+3. The current generator keeps the privately entered key in process memory
+   only; it deliberately does not accept environment injection or key files.
+   Do not use `setx`, persist it in a profile, ask for a secret-store export, or
+   put it in browser code. Do not create a credential file for convenience.
 4. No terminal recording, shell transcript, verbose HTTP/debugging, crash dump
    or screen recording during provisioning. Start product recording separately.
 5. In `finally`, remove any process environment value and references; process
@@ -160,9 +228,10 @@ not prove host transcript/input privacy.** Before requesting a real key:
    the operator's provider account when appropriate.
 
 If terminal input/privacy cannot be verified, stop: the operator can run the
-reviewed generator privately in their own trusted terminal or inject the key
-via an approved secret manager. Do not request it in chat as a fallback.
-No actual terminal/secret-store privacy or key injection was tested in Stage 1.
+reviewed generator privately in their own trusted native console. An approved
+secret-manager integration would require separate review; it is not implemented
+here. Do not request a key in chat as a fallback. Neither Stage 1 nor the later
+offline fixture tests verified a real console's input/transcript privacy.
 
 No automatic switch to Sarvam/browser TTS. Provider unavailability or unsuitable
 sample must be reported for a new decision.

@@ -1,7 +1,9 @@
-# Udaan AI product demonstration - Stage 1 only
+# Udaan AI product demonstration - planning and local preparation
 
-Planning prepared on 23 November 2026. **Production recording, voice synthesis,
-final editing and delivery are not authorized or completed.**
+Stage 1 planning is complete. The subsequently selected Option B local-only
+recording is **blocked during exact-tag dependency restoration**; no genuine
+product footage exists yet. Voice synthesis, final editing and delivery remain
+approval-gated and incomplete.
 
 | Review material | Purpose |
 | --- | --- |
@@ -10,6 +12,7 @@ final editing and delivery are not authorized or completed.**
 | [SCRIPT.md](SCRIPT.md) | Draft narration, pronunciation and trust boundaries |
 | [GNANI_RESEARCH.md](GNANI_RESEARCH.md) | Official API findings, pricing/licensing blockers and secure provisioning |
 | [VALIDATION.md](VALIDATION.md) | Actual Stage 1 evidence; not final-video QA |
+| [LOCAL_PREPARATION.md](LOCAL_PREPARATION.md) | Option B preparation, verified source integrity and exact dependency blocker |
 | [scripts/](scripts/) | Reproducible no-write recorder probe and offline-only voice request preparation |
 
 ## Source of truth
@@ -36,19 +39,23 @@ The requested branch was `feature/udaan-product-demo-video`. App-managed rename
 enforced **`amit1858-feature/udaan-product-demo-video`**. No raw Git rename,
 history rewrite, release-tag change or deployment was performed.
 
-## Approval decision needed
+## Current boundary and next decision
 
-Approve **one new synthetic live visitor and the exact six mutation requests**
-in RECORDING_PLAN.md, or choose the separately gated isolated-local alternative.
-The live app cannot be normally opened under a strict no-database-write policy:
-even its initial state GET can create a visitor row. Backend cold starts also
-upsert 90 shared synthetic Sale dates; missing dates can be inserted.
+**Option B has been selected:** actual tagged source, a strictly isolated local
+PostgreSQL database, deterministic Demo interactions, and preserved local-only
+raw recording. This does not authorize production interaction or paid providers.
+The earlier live/local alternatives in RECORDING_PLAN.md are historical Stage 1
+planning, not a renewed request for live access.
+
+An accessible package source containing the exact handoff's pinned dependencies
+is needed before this path can run. Do not silently change versions, manifests,
+build configuration, or replace missing SDKs with mocks; see LOCAL_PREPARATION.md.
 
 Voice approval is separate: confirm account-specific billing and rights first,
 then authorize one sample request with a numeric spending cap. Full narration
 requires another approval after listening to the sample. No credentials are
 requested now. No production AI, infrastructure, public publishing or final PR
-is included in this stage.
+is included in the current local-only scope.
 
 ## Reproduce Stage 1 checks
 

@@ -1,0 +1,11 @@
+{
+  "name": "udaan-video-planning-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "probe": "node recording-probe.mjs"
+  },
+  "dependencies": {
+    "playwright": "1.65.1"
+  }
+}

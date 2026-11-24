@@ -1,0 +1,253 @@
+{
+  "approval": "24 Nov 2026: owner requests approved media in GitHub Pages showcase; deployment not performed.",
+  "source_handoff": "de9283e1c8a1d08cf62fd9832e0d14df84749d43",
+  "disclosure": "Genuine isolated local prototype; illustrative business data; not deployed customer evidence.",
+  "carousel_ref": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a",
+  "files": [
+    {
+      "file": "udaan-demo.mp4",
+      "bytes": 7073900,
+      "sha256": "d30ac65568a482ee2ea4e4b5b17dd5ddba71e6b488a8ebf78c6f9fb0c1ff220f",
+      "source": "Approved final portrait MP4, 73.000 seconds",
+      "operation": "Byte-identical approved master; fast-start MP4."
+    },
+    {
+      "file": "udaan-cover.png",
+      "bytes": 391287,
+      "sha256": "c2e05f3ff5f865a5e21d0863dddc2131e016c26611a0253f580ac58f4d73a1b5",
+      "source": "Approved final portrait video poster",
+      "operation": "Byte-identical approved master."
+    },
+    {
+      "file": "udaan-cover.webp",
+      "bytes": 218776,
+      "sha256": "7ff41cd7ff7ab5d9277d93f60d8eeb8f0e8abeb9e39ed95cd79c987293d7eb3a",
+      "source": "Approved final portrait video poster",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "udaan-carousel.pdf",
+      "bytes": 15658932,
+      "sha256": "0f9177fc21298d4bf7a4243e24685ea074683bf7b081f23c031c979a899e0dbb",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/udaan-linkedin-carousel.pdf",
+      "operation": "Byte-identical seven-page approved PDF."
+    },
+    {
+      "file": "carousel-credits.md",
+      "bytes": 3134,
+      "sha256": "75525bf613a0d2b67cfd3630e63241c5cd6cd4515d9342741d8a050907f0f1dc",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/CREDITS.md",
+      "operation": "Original attribution preserved."
+    },
+    {
+      "file": "udaan-captions.srt",
+      "bytes": 1973,
+      "sha256": "3e863fc659ae1965617adae6f6620d68d54f99a9e5e7bb3f06943d186d6203a1",
+      "source": "Approved final SRT",
+      "operation": "Byte-identical approved subtitles."
+    },
+    {
+      "file": "udaan-captions.vtt",
+      "bytes": 1857,
+      "sha256": "0c44afeb50b6df8e51c49746284c64cea39a5cb711739b785a644cfa6b5e2cb7",
+      "source": "Approved final SRT",
+      "operation": "Lossless timestamp-format conversion to WebVTT."
+    },
+    {
+      "file": "01-big-possibility-540.webp",
+      "bytes": 199250,
+      "sha256": "6aea432e2c0af2691cd8a23c9f81e0ae8954839350af3b32e13515a6bde66d9f",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/slides/01-big-possibility.png",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "01-big-possibility-1080.webp",
+      "bytes": 597530,
+      "sha256": "71976ee4461923fc703c587e3fe98601eb01221ec3a1ed7b08fea68155b37477",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/slides/01-big-possibility.png",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "02-meet-ravi-540.webp",
+      "bytes": 225520,
+      "sha256": "31523e65d05b1c65f0f145d82cfb0ad620aa5944dd6a48f7cf65aad6c2cb7f54",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/slides/02-meet-ravi.png",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "02-meet-ravi-1080.webp",
+      "bytes": 694496,
+      "sha256": "325b7ff915fe88dea5be498669c2fab336c90866fa901e76bad5772344e42793",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/slides/02-meet-ravi.png",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "03-more-direction-540.webp",
+      "bytes": 117258,
+      "sha256": "39637bb2edce65a74c695fa59a05c45ed634b003412f845a5a678e4f6c041ec9",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/slides/03-more-direction.png",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "03-more-direction-1080.webp",
+      "bytes": 288388,
+      "sha256": "aefdd3774c66672b1a6948a540de3628e2419a240b21018684e3ada2d6cd5b30",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/slides/03-more-direction.png",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "04-discover-to-learn-540.webp",
+      "bytes": 144312,
+      "sha256": "24ffcdea5a744e5ec407c69a195ab710375dd252a1ca513f686c90c4f69bf0e2",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/slides/04-discover-to-learn.png",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "04-discover-to-learn-1080.webp",
+      "bytes": 384892,
+      "sha256": "273e9ccf1dd3d3462cb86c1130709e5e470afdb9faf54db85c6dfc2663db2f35",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/slides/04-discover-to-learn.png",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "05-combo-evaluation-540.webp",
+      "bytes": 107560,
+      "sha256": "e3bb19a0912d4a5d50b805b400afd064a558bfb8142fa9ca61acb594e5441bab",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/slides/05-combo-evaluation.png",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "05-combo-evaluation-1080.webp",
+      "bytes": 273904,
+      "sha256": "a1ba89a71f4923a64fab8c74d2a5779f4a629e9a955a7d57336f2bad1689de97",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/slides/05-combo-evaluation.png",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "06-outcomes-and-learning-540.webp",
+      "bytes": 100136,
+      "sha256": "58b5afecfcbb7586f6108f066a5d983f596c9c57254ad79efef525da674d8d23",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/slides/06-outcomes-and-learning.png",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "06-outcomes-and-learning-1080.webp",
+      "bytes": 223010,
+      "sha256": "9e306db2a9b444e351ad7af242bf4482d0f0b17b6288e7cb6500c2907044c234",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/slides/06-outcomes-and-learning.png",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "07-explore-udaan-540.webp",
+      "bytes": 108160,
+      "sha256": "5863c8ec6772ac49d2fbf893de2e851feb9b1482bdd2c974309db57ad25d02f4",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/slides/07-explore-udaan.png",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "07-explore-udaan-1080.webp",
+      "bytes": 251334,
+      "sha256": "c36a63f59de119e762513d62763debe56ff168a8681721c64f46c877dfde5ecb",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/slides/07-explore-udaan.png",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "discover-432.webp",
+      "bytes": 184944,
+      "sha256": "c163bb2bf4852f1702920a479620acc51cd7d64188e609f11a997752b2b1cc89",
+      "source": "local-demo-02/screenshots/04-discover.png; handoff de9283e",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "discover-864.webp",
+      "bytes": 485662,
+      "sha256": "1c1a600e054397cd8d98c58c64756d0f26dfc4ca0ae25b5155a161dc9d972b49",
+      "source": "local-demo-02/screenshots/04-discover.png; handoff de9283e",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "explore-432.webp",
+      "bytes": 91538,
+      "sha256": "cefaef2df3ecebb6d4b157be1e88b00a3b51ac6960ec237c09aeb303708c5634",
+      "source": "local-demo-02/screenshots/08-explore-combo.png; handoff de9283e",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "explore-864.webp",
+      "bytes": 124572,
+      "sha256": "c8389bfed415fac5c9992963970e521fb3f66c8972b0102cc2eb382d12f47bda",
+      "source": "local-demo-02/screenshots/08-explore-combo.png; handoff de9283e",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "evaluate-432.webp",
+      "bytes": 66088,
+      "sha256": "f56b2fcd666baf4999b9ff99081926eb277d474129c9b65d93ac4105dabf6fd2",
+      "source": "local-demo-02/screenshots/11-contribution-and-break-even.png; handoff de9283e",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "evaluate-864.webp",
+      "bytes": 82130,
+      "sha256": "2b27a534fe7705052bdfbb7c8bc0d5b2a156209f8ce868661da240b0c43f21a7",
+      "source": "local-demo-02/screenshots/11-contribution-and-break-even.png; handoff de9283e",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "try-432.webp",
+      "bytes": 81076,
+      "sha256": "8585d7e3735e8fdde2c1436a7b54c6cc4dda9ab320e028b15e11cc96e263fd5f",
+      "source": "local-demo-02/screenshots/14-approved.png; handoff de9283e",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "try-864.webp",
+      "bytes": 136528,
+      "sha256": "6fecb42044adf137d3a22d62287c5bc18ebf3a14d08ec8e4db3aa290422f8e72",
+      "source": "local-demo-02/screenshots/14-approved.png; handoff de9283e",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "measure-432.webp",
+      "bytes": 81380,
+      "sha256": "e8684739abb431803a4637795ec53005f165f603fefaa06b7f7df52c72810212",
+      "source": "local-demo-02/screenshots/20-actual-versus-expected.png; handoff de9283e",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "measure-864.webp",
+      "bytes": 129522,
+      "sha256": "72c413a403a598db3e423e1492c99dfba9e831a9eebc64f007e869cddae58919",
+      "source": "local-demo-02/screenshots/20-actual-versus-expected.png; handoff de9283e",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "learn-432.webp",
+      "bytes": 111998,
+      "sha256": "d2727669a69afc8b021948f0ed1d196b24af94cb190d2a1ea9ed92a9fa729a0c",
+      "source": "local-demo-02/screenshots/23-next-six-hundred-rupee-hypothesis.png; handoff de9283e",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "learn-864.webp",
+      "bytes": 202314,
+      "sha256": "f480d9797dc6c173665c30b2eaa70c37aaf380f336f70f3d501ac707ae97611a",
+      "source": "local-demo-02/screenshots/23-next-six-hundred-rupee-hypothesis.png; handoff de9283e",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    },
+    {
+      "file": "udaan-promotional-cover.png",
+      "bytes": 1814500,
+      "sha256": "968072b1d22fc77cf37398d622bc83240823514e141c5b23b21b45065b68bfca",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/linkedin-cover.png",
+      "operation": "Byte-identical approved promotional cover."
+    },
+    {
+      "file": "udaan-promotional-cover.webp",
+      "bytes": 257966,
+      "sha256": "fc249b37793e1a7d6150ef203b402c4b4f41561107a17472ca60994b4dac8db0",
+      "source": "bb7843750a28a8f9cdc55290f68c8d4eb67b516a:marketing/linkedin-launch/linkedin-cover.png",
+      "operation": "Uniform resize; lossless WebP, no crop."
+    }
+  ]
+}

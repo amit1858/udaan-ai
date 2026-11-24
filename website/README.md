@@ -2,6 +2,63 @@
 
 Separate static product case study. No application, API, Prisma, database or PWA changes.
 
+## Product Demo & Resources — 24 November 2026
+
+The owner requested the final approved marketing media in this showcase. The
+repository is now public, and the existing Pages URL is
+**https://amit1858.github.io/udaan-ai/**. The new section will be available at
+**https://amit1858.github.io/udaan-ai/#resources** after review and deployment;
+the current live site is not claimed to include these unmerged changes.
+
+Only `website/` changes in this revision. The existing Udaan navy/cyan/lime
+identity, original story, live Replit link and application remain intact.
+No backend, database, deployment, API call or new infrastructure is involved.
+The earlier source-only/private-video delivery restriction is superseded only
+for these explicitly requested static showcase assets; raw footage, original
+provider WAV, credentials, database and runtime are not published.
+
+- Native, controlled 73-second portrait video with `preload="none"`, no autoplay,
+  mobile inline playback, English WebVTT captions and transcript/failure fallback.
+- Seven approved carousel slides with keyboard/buttons/native swipe and scroll,
+  responsive uncropped WebP previews, full-size links and original PDF download.
+- Original LinkedIn promotional cover, portrait video poster and six genuine local-prototype screenshots
+  following Discover → Explore → Evaluate → Try → Measure → Learn.
+- Direct MP4/PDF/PNG/SRT/WebVTT downloads, illustrative-data disclosure and
+  complete photographic/Sarvam/font attribution in `credits.html`.
+
+`assets/resources/manifest.json` records provenance, hashes and derivative
+operations. Video, PDF, both PNG covers and SRT remain byte-identical to approved
+masters. Video already has fast-start metadata. Only previews are resized;
+encoding is lossless WebP, with explicit dimensions, `srcset`, lazy loading and
+asynchronous decode. The page does not eagerly fetch the MP4 or PDF.
+Resource Git attributes preserve PDF/media/subtitle bytes across Windows and
+Linux checkouts; newline conversion must not alter PDF offsets or master hashes.
+Media rights and retained credits are described in `credits.html#demo-media`
+and `credits.html#carousel-media`.
+
+To regenerate assets, use `prepare-resources.py --private-artifacts <private-root>`
+with an existing Pillow/PyMuPDF environment and the pinned carousel commit
+`bb7843750a28a8f9cdc55290f68c8d4eb67b516a` available locally. It verifies approved
+master hashes before writing and refuses to overwrite an existing resources
+directory. These offline preparation dependencies are **not** needed to build,
+deploy, serve or view the static site.
+
+`test-resources.mjs` uses an existing Playwright/Chromium installation; set
+`PLAYWRIGHT_MODULE` and `CHROMIUM_PATH` if needed. It restricts all requests to
+the loopback static server and checks 1280/956/768/390/360/320px layouts, all
+downloads, original hashes, native playback/seeking/captions, carousel bounds
+and a JavaScript-disabled fallback. Save its evidence outside the repository.
+The preview implements HTTP byte ranges for video seeking. It is never deployed.
+The static builder whitelists media assets and does not ship preparation,
+test or preview scripts.
+
+After approval/review and merge, use the existing manual **Verify or publish
+approved Udaan showcase** workflow on `main` with its exact
+`PUBLISH APPROVED SHOWCASE` confirmation. Publish only the `website/build.py`
+output, not the repository root. Do not run the legacy root Jekyll workflow as
+a workaround; it can expose unrelated repository contents. No merge or workflow
+dispatch is performed by this preparation task.
+
 ## Source and boundaries
 
 GitHub main contained the complete reviewed application source at `ebe3c64ba7db318749e4839478a5074d59f7a886` when work began. The repository was verified **private**. The owner later supplied **https://udaan-ai-builder.replit.app/**, and its actual Udaan onboarding screen was browser-verified on 22 November 2026. The final demo CTA now uses that exact URL. No deployed commit or end-to-end production readiness is claimed. The application release-candidate source is preserved unchanged.
@@ -26,7 +83,7 @@ Open `http://127.0.0.1:8765/udaan-ai/`. The preview mounts the exact GitHub Page
 
 `browser-check.js` provides repeatable behavioral assertions for the local preview. Load it as a script in the showcase frame, then run `await checkUdaanShowcase()` in that frame's browser console. It tests three financial outcome selections, four actual language assets, six journey buttons, the mobile menu/Escape behavior, CTA gate, decoded images and page overflow. It is not included in the public package.
 
-The build checks local file links and anchors, duplicate IDs, fifteen required sections, image alternative text and dimensions, documented live CTA, and financial input/outcome content. It copies only public static resources and selected review documents; application source, build scripts and original screenshot PNGs are not deployed. SVGs remain downloadable.
+The build checks local file links, responsive sources and anchors, duplicate IDs, fifteen story sections plus resources, image alternative text and dimensions, controlled/non-autoplay video, direct downloads, approved asset checksums, fast-start MP4, documented live CTA, and financial input/outcome content. It copies only public static resources and selected review documents; application source, build scripts and original screenshot PNGs are not deployed. SVGs remain downloadable.
 
 Images are local WebP; screenshot encodes are lossless. Existing PNG source captures remain unchanged. Hero image is preloaded; below-fold imagery loads lazily. Scripts are deferred. No analytics, API requests, speech requests, application credentials or external font/CDN dependencies.
 

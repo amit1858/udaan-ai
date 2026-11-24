@@ -36,6 +36,30 @@ window.checkUdaanShowcase = async function () {
     assert(menu.getAttribute('aria-expanded') === 'false', 'Anchor closes menu');
   }
   assert(document.querySelector('[aria-describedby="appStatus"]').href === 'https://udaan-ai-builder.replit.app/', 'Verified live CTA');
+  const video = document.getElementById('productDemo');
+  assert(video.controls && video.playsInline && !video.autoplay && video.preload === 'none', 'Controlled, inline video with no autoplay or eager loading');
+  assert(video.paused, 'Audio/video does not start automatically');
+  assert(document.querySelectorAll('#carouselTrack figure').length === 7, 'Exactly seven carousel slides');
+  assert(document.querySelectorAll('.demo-screens figure').length === 6, 'Six genuine journey screenshots');
+  assert(document.getElementById('demoDisclosure').textContent.includes('illustrative') ||
+    document.getElementById('demoDisclosure').textContent.includes('fictional'), 'Illustrative-data disclosure');
+  const track = document.getElementById('carouselTrack');
+  const move = async key => {
+    track.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }));
+    await new Promise(resolve => setTimeout(resolve, 450));
+  };
+  await move('ArrowRight');
+  assert(track.scrollLeft > 0, 'Carousel keyboard moves forward');
+  await move('ArrowLeft');
+  assert(track.scrollLeft <= 2, 'Carousel keyboard returns to first slide');
+  for (const link of document.querySelectorAll('#resources a[download]')) {
+    const response = await fetch(link.href);
+    assert(response.ok && Number(response.headers.get('content-length')) > 0, `Nonempty download: ${link.href}`);
+    if (link.href.endsWith('.pdf')) assert(response.headers.get('content-type').includes('application/pdf'), 'PDF download MIME');
+    if (link.href.endsWith('.mp4')) assert(response.headers.get('content-type').includes('video/mp4'), 'Video download MIME');
+    if (link.href.endsWith('.vtt')) assert(response.headers.get('content-type').includes('text/vtt'), 'Caption MIME');
+    await response.arrayBuffer();
+  }
   assert(document.documentElement.scrollWidth <= window.innerWidth, 'No page-wide horizontal overflow');
   const decoded = [];
   for (const image of images) {
@@ -51,7 +75,7 @@ window.checkUdaanShowcase = async function () {
   }
   assert(decoded.every(Boolean), 'All image bytes decoded');
   window.scrollTo(0, 0);
-  const result = { width: window.innerWidth, checks: '3 outcomes / 4 languages / 6 journey steps / menu / CTA / overflow / images', failures };
+  const result = { width: window.innerWidth, checks: '3 outcomes / 4 languages / 6 journey steps / menu / CTA / overflow / images / 7 slides / 6 screenshots / keyboard carousel / downloads / no autoplay', failures };
   if (failures.length) throw new Error(JSON.stringify(result));
   return result;
 };

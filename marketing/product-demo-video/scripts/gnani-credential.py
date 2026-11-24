@@ -4,14 +4,18 @@ import argparse
 import ctypes
 from ctypes import wintypes
 import getpass
+import json
 import os
+from pathlib import Path
 import sys
 import time
 import warnings
 
 
 class CredentialError(Exception):
-    pass
+    def __init__(self, message, windows_code=None):
+        super().__init__(message)
+        self.windows_code = windows_code
 
 
 class PrivateArgumentParser(argparse.ArgumentParser):
@@ -62,7 +66,7 @@ def read_native_dialog(target):
             password, len(password), ctypes.byref(save), 0x40000 | 0x80 | 0x2,
         )
         if result != 0:
-            raise CredentialError("Native credential entry failed or was cancelled.")
+            raise CredentialError("Native credential entry failed or was cancelled.", result)
         return password.value
     finally:
         ctypes.memset(password, 0, ctypes.sizeof(password))
@@ -90,7 +94,7 @@ def read_secret(target):
     if not dll.CredReadW(target, 1, 0, ctypes.byref(pointer)):
         if ctypes.get_last_error() == 1168:
             return None
-        raise CredentialError("Windows credential lookup failed.")
+        raise CredentialError("Windows credential lookup failed.", ctypes.get_last_error())
     try:
         return ctypes.string_at(pointer.contents.CredentialBlob,
                                 pointer.contents.CredentialBlobSize).decode("ascii")
@@ -110,7 +114,7 @@ def store_secret(target, secret):
     )
     try:
         if not dll.CredWriteW(ctypes.byref(credential), 0):
-            raise CredentialError("Windows encrypted credential storage failed.")
+            raise CredentialError("Windows encrypted credential storage failed.", ctypes.get_last_error())
     finally:
         ctypes.memset(buffer, 0, ctypes.sizeof(buffer))
         secret = None
@@ -118,28 +122,41 @@ def store_secret(target, secret):
 
 def delete_secret(target):
     if not api().CredDeleteW(target, 1, 0) and ctypes.get_last_error() != 1168:
-        raise CredentialError("Windows temporary credential deletion failed.")
+        raise CredentialError("Windows temporary credential deletion failed.", ctypes.get_last_error())
 
 
-def main():
+def parse_arguments():
     parser = PrivateArgumentParser(description=__doc__)
     parser.add_argument("--target", required=True)
     parser.add_argument("--status", action="store_true")
     parser.add_argument("--delete", action="store_true")
     parser.add_argument("--dialog", action="store_true")
     parser.add_argument("--replace", action="store_true")
+    parser.add_argument("--diagnostics", type=Path,
+                        help="New external JSON file containing status/error code only, never the key.")
     args = parser.parse_args()
+    if args.diagnostics is not None:
+        diagnostic = args.diagnostics.resolve()
+        repository = Path(__file__).resolve().parents[3]
+        if diagnostic.suffix != ".json" or diagnostic.exists() \
+                or diagnostic == repository or repository in diagnostic.parents:
+            raise CredentialError("Diagnostic output must be a new external JSON file.")
+    return args
+
+
+def main(args):
     if not args.target.startswith("udaan-product-demo-video:"):
         raise CredentialError("Use this project's uniquely scoped credential target.")
     if args.delete:
         delete_secret(args.target)
         print("Temporary Windows credential removed.")
-        return
+        return "deleted"
     existing = read_secret(args.target)
     if args.status:
-        print("configured" if existing is not None else "not-configured")
+        status = "configured" if existing is not None else "not-configured"
+        print(status)
         existing = None
-        return
+        return status
     if existing is not None and not args.replace:
         existing = None
         raise CredentialError("This target is already configured; it will not be overwritten.")
@@ -165,12 +182,37 @@ def main():
         time.sleep(5)
     finally:
         key = None
+    return "configured"
+
+
+def diagnostic_result(args, status, error=None):
+    if args is None or args.diagnostics is None:
+        return True
+    result = {"status": status, "api_requests": 0, "key_logged": False}
+    if error is not None:
+        result["reason"] = str(error) if isinstance(error, CredentialError) \
+            else "Input or local operation failed; sensitive details suppressed."
+        result["windows_error_code"] = error.windows_code if isinstance(error, CredentialError) else None
+    try:
+        with args.diagnostics.open("x", encoding="utf-8") as output:
+            json.dump(result, output, indent=2)
+            output.write("\n")
+    except OSError:
+        print("Nonsecret diagnostic report could not be written; details suppressed.", file=sys.stderr)
+        return False
+    return True
 
 
 if __name__ == "__main__":
+    arguments = None
     try:
-        main()
-    except (CredentialError, getpass.GetPassWarning, EOFError, KeyboardInterrupt, UnicodeError):
+        arguments = parse_arguments()
+        status = main(arguments)
+    except (CredentialError, getpass.GetPassWarning, EOFError, KeyboardInterrupt, UnicodeError, OSError) as error:
+        diagnostic_result(arguments, "failed", error)
         print("Secure key setup failed or was cancelled; sensitive details suppressed.", file=sys.stderr)
         time.sleep(5)
         raise SystemExit(1)
+    else:
+        if not diagnostic_result(arguments, status):
+            raise SystemExit(1)

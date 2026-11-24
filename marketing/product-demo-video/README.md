@@ -3,8 +3,9 @@
 The complete genuine local journey is recorded, including the native
 expected/actual tooltip and saved recommendation. A branded 72-second **silent
 rough cut**, cover, visual-timed SRT and repeatable FFmpeg build are prepared.
-This is not the final Gnani-narrated video. Private operator key entry is
-pending after one unsuccessful synthesis attempt.
+This is not the final Gnani-narrated video. Secure key entry was confirmed on
+24 November, but the remaining full-text attempt returned HTTP 403. The
+two-attempt limit is exhausted; narration remains blocked without a WAV.
 
 See [PRODUCTION_STATUS.md](PRODUCTION_STATUS.md) for current evidence, artifact
 paths and blockers. Earlier planning gates below are historical where later
@@ -56,14 +57,17 @@ lockfile-exact or deployed artifact**. No application API responses were mocked.
 The user separately authorized account-credit use, commercial narration sharing
 and autonomous sample/full production. No tariff, account balance or monetary
 ceiling is claimed verified. One sample attempt failed without a saved WAV;
-its HTTP/billing outcome is unknown and it was not retried. Corrected diagnostics
+its HTTP/billing outcome is unknown and it was not retried. The subsequent
+full-text attempt returned HTTP 403 and produced no WAV. Corrected diagnostics
 now preserve safe categories, and a validated WAV is preserved before additional
 pacing checks. A continuation permits only the remaining full-text attempt,
-not another sample, within two cumulative synthesis attempts.
+not another sample, within two cumulative synthesis attempts. Those attempts
+are now used; no further request is authorized by that approval.
 
 The separate masked Windows dialog stores an entered key in temporary encrypted
 Windows Credential Manager. No key goes into chat, arguments, `.env`, source
-or assets. Entry makes no API call. The final narrated MP4 and delivery PR remain
+or assets. Entry makes no API call. The scoped key was deleted after the
+forbidden response. The final narrated MP4 and delivery PR remain
 incomplete; there is no LinkedIn autopublishing.
 
 ## Reproduce Stage 1 checks

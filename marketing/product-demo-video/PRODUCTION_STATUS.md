@@ -2,7 +2,10 @@
 
 The complete genuine local journey has been recorded. The current deliverable
 is a branded **72-second silent rough cut**, not the final Gnani-narrated video.
-Private operator key entry remains the narration blocker. No further production
+Secure key entry was confirmed on 24 November, but Gnani returned **HTTP 403**
+on the remaining full-text attempt. The two-attempt limit is exhausted, and no
+WAV exists. Provider access and fresh attempt authorization are now the blocker.
+No further production
 application/database interaction or new paid infrastructure is authorized.
 
 ## Genuine source and recording
@@ -116,6 +119,34 @@ The output directory must be new and outside the repository. Matching
 unchanged. No audio, music, sound effect or test waveform is in this export.
 
 ## Voice usage, secure input and remaining gate
+
+### Latest result: 24 November 2026
+
+Browser control was reconfirmed: the local rough-cut video is present, duration
+72 seconds, ready state 4, no playback error. No production page was reopened.
+
+The operator completed the separate masked Windows dialog. Its nonsecret
+diagnostic report `credential-entry-status-20261124-01.json` confirmed
+`configured`, zero API requests during entry and no key logging. The helper now
+optionally records only status, controlled failure reason and Windows error
+code in a new external JSON file; it never serializes the input or terminal
+history. Nine offline workflow tests cover this as well as the earlier gates.
+
+The authorized full-text continuation then returned **HTTP 403 (Forbidden)**.
+It used 1,024 characters and saved no WAV:
+`gnani-voice-final\voice-usage.json`. Failure category is `http`; no arbitrary
+server body, request headers or key were printed/saved. The scoped Windows
+credential was deleted after the request. No retry occurred.
+
+Both conservatively counted synthesis attempts are now used: the original
+109-character sample with unknown outcome, and the 1,024-character full attempt
+with confirmed HTTP 403. Billing remains unverified. HTTP 403 alone does not
+establish whether the cause is account/model permission, key scope or a gateway
+policy. Gnani API/model access must be checked by the operator before authorizing
+any further attempt; the existing approval permits no additional request.
+
+The narrative below preserves the earlier preparation state; pending-key and
+one-remaining-attempt statements are historical, not current authorization.
 
 One authorized sample synthesis attempt used 109 characters. It stopped without
 a saved WAV; the original HTTP/transport/format cause and billing outcome were

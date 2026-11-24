@@ -124,6 +124,22 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(ledger["requests"], [])
         self.assertEqual(ledger["failure_category"], "local-credential")
 
+    def test_credential_diagnostics_never_serialize_input_errors(self):
+        root = self.args.output.parent
+        for index, error in enumerate((
+            workflow.credential.CredentialError("Native credential entry failed.", 87),
+            UnicodeEncodeError("ascii", "OFFLINE_PRIVATE_INPUT_FIXTURE\u200b", 0, 1, "fixture"),
+        )):
+            with self.subTest(index=index):
+                args = argparse.Namespace(diagnostics=root / f"credential-{index}.json")
+                self.assertTrue(workflow.credential.diagnostic_result(args, "failed", error))
+                text = args.diagnostics.read_text()
+                report = json.loads(text)
+                self.assertEqual(report["api_requests"], 0)
+                self.assertFalse(report["key_logged"])
+                self.assertNotIn("OFFLINE_PRIVATE_INPUT_FIXTURE", text)
+                self.assertEqual(report["windows_error_code"], 87 if index == 0 else None)
+
     def test_failed_sample_continuation_has_only_one_full_attempt(self):
         self.args.previous_attempt = self.args.output.parent / "previous.json"
         self.args.previous_attempt.write_text(json.dumps({

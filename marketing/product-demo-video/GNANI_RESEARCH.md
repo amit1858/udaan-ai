@@ -5,13 +5,17 @@ no-call research and approval proposal below are historical. Later the user
 authorized account-credit use, commercial sharing and autonomous narration.
 One sample synthesis attempt stopped without a saved WAV; its original
 HTTP/billing outcome was not retained. No retry or successful audio generation
-is claimed. Current operational evidence is in PRODUCTION_STATUS.md.
+is claimed. On 24 November secure provisioning succeeded, but the single
+remaining full-text request returned HTTP 403 without audio. Both allowed
+attempts are now used, the temporary credential was deleted, and further
+requests need new authorization after provider-access investigation.
+Current operational evidence is in PRODUCTION_STATUS.md.
 
 `generate-narration-workflow.py` supports that task-specific authorization,
 defaults to no-call, and reads only the scoped temporary Windows credential.
 Its `--previous-attempt` continuation accepts the exact single failed sample
 ledger and permits only the remaining full-text attempt, within two cumulative
-synthesis attempts. Eight labeled offline tests cover no-call defaults, text
+synthesis attempts. Nine labeled offline tests cover no-call defaults, text
 gates, two-call completion, safe failure/cleanup, pacing, preserved returned WAV
 and the one-remaining-attempt continuation, including distinct safe HTTP/TLS/
 format and missing-credential diagnostics. No test fixture is narration.
@@ -22,6 +26,9 @@ or make an API call. The task-specific credential is encrypted by Windows for
 the logon session and deleted after execution. No terminal canvas is advertised
 as a certified private input channel; Python string erasure is not guaranteed.
 The corrected password buffer respects the native credential-dialog limit.
+Optional `--diagnostics C:\absolute\private-artifacts\new-status.json` records
+only setup status, a controlled failure category/message and Windows error
+code. It cannot contain the key or raw input-encoding exception text.
 
 ## Confirmed official transport
 

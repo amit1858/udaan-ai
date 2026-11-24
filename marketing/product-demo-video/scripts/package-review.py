@@ -18,6 +18,9 @@ def run(artifacts, output, final=False):
     entries = [
         (artifacts / "local-demo-02" / name, "recording/" + name),
         (artifacts / "local-demo-02" / "recording-evidence.json", "recording/recording-evidence.json"),
+        (artifacts / "source-integrity.json", "evidence/source-integrity.json"),
+        (artifacts / "local-demo-02" / "screenshots" / "21-modeled-contribution-tooltip.png",
+         "evidence/native-contribution-tooltip.png"),
         (artifacts / "sarvam-voice-01" / "narration.wav", "voice/narration.wav"),
         (artifacts / "sarvam-voice-01" / "voice-usage.json", "voice/voice-usage.json"),
         (artifacts / "gnani-voice" / "voice-usage.json", "usage/gnani-sample-usage.json"),
@@ -67,7 +70,8 @@ def run(artifacts, output, final=False):
         for item in manifest["files"]:
             if hashlib.sha256(archive.read(item["path"])).hexdigest() != item["sha256"]:
                 raise ValueError("Packaged file integrity failed.")
-    print(json.dumps({"status": "verified-private-review-bundle", "files": len(entries),
+    print(json.dumps({"status": "verified-private-final-bundle" if final else "verified-private-review-bundle",
+                      "files": len(entries),
                       "bytes": output.stat().st_size,
                       "sha256": hashlib.sha256(output.read_bytes()).hexdigest()}, indent=2))
 

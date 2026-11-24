@@ -1,15 +1,19 @@
 # Udaan AI product demonstration
 
-The complete genuine local journey is recorded, including the native
-expected/actual tooltip and saved recommendation. A branded 72-second **silent
-rough cut**, cover, visual-timed SRT and repeatable FFmpeg build are prepared.
-This is not the final Gnani-narrated video. Secure key entry was confirmed on
-24 November, but the remaining full-text attempt returned HTTP 403. The
-two-attempt limit is exhausted; narration remains blocked without a WAV.
+The genuine local journey now has a **73-second Sarvam-narrated review copy**,
+cover, spoken-text SRT and repeatable offline FFmpeg build. The user explicitly
+switched providers; one approved request produced a genuine 59.232-second WAV.
+No further API call is authorized or needed. Listening/final sign-off remains
+open; the video is not publicly published. The earlier silent cut and exhausted
+Gnani attempts are preserved, not overwritten.
 
 See [PRODUCTION_STATUS.md](PRODUCTION_STATUS.md) for current evidence, artifact
 paths and blockers. Earlier planning gates below are historical where later
 direct user authorization superseded them.
+
+See [FINAL_REVIEW.md](FINAL_REVIEW.md) for the current narrated assets, actual QA,
+private delivery boundary and build command, and
+[SARVAM_RESEARCH.md](SARVAM_RESEARCH.md) for the official API, cost and rights.
 
 | Review material | Purpose |
 | --- | --- |
@@ -54,8 +58,13 @@ changes and new paid infrastructure. The successful local build uses unchanged
 tagged source and an external compatibility dependency graph; it is **not a
 lockfile-exact or deployed artifact**. No application API responses were mocked.
 
-The user separately authorized account-credit use, commercial narration sharing
-and autonomous sample/full production. No tariff, account balance or monetary
+The paragraphs below preserve the **earlier Gnani authorization/history**, not
+the current Sarvam result. For Sarvam, the explicit one-request ceiling was
+Rs5 of existing credits; the published estimate is Rs3.072 excluding GST and
+actual debit is unverified. Both scoped credentials were removed.
+
+The user separately authorized Gnani account-credit use, commercial narration sharing
+and autonomous sample/full production. No Gnani tariff, account balance or monetary
 ceiling is claimed verified. One sample attempt failed without a saved WAV;
 its HTTP/billing outcome is unknown and it was not retried. The subsequent
 full-text attempt returned HTTP 403 and produced no WAV. Corrected diagnostics

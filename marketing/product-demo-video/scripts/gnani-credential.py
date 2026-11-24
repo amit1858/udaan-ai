@@ -42,7 +42,7 @@ class CredentialUI(ctypes.Structure):
     ]
 
 
-def read_native_dialog(target):
+def read_native_dialog(target, provider="Gnani"):
     if os.name != "nt":
         raise CredentialError("Windows native credential dialog is required.")
     dll = ctypes.WinDLL("Credui.dll", use_last_error=True)
@@ -57,8 +57,8 @@ def read_native_dialog(target):
     save = wintypes.BOOL(False)
     info = CredentialUI(
         cbSize=ctypes.sizeof(CredentialUI),
-        pszCaptionText="Udaan - paste Gnani API key securely",
-        pszMessageText="Paste your Gnani API key into Password (Ctrl+V). Leave username udaan-video unchanged. Do NOT enter your Windows password. No API call is made; temporary encrypted Windows storage only.",
+        pszCaptionText=f"Udaan - paste {provider} API key securely",
+        pszMessageText=f"Paste your {provider} API key into Password (Ctrl+V). Leave username udaan-video unchanged. Do NOT enter your Windows password. No API call is made; temporary encrypted Windows storage only.",
     )
     try:
         result = dll.CredUIPromptForCredentialsW(
@@ -103,12 +103,12 @@ def read_secret(target):
         dll.CredFree(pointer)
 
 
-def store_secret(target, secret):
+def store_secret(target, secret, provider="Gnani"):
     dll = api()
     buffer = ctypes.create_string_buffer(secret.encode("ascii"))
     credential = Credential(
         Type=1, TargetName=target,
-        Comment="Temporary Udaan Gnani TTS key; delete after approved narration.",
+        Comment=f"Temporary Udaan {provider} TTS key; delete after approved narration.",
         CredentialBlobSize=len(secret), CredentialBlob=ctypes.cast(buffer, ctypes.POINTER(ctypes.c_ubyte)),
         Persist=1, UserName="udaan-video",
     )
@@ -128,6 +128,7 @@ def delete_secret(target):
 def parse_arguments():
     parser = PrivateArgumentParser(description=__doc__)
     parser.add_argument("--target", required=True)
+    parser.add_argument("--provider", choices=("gnani", "sarvam"), default="gnani")
     parser.add_argument("--status", action="store_true")
     parser.add_argument("--delete", action="store_true")
     parser.add_argument("--dialog", action="store_true")
@@ -147,6 +148,9 @@ def parse_arguments():
 def main(args):
     if not args.target.startswith("udaan-product-demo-video:"):
         raise CredentialError("Use this project's uniquely scoped credential target.")
+    if not args.target.endswith(":" + args.provider):
+        raise CredentialError("Credential target must match the selected provider.")
+    provider = {"gnani": "Gnani", "sarvam": "Sarvam"}[args.provider]
     if args.delete:
         delete_secret(args.target)
         print("Temporary Windows credential removed.")
@@ -163,20 +167,20 @@ def main(args):
     existing = None
     if not args.dialog and (not sys.stdin.isatty() or not sys.stderr.isatty()):
         raise CredentialError("A separate interactive native Windows console is required.")
-    print("UDAAN - PRIVATE GNANI KEY ENTRY")
+    print(f"UDAAN - PRIVATE {provider.upper()} KEY ENTRY")
     print("Enter the key here only. No key is printed or written to a key/.env file.")
     print("It is stored temporarily in Windows Credential Manager for this logon session.")
     key = None
     try:
         if args.dialog:
-            key = read_native_dialog(args.target)
+            key = read_native_dialog(args.target, provider)
         else:
             with warnings.catch_warnings():
                 warnings.simplefilter("error", getpass.GetPassWarning)
-                key = getpass.getpass("Gnani API key (input will not echo): ")
+                key = getpass.getpass(f"{provider} API key (input will not echo): ")
         if not key or any(ord(char) < 33 or ord(char) > 126 for char in key):
             raise CredentialError("Invalid nonempty ASCII header value; key was not stored.")
-        store_secret(args.target, key)
+        store_secret(args.target, key, provider)
         print("Key configured in encrypted Windows storage. No API call has been made.")
         print("This window will close. The approved workflow can now continue.")
         time.sleep(5)

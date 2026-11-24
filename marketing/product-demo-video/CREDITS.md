@@ -1,8 +1,8 @@
-# Visual rough-cut credits
+# Product demo credits
 
-The current video is a silent local-prototype rough cut, not a completed
-Gnani-narrated video. Ravi, Udaan Breakfast House and all business data are
-fictional/illustrative.
+The current narrated review copy uses genuine isolated local-prototype footage
+and approved Sarvam speech. Earlier silent cuts are preserved. Ravi, Udaan
+Breakfast House and all business data are fictional/illustrative.
 
 ## Photograph
 
@@ -15,7 +15,8 @@ The video depicts it within real app footage, further cropped/scaled for the
 portrait edit. It is an illustrative serving, not a photograph of Ravi's cafe.
 Credit is retained in the app and burned into the edit.
 
-The visual rough-cut adaptation is shared under CC BY-SA 4.0. Original
+The video/visual adaptation is licensed under CC BY-SA 4.0; current delivery is
+private pending final review/publication approval. Original
 application software and trademarks retain their respective rights; font files
 retain their OFL license. No endorsement is implied.
 
@@ -36,9 +37,16 @@ the edit in `fonts\Sora-OFL.txt` and `fonts\DMSans-OFL.txt`.
 
 ## Audio
 
-No music, sound effects, test waveform or synthesized voice is included in the
-rough cut. Gnani commercial-generation/sharing authorization was supplied by
-the operator, but genuine narration is still pending. Public pricing and
-generated-output terms are not represented as independently verified account
-billing/rights. Any future audio distribution must remain within that applicable
-account authorization.
+The narrated review copy contains genuine **Sarvam Bulbul v3 / Shubh / en-IN**
+catalog speech generated under the user's explicit one-request, existing-credit
+and commercial-use approval. This is post-production, not a production-app
+integration or cloned person's voice. The original provider WAV is preserved;
+the edit uses pitch-preserving tempo adjustment, a deliberate quiet approval
+pause and loudness normalization.
+
+[Official commercial licensing](https://docs.sarvam.ai/api/getting-started/commercial-licensing)
+permits commercial output from one's own credit-consuming account, including
+eligible free credits, subject to the terms. Account debit/invoice is not
+independently verified. See SARVAM_RESEARCH.md for the exact estimate/cap.
+No music, effects or fixture/test waveform is included. The earlier silent
+rough cut has no audio, and neither exhausted Gnani request produced a WAV.

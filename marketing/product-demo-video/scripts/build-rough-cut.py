@@ -71,7 +71,7 @@ def ass_text(text):
     return text.replace("\\", "\\\\").replace("{", "\\{").replace("}", "\\}")
 
 
-def overlays(duration, phase, caption, closing=False):
+def overlays(duration, phase, caption, closing=False, status_label="ROUGH CUT / VOICEOVER PENDING"):
     header = """[Script Info]
 ScriptType: v4.00+
 PlayResX: 1080
@@ -92,7 +92,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
     event(0, duration, "Brand", r"{\an7\pos(48,25)}Udaan {\c&HFFC65C&}AI")
     event(0, duration, "Brand", r"{\an9\pos(1032,47)\fs32\c&HFFC65C&}" + ass_text(phase.upper()))
-    event(0, duration, "Brand", r"{\an9\pos(1032,96)\fs28\c&HA6938C&}ROUGH CUT / VOICEOVER PENDING")
+    event(0, duration, "Brand", r"{\an9\pos(1032,96)\fs28\c&HA6938C&}" + ass_text(status_label))
     event(0, duration, "Caption", r"{\an5\pos(540,1108)\fs40\b1}Local prototype / illustrative data")
     event(0, duration, "Caption", r"{\an5\pos(540,1161)\fs27\c&HA6938C&}Photo: Saind147 / CC BY-SA 4.0")
     cues = []

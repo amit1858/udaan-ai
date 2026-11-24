@@ -1,12 +1,17 @@
 # Product demo production status
 
-The complete genuine local journey has been recorded. The current deliverable
-is a branded **72-second silent rough cut**, not the final Gnani-narrated video.
-Secure key entry was confirmed on 24 November, but Gnani returned **HTTP 403**
-on the remaining full-text attempt. The two-attempt limit is exhausted, and no
-WAV exists. Provider access and fresh attempt authorization are now the blocker.
-No further production
-application/database interaction or new paid infrastructure is authorized.
+The current deliverable is a **73-second Sarvam-narrated review copy**, with
+genuine local footage, SRT, cover and repeatable offline build. The user explicitly
+switched providers and approved one request up to Rs5 of existing credits.
+It succeeded: original narration is 59.232 seconds, published estimate Rs3.072
+excluding GST, actual debit unverified. No further synthesis is authorized.
+Both provider credentials were removed. See FINAL_REVIEW.md and SARVAM_RESEARCH.md.
+
+Listening/final sign-off remains open. Earlier silent-cut/Gnani sections below
+are preserved historical evidence. Gnani's two attempts are exhausted and no
+Gnani WAV exists; that is not a blocker to the successful Sarvam edit.
+No further production application/database interaction, new paid infrastructure
+or public video publication is authorized.
 
 ## Genuine source and recording
 
@@ -69,6 +74,9 @@ and asserted Rs3,900 expected / Rs2,280 actual before editing.
 
 ## Visual edit and supporting artifacts
 
+This section documents the preserved **historical silent rough cut**. Current
+narrated output and its actual checks are in FINAL_REVIEW.md.
+
 Private artifacts are relative to this session's `files` directory:
 
 | Path | Purpose |
@@ -118,7 +126,7 @@ The output directory must be new and outside the repository. Matching
 `ffprobe.exe` must be beside FFmpeg. All earlier cuts and raw footage remain
 unchanged. No audio, music, sound effect or test waveform is in this export.
 
-## Voice usage, secure input and remaining gate
+## Historical Gnani voice usage, secure input and exhausted gate
 
 ### Latest result: 24 November 2026
 

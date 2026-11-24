@@ -1,0 +1,483 @@
+{
+  "result": "PASS",
+  "checks": 110,
+  "summary": [
+    "Exactly seven carousel PNGs",
+    "01-big-possibility.png: 2160 x 2700, 4:5",
+    "02-meet-ravi.png: 2160 x 2700, 4:5",
+    "03-more-direction.png: 2160 x 2700, 4:5",
+    "04-discover-to-learn.png: 2160 x 2700, 4:5",
+    "05-combo-evaluation.png: 2160 x 2700, 4:5",
+    "06-outcomes-and-learning.png: 2160 x 2700, 4:5",
+    "07-explore-udaan.png: 2160 x 2700, 4:5",
+    "Feed cover: 2400 x 1254",
+    "Seven native-size 390px mobile proofs",
+    "mobile-390/01-big-possibility.png: correct mobile aspect",
+    "mobile-390/02-meet-ravi.png: correct mobile aspect",
+    "mobile-390/03-more-direction.png: correct mobile aspect",
+    "mobile-390/04-discover-to-learn.png: correct mobile aspect",
+    "mobile-390/05-combo-evaluation.png: correct mobile aspect",
+    "mobile-390/06-outcomes-and-learning.png: correct mobile aspect",
+    "mobile-390/07-explore-udaan.png: correct mobile aspect",
+    "Seven native-size 320px mobile proofs",
+    "mobile-320/01-big-possibility.png: correct mobile aspect",
+    "mobile-320/02-meet-ravi.png: correct mobile aspect",
+    "mobile-320/03-more-direction.png: correct mobile aspect",
+    "mobile-320/04-discover-to-learn.png: correct mobile aspect",
+    "mobile-320/05-combo-evaluation.png: correct mobile aspect",
+    "mobile-320/06-outcomes-and-learning.png: correct mobile aspect",
+    "mobile-320/07-explore-udaan.png: correct mobile aspect",
+    "Seven editable SVG slides plus editable cover",
+    "01-big-possibility.svg: editable text retained",
+    "01-big-possibility.svg: compatible raster embedding",
+    "02-meet-ravi.svg: editable text retained",
+    "02-meet-ravi.svg: compatible raster embedding",
+    "03-more-direction.svg: editable text retained",
+    "03-more-direction.svg: compatible raster embedding",
+    "04-discover-to-learn.svg: editable text retained",
+    "04-discover-to-learn.svg: compatible raster embedding",
+    "05-combo-evaluation.svg: editable text retained",
+    "05-combo-evaluation.svg: compatible raster embedding",
+    "06-outcomes-and-learning.svg: editable text retained",
+    "06-outcomes-and-learning.svg: compatible raster embedding",
+    "07-explore-udaan.svg: editable text retained",
+    "07-explore-udaan.svg: compatible raster embedding",
+    "linkedin-cover.svg: editable text retained",
+    "linkedin-cover.svg: compatible raster embedding",
+    "Slide 1: complete first-person product hook",
+    "Slide 1: brand promise retained",
+    "Slide 3: four-part differentiation with honest Demo evidence",
+    "Slide 4: illustrative owner question and complete six-step journey",
+    "Slide 7: complete URL in one readable text object",
+    "Slide 7: full HTTPS destination displayed",
+    "home-en-390.png: byte-identical inherited screenshot",
+    "07-demo-conversation.png: byte-identical inherited screenshot",
+    "10-learning-low.png: byte-identical inherited screenshot",
+    "11-learning-high.png: byte-identical inherited screenshot",
+    "screenshots/crops/home-top.png: exact authentic pixel crop",
+    "screenshots/crops/business-insights.png: exact authentic pixel crop",
+    "screenshots/crops/ask-udaan.png: exact authentic pixel crop",
+    "screenshots/crops/experiment-evaluation.png: exact authentic pixel crop",
+    "screenshots/crops/learning-70.png: exact authentic pixel crop",
+    "screenshots/crops/learning-130.png: exact authentic pixel crop",
+    "screenshots/crops/reasoning-excerpt.png: exact authentic pixel crop",
+    "screenshots/crops/combo-discovery.png: exact authentic pixel crop",
+    "screenshots/crops/finance-table.png: exact authentic pixel crop",
+    "screenshots/crops/live-onboarding-hero.png: exact authentic pixel crop",
+    "Contribution per unit: INR 54",
+    "70 units: INR 2280 after promotion",
+    "70 units: revenue and variable costs agree",
+    "100 units: INR 3900 after promotion",
+    "100 units: revenue and variable costs agree",
+    "130 units: INR 5520 after promotion",
+    "130 units: revenue and variable costs agree",
+    "28-unit total promotion break-even",
+    "Exact break-even threshold: 27 negative, 28 positive",
+    "Seven-day scope and 100-unit target",
+    "Complete live destination is present",
+    "Net-profit exclusion is present",
+    "Two fresh live entry captures",
+    "screenshots/live/onboarding-mobile.png: capture SHA-256 matches",
+    "screenshots/live/onboarding-mobile.png: successful genuine entry with disclosure",
+    "screenshots/live/onboarding-desktop.png: capture SHA-256 matches",
+    "screenshots/live/onboarding-desktop.png: successful genuine entry with disclosure",
+    "Carousel PDF below LinkedIn's 100 MB document ceiling",
+    "LinkedIn PDF has seven pages",
+    "PDF page 1: 4:5",
+    "PDF page 1: exported slide is embedded",
+    "PDF page 2: 4:5",
+    "PDF page 2: exported slide is embedded",
+    "PDF page 3: 4:5",
+    "PDF page 3: exported slide is embedded",
+    "PDF page 4: 4:5",
+    "PDF page 4: exported slide is embedded",
+    "PDF page 5: 4:5",
+    "PDF page 5: exported slide is embedded",
+    "PDF page 6: 4:5",
+    "PDF page 6: exported slide is embedded",
+    "PDF page 7: 4:5",
+    "PDF page 7: exported slide is embedded",
+    "Final PDF page has clickable product link",
+    "PDF invitation link covers the revised visible CTA",
+    "Six-page 55-second storyboard",
+    "Storyboard page 1: honest video boundary",
+    "Storyboard page 1: text within horizontal bounds; overflow=[]",
+    "Storyboard page 2: honest video boundary",
+    "Storyboard page 2: text within horizontal bounds; overflow=[]",
+    "Storyboard page 3: honest video boundary",
+    "Storyboard page 3: text within horizontal bounds; overflow=[]",
+    "Storyboard page 4: honest video boundary",
+    "Storyboard page 4: text within horizontal bounds; overflow=[]",
+    "Storyboard page 5: honest video boundary",
+    "Storyboard page 5: text within horizontal bounds; overflow=[]",
+    "Storyboard page 6: honest video boundary",
+    "Storyboard page 6: text within horizontal bounds; overflow=[]"
+  ],
+  "inventory": [
+    {
+      "file": ".gitattributes",
+      "bytes": 59,
+      "sha256": "94b52a20dc20986937dd9fcecf6dcb095e4b205ee76873567b6f1a222f381ec6"
+    },
+    {
+      "file": ".gitignore",
+      "bytes": 27,
+      "sha256": "2f21d2245886c2ee7c64b5b515976d29bad0baed47b5fb9e23ff8779179a4393"
+    },
+    {
+      "file": "assets/breakfast.webp",
+      "bytes": 71874,
+      "sha256": "8bb76bf6a26ba4fd50dfdb9c155936624caa9dc8fd063db6a90bfed9fe38315c"
+    },
+    {
+      "file": "assets/dosa-vendor.webp",
+      "bytes": 133684,
+      "sha256": "b0e6bb2b27d454a6a5796cd8ef3c38ce268a6051497fe185940276e5d0996f97"
+    },
+    {
+      "file": "assets/ooty-stall.webp",
+      "bytes": 281468,
+      "sha256": "4f427c905b61a5fe5dd0c3c9fae6a487689ae77f70a07486433b61ec293f608b"
+    },
+    {
+      "file": "CREDITS.md",
+      "bytes": 3134,
+      "sha256": "75525bf613a0d2b67cfd3630e63241c5cd6cd4515d9342741d8a050907f0f1dc"
+    },
+    {
+      "file": "demo-storyboard.md",
+      "bytes": 4884,
+      "sha256": "020c4103f80b05371b0ea7b5a340edf9a2f0f47bcadc5ee6419844959b1b6670"
+    },
+    {
+      "file": "demo-storyboard.pdf",
+      "bytes": 9737441,
+      "sha256": "91dfa5895fe5740544ef5670c72c4d186dca20da22c3adeb734cf08ae5aca8b1"
+    },
+    {
+      "file": "EVIDENCE.md",
+      "bytes": 7675,
+      "sha256": "b2417ad4007d333b74cf312b6f68d38b58b9583b880a332297f49e942a7854fa"
+    },
+    {
+      "file": "linkedin-caption.md",
+      "bytes": 1398,
+      "sha256": "3f7046fffad03b659f149d3c8e85b898f98f510f3c5892f0558065a9735a0134"
+    },
+    {
+      "file": "linkedin-cover.png",
+      "bytes": 1814500,
+      "sha256": "968072b1d22fc77cf37398d622bc83240823514e141c5b23b21b45065b68bfca"
+    },
+    {
+      "file": "package-lock.json",
+      "bytes": 20622,
+      "sha256": "a8b360fb4600f79806b7549eff3d2d464ca190eb71b614a0fbca8addf5bdeed9"
+    },
+    {
+      "file": "package.json",
+      "bytes": 476,
+      "sha256": "5234d655cebed402653e2691226c27f8bc3675901f7f48fcae0d027637a5b8b1"
+    },
+    {
+      "file": "previews/carousel-contact-sheet.png",
+      "bytes": 962592,
+      "sha256": "c51a83d14592f72c05d5bcbc0077de5e80d2b4bafc3869329f7b79428af8f4c6"
+    },
+    {
+      "file": "previews/mobile-320/01-big-possibility.png",
+      "bytes": 165327,
+      "sha256": "43c669bd3b80469df84c0f79c68d550371e6034fb23fddb552fc9f3654111e5e"
+    },
+    {
+      "file": "previews/mobile-320/02-meet-ravi.png",
+      "bytes": 172310,
+      "sha256": "d530b22ed1eedcde39f3c8f1ed64b38f0560bc62054c696e23f54685293db08e"
+    },
+    {
+      "file": "previews/mobile-320/03-more-direction.png",
+      "bytes": 84906,
+      "sha256": "ccced2709a17bd3e3a3dcd22881476f8d9eb54c94b9d9c4c49a9ee6625720cae"
+    },
+    {
+      "file": "previews/mobile-320/04-discover-to-learn.png",
+      "bytes": 114995,
+      "sha256": "b0e586ae42b3aeb42ad88c375599218a1ff437f14d72ec90c4d7d9bd60e56045"
+    },
+    {
+      "file": "previews/mobile-320/05-combo-evaluation.png",
+      "bytes": 81482,
+      "sha256": "7d506ffcfaab62ff7aa206ba0a614cb14b202802daf72a144a7a1ebfa612fb15"
+    },
+    {
+      "file": "previews/mobile-320/06-outcomes-and-learning.png",
+      "bytes": 75220,
+      "sha256": "65aba92748c981aa6e4fb8749ae4a1d28b036e88adbfb01af5066e7383658354"
+    },
+    {
+      "file": "previews/mobile-320/07-explore-udaan.png",
+      "bytes": 80332,
+      "sha256": "19ba8c6d9747dfa22236fee4176330fe0dd695f276179476721dc3749c3c9e62"
+    },
+    {
+      "file": "previews/mobile-390/01-big-possibility.png",
+      "bytes": 232742,
+      "sha256": "1891dfffbbcf20620a0ad7a00d993abd51d106419788b5327794608c38ef02db"
+    },
+    {
+      "file": "previews/mobile-390/02-meet-ravi.png",
+      "bytes": 242854,
+      "sha256": "1af0154a25d6fe8d452cf7d9eed4eb976510a8ff6972489b1bf2d6e5c8104e1a"
+    },
+    {
+      "file": "previews/mobile-390/03-more-direction.png",
+      "bytes": 111769,
+      "sha256": "14f5303bcb2d3d96db4b0d378aa33d025d146a829a2925ef9a9702284156d6e1"
+    },
+    {
+      "file": "previews/mobile-390/04-discover-to-learn.png",
+      "bytes": 156022,
+      "sha256": "718ba61aa42407179f7dc523899070217a186f498efeb86ba75c0395333529bb"
+    },
+    {
+      "file": "previews/mobile-390/05-combo-evaluation.png",
+      "bytes": 108563,
+      "sha256": "287d8efeb3aa75c70fa7b973c99f74e447628dd030e65f3ec8f484925f8f0b30"
+    },
+    {
+      "file": "previews/mobile-390/06-outcomes-and-learning.png",
+      "bytes": 98570,
+      "sha256": "7080cd7c01bde94608e7084bdc4df973175eac62c9de81b73d0956988d4fb3c6"
+    },
+    {
+      "file": "previews/mobile-390/07-explore-udaan.png",
+      "bytes": 105263,
+      "sha256": "e46b0d40a0eb1fb2594b1fbbfd234f9fe678db364cf989841204127f25831b4f"
+    },
+    {
+      "file": "previews/storyboard-contact-sheet.png",
+      "bytes": 249671,
+      "sha256": "1b9683929ca4be98618e6cfd5c62ae734b786ea90dca0a26fb7b55924485580b"
+    },
+    {
+      "file": "README.md",
+      "bytes": 6948,
+      "sha256": "8a9efa7b0049a17d80f1e05608dc375944a2556e116e0ac47c46940bd8f79d41"
+    },
+    {
+      "file": "requirements.txt",
+      "bytes": 48,
+      "sha256": "dfd9d29b5bb9b09a76b4d1a428c563c827dfd75cef2718647f08cb2e87cff856"
+    },
+    {
+      "file": "screenshots/crops/ask-udaan.png",
+      "bytes": 44882,
+      "sha256": "fa3f3b2cd5758dbeb00765154788ea5874a7c4318d519f264946a98124fd2cfc"
+    },
+    {
+      "file": "screenshots/crops/business-insights.png",
+      "bytes": 23948,
+      "sha256": "02349013bd9db0c7f8c2df4ac91e811756f612295db2306717c125d88a19561b"
+    },
+    {
+      "file": "screenshots/crops/combo-discovery.png",
+      "bytes": 208246,
+      "sha256": "23fc4ce608e364d781b3b7bdfaf58a28421d3c31befba51d99ed9f9c981e5304"
+    },
+    {
+      "file": "screenshots/crops/experiment-evaluation.png",
+      "bytes": 32329,
+      "sha256": "4a13450c70c547286b39d5dca5351bacc5043a3b0ef3727aa29616904479058a"
+    },
+    {
+      "file": "screenshots/crops/finance-table.png",
+      "bytes": 15486,
+      "sha256": "6592998f2af8c1a88ce1c54573cfc4a5fc5de8a0c6ff43ae53bb9e431e03b336"
+    },
+    {
+      "file": "screenshots/crops/home-top.png",
+      "bytes": 267136,
+      "sha256": "7826bb6622e078ee86f490dc4c2d0895dedba87e9231a9fe96ba306543cadf6a"
+    },
+    {
+      "file": "screenshots/crops/learning-130.png",
+      "bytes": 25464,
+      "sha256": "c99128483a7339c6849f2c65d9082ef480f473c49e39b36d24e8851132d630de"
+    },
+    {
+      "file": "screenshots/crops/learning-70.png",
+      "bytes": 25140,
+      "sha256": "e96e20be479a4ca91602f6c660016100f7f32cb3fc11750a0e85420a4fe2600d"
+    },
+    {
+      "file": "screenshots/crops/live-onboarding-hero.png",
+      "bytes": 131573,
+      "sha256": "05c7474e284315ebf6247c8e5df3d0ff2f34419157ebf9e98febbe36e83192c2"
+    },
+    {
+      "file": "screenshots/crops/reasoning-excerpt.png",
+      "bytes": 26240,
+      "sha256": "e2415b88c5efe2247411b101712f9e12126df2918fa2ccb605478c7199a31809"
+    },
+    {
+      "file": "screenshots/live/capture.json",
+      "bytes": 2218,
+      "sha256": "dfdb7b0d74c694ef57b359b960ae682ed279b68d60d02e00af33e869341a63d5"
+    },
+    {
+      "file": "screenshots/live/onboarding-desktop.png",
+      "bytes": 310516,
+      "sha256": "385f8130c68911c94d2b80f4556adeaf943ae9b43853288220c305461bd06bf4"
+    },
+    {
+      "file": "screenshots/live/onboarding-mobile.png",
+      "bytes": 262036,
+      "sha256": "743fbea6e2061574f4c11c4158e9d1ad735222d5c0b50c930ae0824bc2078d13"
+    },
+    {
+      "file": "screenshots/release-candidate/07-demo-conversation.png",
+      "bytes": 223880,
+      "sha256": "53534b2107f12482a3fdf0574c808fbf1150f3febc5f4179c172387b1bbfdbee"
+    },
+    {
+      "file": "screenshots/release-candidate/10-learning-low.png",
+      "bytes": 237477,
+      "sha256": "bae40b64c040020ed4be5caf7a86fe9eab18c4596ac68bbf3cf75592b08557f5"
+    },
+    {
+      "file": "screenshots/release-candidate/11-learning-high.png",
+      "bytes": 224990,
+      "sha256": "db502a7e009ae07f16d0d94522a8120e6996674fb209d23bcf46b5622755d68f"
+    },
+    {
+      "file": "screenshots/release-candidate/home-en-390.png",
+      "bytes": 382529,
+      "sha256": "3059b3d7b4a87a0806acf11331a2dab11e1aedd4dd1f7ed5a26f9699b25f10d0"
+    },
+    {
+      "file": "slides/01-big-possibility.png",
+      "bytes": 4087705,
+      "sha256": "e4fb6c6b80360fa3fbf2324a893526bfa06bd33162f1b5a82d0bd4a70c8741ce"
+    },
+    {
+      "file": "slides/02-meet-ravi.png",
+      "bytes": 4821744,
+      "sha256": "537c85e378596352927e179e5445818aac7f459fed183522eae065dd535d22af"
+    },
+    {
+      "file": "slides/03-more-direction.png",
+      "bytes": 1078108,
+      "sha256": "da3bb4d30aa0538a2c5a2e815f127ae3a2e742dc4e13b718b85ae7b965b99501"
+    },
+    {
+      "file": "slides/04-discover-to-learn.png",
+      "bytes": 1684894,
+      "sha256": "47090c9eee13782de6c3b5f7268a1faf8ee319dec7a701dfb207e2211c840f0b"
+    },
+    {
+      "file": "slides/05-combo-evaluation.png",
+      "bytes": 1113143,
+      "sha256": "dcfb8a2061c352d06b3983ae0ec4b7fd012381a0f54f2f4f856e57900f616000"
+    },
+    {
+      "file": "slides/06-outcomes-and-learning.png",
+      "bytes": 456325,
+      "sha256": "58c87b2950dea405ee99ab70d9dc7798936b2cfa888ba1f543dc8e92d9086d0c"
+    },
+    {
+      "file": "slides/07-explore-udaan.png",
+      "bytes": 696297,
+      "sha256": "764806d943bcf183d64ba2a4cbf5cec98505f115cf1e89b34c40dc1f73bbf8c5"
+    },
+    {
+      "file": "source/01-big-possibility.svg",
+      "bytes": 440627,
+      "sha256": "6f1fa652a4182849e717429a7a58d891a05941ba6ec7a5809dfc74a14cf6cef5"
+    },
+    {
+      "file": "source/02-meet-ravi.svg",
+      "bytes": 751103,
+      "sha256": "9a4edb3c99fbe7c0c56733d795f98e67a976ba53fbefcf4626d75892c4cd6bc4"
+    },
+    {
+      "file": "source/03-more-direction.svg",
+      "bytes": 39117,
+      "sha256": "4f88a85930f4d22886c866da8564a57305a302087fe94ebfa68a471f11445651"
+    },
+    {
+      "file": "source/04-discover-to-learn.svg",
+      "bytes": 283620,
+      "sha256": "40b73d8d12aa67bd2493d20f324af59ba3c272bf2afe0133b3a4e4abd0975236"
+    },
+    {
+      "file": "source/05-combo-evaluation.svg",
+      "bytes": 285723,
+      "sha256": "fe3b07ff1c6c79d710adfd56cc3e47ea5f13c265a1da0c89afb3e5691b440665"
+    },
+    {
+      "file": "source/06-outcomes-and-learning.svg",
+      "bytes": 5331,
+      "sha256": "dce19ba83d607744a676c14322cf0d80369aa6203adcaa9a7b8d5c11f390b460"
+    },
+    {
+      "file": "source/07-explore-udaan.svg",
+      "bytes": 179216,
+      "sha256": "6ece6fc9d0bb698f8fd3fcbef5cda3e660cba54dce29bef61fcf79f99667714b"
+    },
+    {
+      "file": "source/bounds-check.json",
+      "bytes": 451,
+      "sha256": "14a6d68fce2a482564a6c23d17bcf1d356f1d285a91e5c1ce28e7b8b22b6bdc8"
+    },
+    {
+      "file": "source/design.json",
+      "bytes": 4230,
+      "sha256": "6794c24947da154c129b02b04166881f35be04a20165d3554b528cd467dcd190"
+    },
+    {
+      "file": "source/linkedin-cover.svg",
+      "bytes": 439639,
+      "sha256": "2a37d6ec1ece35ad89ba47dafcb91714701ac272e0d0a5290a3bb6968cf384c2"
+    },
+    {
+      "file": "tools/author.mjs",
+      "bytes": 15287,
+      "sha256": "dea51645189eb20ebfe917450524005f2a81610538350841f5c7ca506fa7aadd"
+    },
+    {
+      "file": "tools/bounds.mjs",
+      "bytes": 1535,
+      "sha256": "15d2e018e0ab1fc69680e0c047f04a7afa2c3104443601ee9886bdacbb95af09"
+    },
+    {
+      "file": "tools/capture.mjs",
+      "bytes": 2790,
+      "sha256": "1e38bafa13a4c3ee6b485646c5067a085e314ecb0763ec3798a11079619b7eca"
+    },
+    {
+      "file": "tools/export_pdf.py",
+      "bytes": 3520,
+      "sha256": "f22413b69d4b959d930b8a2a8e5ad849289f59d69bd84b7a383a7d62d3cd928b"
+    },
+    {
+      "file": "tools/render.mjs",
+      "bytes": 1774,
+      "sha256": "8ac2415f7dcc58178a3d57155b814e20298939d23665e13510bc7e7eede7a15b"
+    },
+    {
+      "file": "tools/validate.py",
+      "bytes": 7568,
+      "sha256": "88fbf34cd7b709b82d5084c1cc0eab26a21fcd06c524eed7b83dc5fe1fd65fcc"
+    },
+    {
+      "file": "udaan-linkedin-carousel.pdf",
+      "bytes": 15658932,
+      "sha256": "0f9177fc21298d4bf7a4243e24685ea074683bf7b081f23c031c979a899e0dbb"
+    },
+    {
+      "file": "VALIDATION.md",
+      "bytes": 7313,
+      "sha256": "782cf6d92e6be953ccf0857deaab5f92befe3628cb2c5d5c7d5c6f0e202e05fa"
+    }
+  ]
+}

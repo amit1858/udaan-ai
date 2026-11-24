@@ -1,7 +1,7 @@
 # Product demo credits
 
-The current narrated review copy uses genuine isolated local-prototype footage
-and approved Sarvam speech. Earlier silent cuts are preserved. Ravi, Udaan
+The approved final videos use genuine isolated local-prototype footage
+and approved Sarvam speech. Earlier silent/review cuts are preserved. Ravi, Udaan
 Breakfast House and all business data are fictional/illustrative.
 
 ## Photograph
@@ -16,7 +16,7 @@ portrait edit. It is an illustrative serving, not a photograph of Ravi's cafe.
 Credit is retained in the app and burned into the edit.
 
 The video/visual adaptation is licensed under CC BY-SA 4.0; current delivery is
-private pending final review/publication approval. Original
+private; listening approval does not grant public publication approval. Original
 application software and trademarks retain their respective rights; font files
 retain their OFL license. No endorsement is implied.
 
@@ -37,7 +37,7 @@ the edit in `fonts\Sora-OFL.txt` and `fonts\DMSans-OFL.txt`.
 
 ## Audio
 
-The narrated review copy contains genuine **Sarvam Bulbul v3 / Shubh / en-IN**
+The final videos contain genuine **Sarvam Bulbul v3 / Shubh / en-IN**
 catalog speech generated under the user's explicit one-request, existing-credit
 and commercial-use approval. This is post-production, not a production-app
 integration or cloned person's voice. The original provider WAV is preserved;

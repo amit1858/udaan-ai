@@ -7,7 +7,7 @@ from pathlib import Path
 import zipfile
 
 
-def run(artifacts, output):
+def run(artifacts, output, final=False):
     repo = Path(__file__).resolve().parents[3]
     if output.exists() or output.resolve() == repo or repo in output.resolve().parents:
         raise ValueError("Use a new ZIP outside the repository.")
@@ -23,18 +23,26 @@ def run(artifacts, output):
         (artifacts / "gnani-voice" / "voice-usage.json", "usage/gnani-sample-usage.json"),
         (artifacts / "gnani-voice-final" / "voice-usage.json", "usage/gnani-full-usage.json"),
     ]
-    for name in ("udaan-narrated-review-cut.mp4", "cover.png", "narration.srt",
-                 "mixed-narration.wav", "validation.json"):
-        entries.append((artifacts / "narrated-cut-01" / name, "narrated/" + name))
+    edit = "final-cut-01" if final else "narrated-cut-01"
+    video = "udaan-linkedin.mp4" if final else "udaan-narrated-review-cut.mp4"
+    validation = json.loads((artifacts / edit / "validation.json").read_text())
+    if final and validation["status"] != "final-private-narrated-user-reviewed":
+        raise ValueError("Final packaging requires the approved final export.")
+    if hashlib.sha256((artifacts / edit / video).read_bytes()).hexdigest() != validation["output_sha256"]:
+        raise ValueError("Video differs from its validated export.")
+    videos = [video, "udaan-landscape.mp4"] if final else [video]
+    for name in (*videos, "cover.png", "narration.srt", "mixed-narration.wav", "validation.json"):
+        entries.append((artifacts / edit / name, "narrated/" + name))
     for name in ("Sora.ttf", "DMSans.ttf", "Sora-OFL.txt", "DMSans-OFL.txt"):
         entries.append((artifacts / "video-fonts" / name, "fonts/" + name))
-    for image in sorted((artifacts / "narrated-cut-01").glob("qa-*-320.png")):
+    for image in sorted((artifacts / edit).glob("qa-*-320.png")):
         entries.append((image, "review/" + image.name))
     for source in sorted((repo / "marketing" / "product-demo-video").rglob("*")):
         if source.is_file() and source.suffix in (".py", ".ps1", ".mjs", ".md", ".txt", ".json") \
                 and not any(part in ("node_modules", "__pycache__") for part in source.parts):
             entries.append((source, source.relative_to(repo).as_posix()))
-    manifest = {"status": "private-narrated-review-listening-approval-pending", "files": []}
+    manifest = {"status": ("final-private-delivery-user-reviewed" if final
+                            else "private-narrated-review-listening-approval-pending"), "files": []}
     with zipfile.ZipFile(output, "x", compression=zipfile.ZIP_DEFLATED) as archive:
         for source, name in entries:
             data = source.read_bytes()
@@ -43,7 +51,8 @@ def run(artifacts, output):
                                       "sha256": hashlib.sha256(data).hexdigest()})
         archive.writestr("manifest.json", json.dumps(manifest, indent=2) + "\n")
         archive.writestr("READ-ME.txt",
-            "PRIVATE REVIEW COPY: listening/final sign-off pending. No public video publication.\n"
+            ("PRIVATE FINAL DELIVERY: user listening approval received. No public video publication.\n"
+             if final else "PRIVATE REVIEW COPY: listening/final sign-off pending. No public video publication.\n") +
             "Genuine local prototype; fictional business and illustrative results.\n"
             "See marketing/product-demo-video/FINAL_REVIEW.md and CREDITS.md.\n"
             "Original recorder filename and evidence are preserved in recording/.\n"
@@ -51,6 +60,7 @@ def run(artifacts, output):
             "Rebuild with scripts/build-narrated-cut.py using --recording recording --voice voice\n"
             "--fonts fonts --timing marketing/product-demo-video/narration-timing.json,\n"
             "--output a NEW OUTSIDE directory and --ffmpeg your existing ffmpeg.exe.\n"
+            + ("Use --final-approved --landscape only after obtaining listening approval.\n" if final else "") +
             "No API call is needed. Existing synthesis approvals are exhausted.\n"
             "No credentials, private entry diagnostics, database, runtime or node_modules included.\n")
     with zipfile.ZipFile(output) as archive:
@@ -66,5 +76,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--artifacts", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--final", action="store_true")
     args = parser.parse_args()
-    run(args.artifacts.resolve(), args.output.resolve())
+    run(args.artifacts.resolve(), args.output.resolve(), args.final)

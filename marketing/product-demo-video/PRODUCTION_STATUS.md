@@ -1,13 +1,16 @@
 # Product demo production status
 
-The current deliverable is a **73-second Sarvam-narrated review copy**, with
+The current deliverable is an **approved 73-second Sarvam-narrated private final
+video**, with portrait and landscape formats,
 genuine local footage, SRT, cover and repeatable offline build. The user explicitly
 switched providers and approved one request up to Rs5 of existing credits.
 It succeeded: original narration is 59.232 seconds, published estimate Rs3.072
 excluding GST, actual debit unverified. No further synthesis is authorized.
 Both provider credentials were removed. See FINAL_REVIEW.md and SARVAM_RESEARCH.md.
 
-Listening/final sign-off remains open. Earlier silent-cut/Gnani sections below
+The user selected **Approve the review copy** after the explicit listening and
+caption-timing prompt. Final files are in `final-cut-01`; see FINAL_REVIEW.md.
+Earlier silent-cut/Gnani sections below
 are preserved historical evidence. Gnani's two attempts are exhausted and no
 Gnani WAV exists; that is not a blocker to the successful Sarvam edit.
 No further production application/database interaction, new paid infrastructure

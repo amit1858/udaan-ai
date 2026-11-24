@@ -1,17 +1,17 @@
 # Udaan AI product demonstration
 
-The genuine local journey now has a **73-second Sarvam-narrated review copy**,
-cover, spoken-text SRT and repeatable offline FFmpeg build. The user explicitly
+The genuine local journey now has **approved 73-second Sarvam-narrated portrait
+and landscape videos**, cover, spoken-text SRT and repeatable offline FFmpeg build. The user explicitly
 switched providers; one approved request produced a genuine 59.232-second WAV.
-No further API call is authorized or needed. Listening/final sign-off remains
-open; the video is not publicly published. The earlier silent cut and exhausted
+No further API call is authorized or needed. The user approved listening and
+caption timing; all media remains private. The earlier silent cut and exhausted
 Gnani attempts are preserved, not overwritten.
 
 See [PRODUCTION_STATUS.md](PRODUCTION_STATUS.md) for current evidence, artifact
 paths and blockers. Earlier planning gates below are historical where later
 direct user authorization superseded them.
 
-See [FINAL_REVIEW.md](FINAL_REVIEW.md) for the current narrated assets, actual QA,
+See [FINAL_REVIEW.md](FINAL_REVIEW.md) for the final private assets, actual QA,
 private delivery boundary and build command, and
 [SARVAM_RESEARCH.md](SARVAM_RESEARCH.md) for the official API, cost and rights.
 

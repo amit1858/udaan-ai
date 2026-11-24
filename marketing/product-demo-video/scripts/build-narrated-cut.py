@@ -1,4 +1,4 @@
-"""Build a private, review-ready narrated edit without network or provider calls."""
+"""Build a private narrated edit without network or provider calls."""
 
 import argparse
 import importlib.util
@@ -115,7 +115,8 @@ def run(args):
         duration = target + (0.1 if name != "closing" else 0)
         phase, y = settings.get(name, (phase, 0))
         ass, _ = rough.overlays(duration, phase, "", closing=name == "closing",
-                                status_label="NARRATED CUT / REVIEW COPY")
+                                status_label=("SARVAM POST-PRODUCTION NARRATION" if args.final_approved
+                                              else "NARRATED CUT / REVIEW COPY"))
         if name == "opening":
             ass += (f"Dialogue: 0,0:00:00.00,{rough.stamp(duration, True)},Brand,,0,0,0,,"
                     r"{\an5\pos(540,390)\fs106}Udaan {\c&HFFC65C&}AI" + "\n" +
@@ -185,7 +186,7 @@ def run(args):
                        f"offset={timeline[i]['edit_start']:.6f}[{label}]")
         previous = label
     filters.append(f"[{previous}]ass=spoken-captions.ass:fontsdir=fonts[video]")
-    target = "udaan-narrated-review-cut.mp4"
+    target = "udaan-linkedin.mp4" if args.final_approved else "udaan-narrated-review-cut.mp4"
     invoke(args.ffmpeg, [*command, "-filter_complex", ";".join(filters),
         "-map", "[video]", "-map", f"{len(files)}:a", "-t", str(timing["duration_seconds"]),
         "-c:v", "libx264", "-preset", "fast", "-crf", "20", "-threads", "2",
@@ -210,13 +211,54 @@ def run(args):
             invoke(args.ffmpeg, ["-v", "error", "-ss", str(second), "-i", target,
                    "-vf", f"scale={width}:-2", "-frames:v", "1", f"qa-{label}-{width}.png"], output)
     shutil.copy2(output / "qa-finance-1080.png", output / "cover.png")
-    report = {"status": "narrated-review-copy-listening-review-pending", "duration": probe["format"]["duration"],
+    report = {"status": ("final-private-narrated-user-reviewed" if args.final_approved
+                         else "narrated-review-copy-listening-review-pending"),
+              "listening_approval": ("User selected Approve the review copy on 24 November 2026."
+                                    if args.final_approved else "pending"),
+              "duration": probe["format"]["duration"],
               "provider_requests_during_edit": 0, "raw_video_sha256": rough.digest(raw),
               "raw_audio_sha256": rough.digest(audio), "output_sha256": rough.digest(output / target),
               "caption_method": timing["method"], "encoded_loudness": final_audio,
               "caption_count": len(cues), "max_caption_cps": max(len(t.replace("\n", " ")) / (b-a) for a,b,t in cues),
               "decoded_complete": True, "timeline": timeline,
               "editing": "6% pitch-preserving tempo reduction; four-second approval pause; 100ms dissolves; original media untouched."}
+    if args.landscape:
+        landscape_ass = """[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Side,Sora,40,&H00F5EDE8,&H00F5EDE8,&H000D0705,&H000D0705,0,0,0,0,100,100,0,0,1,0,0,7,64,64,64,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+"""
+        finish = rough.stamp(timing["duration_seconds"], True)
+        for text in (
+            r"{\pos(64,140)\fs68}Udaan {\c&HFFC65C&}AI",
+            r"{\pos(64,330)}Small decisions.\NInformed experiments.",
+            r"{\pos(1455,155)\fs36\c&HFFC65C&}DISCOVER\N\NEXPLORE\N\NEVALUATE\N\NTRY\N\NMEASURE\N\NLEARN",
+        ):
+            landscape_ass += f"Dialogue: 0,0:00:00.00,{finish},Side,,0,0,0,,{text}\n"
+        (output / "landscape.ass").write_text(landscape_ass, encoding="utf-8-sig")
+        invoke(args.ffmpeg, ["-v", "error", "-i", target, "-vf",
+            "scale=864:1080:flags=lanczos,pad=1920:1080:528:0:color=0x05070D,ass=landscape.ass:fontsdir=fonts",
+            "-c:v", "libx264", "-preset", "fast", "-crf", "20", "-threads", "2",
+            "-pix_fmt", "yuv420p", "-c:a", "copy", "-movflags", "+faststart", "udaan-landscape.mp4"], output)
+        invoke(args.ffmpeg, ["-v", "error", "-i", "udaan-landscape.mp4", "-f", "null", "-"], output)
+        landscape_info = json.loads(subprocess.check_output([
+            str(args.ffmpeg.with_name("ffprobe.exe")), "-v", "error", "-show_streams",
+            "-show_format", "-of", "json", str(output / "udaan-landscape.mp4")]))
+        picture = next(s for s in landscape_info["streams"] if s["codec_type"] == "video")
+        if (picture["width"], picture["height"], picture["codec_name"], picture["pix_fmt"]) \
+                != (1920, 1080, "h264", "yuv420p") or \
+                abs(float(landscape_info["format"]["duration"]) - timing["duration_seconds"]) > .06:
+            raise ValueError("Landscape geometry/codec/timing failed.")
+        report["landscape"] = {"sha256": rough.digest(output / "udaan-landscape.mp4"),
+                               "aspect": "4:5 picture preserved at 864x1080; branded side panels, no stretching",
+                               "decoded_complete": True}
+        invoke(args.ffmpeg, ["-v", "error", "-ss", "49", "-i", "udaan-landscape.mp4",
+                            "-frames:v", "1", "qa-landscape.png"], output)
     (output / "validation.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({k:v for k,v in report.items() if k != "timeline"}, indent=2))
 
@@ -225,4 +267,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("recording", "voice", "fonts", "timing", "output", "ffmpeg"):
         parser.add_argument("--" + name, type=Path, required=True)
+    parser.add_argument("--final-approved", action="store_true",
+                        help="Only after the operator has obtained listening/final review approval.")
+    parser.add_argument("--landscape", action="store_true")
     run(parser.parse_args())

@@ -1,7 +1,7 @@
 {
   "audio_sha256": "0cb92cb6af5732292be91b7cf15b5063f2eecb5257c0937f95e01017f144c7e7",
   "script_sha256": "ad70c78f729f02939422b8ccfcb78f4483ee5bb1c640b5a3cf0a1002351df565",
-  "method": "Pause-guided editorial phrase timing, supported by low-confidence offline Microsoft dictation. Not verified word-perfect forced alignment; listening review remains required.",
+  "method": "Pause-guided editorial phrase timing, supported by low-confidence offline Microsoft dictation. Not word-perfect forced alignment. User listening/pronunciation and caption-timing sign-off received 24 November 2026.",
   "numerals": "Spoken rupee amounts and counts use equivalent Rs/numeral subtitle notation.",
   "intro_seconds": 1.5,
   "tempo": 0.94,

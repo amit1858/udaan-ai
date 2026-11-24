@@ -1,0 +1,9 @@
+scripts/node_modules/
+__pycache__/
+recording/
+audio/
+output/
+*.partial
+.env
+.env.*
+!.env.example

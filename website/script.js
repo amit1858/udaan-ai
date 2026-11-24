@@ -103,4 +103,49 @@
       document.getElementById('outcomeAdvice').textContent = scenarios[units][1];
     });
   });
+
+  const carousel = document.getElementById('carouselTrack');
+  const slides = [...carousel.querySelectorAll('figure')];
+  const previous = document.getElementById('carouselPrev');
+  const next = document.getElementById('carouselNext');
+  const status = document.getElementById('carouselStatus');
+  let activeSlide = 0;
+  let scrollFrame;
+  function updateCarousel() {
+    const offsets = slides.map(slide => slide.offsetLeft - slides[0].offsetLeft);
+    activeSlide = offsets.reduce((nearest, offset, index) =>
+      Math.abs(offset - carousel.scrollLeft) < Math.abs(offsets[nearest] - carousel.scrollLeft) ? index : nearest, 0);
+    // At desktop widths several cards remain visible at the end of the track.
+    const atEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 2;
+    previous.disabled = carousel.scrollLeft <= 2;
+    next.disabled = atEnd;
+    status.textContent = atEnd ? 'End of 7 slides' : `Slide ${activeSlide + 1} of 7`;
+  }
+  function moveCarousel(direction) {
+    const index = Math.max(0, Math.min(slides.length - 1, activeSlide + direction));
+    carousel.scrollTo({
+      left: slides[index].offsetLeft - slides[0].offsetLeft,
+      behavior: reducedMotion ? 'instant' : 'smooth'
+    });
+  }
+  previous.addEventListener('click', () => moveCarousel(-1));
+  next.addEventListener('click', () => moveCarousel(1));
+  carousel.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      moveCarousel(event.key === 'ArrowRight' ? 1 : -1);
+    }
+  });
+  carousel.addEventListener('scroll', () => {
+    cancelAnimationFrame(scrollFrame);
+    scrollFrame = requestAnimationFrame(updateCarousel);
+  }, { passive: true });
+  window.addEventListener('resize', updateCarousel);
+  document.querySelector('.carousel-controls').hidden = false;
+  updateCarousel();
+
+  const video = document.getElementById('productDemo');
+  const showPlaybackError = () => { document.getElementById('videoError').hidden = false; };
+  video.addEventListener('error', showPlaybackError);
+  video.querySelector('source').addEventListener('error', showPlaybackError);
 })();

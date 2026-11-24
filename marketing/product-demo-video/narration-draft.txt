@@ -1,0 +1,13 @@
+Meet Ravi, a fictional breakfast cafe owner in Bengaluru. He knows his customers. His next business decision feels less certain.
+
+Meet Udaan AI: a business companion designed to turn possibilities into small, informed experiments.
+
+Starting with Ravi's business context, let's explore a ninety-nine rupee breakfast combo. This prototype walkthrough uses Demo Mode.
+
+At forty-five rupees variable cost, and fifteen hundred rupees promotion, one hundred combos model thirty-nine hundred rupees contribution after promotion, before other overheads. Promotion breaks even at twenty-eight combos across the entire seven-day test.
+
+Ravi approves the experiment. Now, an illustrative result: seventy combos. That's twenty-two hundred and eighty rupees modeled contribution. Below target, but still positive. Udaan suggests a smaller local visibility test: a hypothesis to explore, not proof of what caused the shortfall.
+
+Discover. Explore. Evaluate. Try. Measure. Learn.
+
+Udaan AI. Every small business deserves a big possibility.

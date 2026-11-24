@@ -2,6 +2,55 @@
 
 Current showcase validation is separate from the recorded application release-candidate results.
 
+## Product Demo & Resources — 24 November 2026
+
+Validated the exact whitelisted deployment package under the `/udaan-ai/`
+project prefix, not only files in the source directory:
+
+- Static builder passed: two HTML pages, fifteen original story sections plus
+  resources, all local/anchor/srcset/poster links, image metadata, documented CTA,
+  approved download targets, 35 per-file hashes and fast-start MP4 atom order.
+- Original video, carousel PDF, portrait poster, promotional PNG and SRT match
+  the approved source masters. Seven PDF pages and both embedded live Replit
+  invitation links were verified with PyMuPDF.
+  Resource Git attributes prevent PDF/media/subtitle newline conversion; the
+  staged Git blobs were also checked against every approved asset hash.
+- Playwright/Chromium browser assertions reported **PASS** at
+  **1280, 956, 768, 390, 360 and 320px**. All three financial outcomes,
+  four languages, six original journey controls, mobile menu/Escape,
+  carousel keyboard/boundaries, seven slides, six genuine screens, image byte
+  decode, all resource downloads and zero page-wide overflow passed.
+- Browser download actions saved all six unique MP4/PDF/PNG/SRT/WebVTT files;
+  their bytes matched the approved manifest. PDF, MP4 and VTT MIME types passed.
+- Before interaction, the page made **zero MP4 and zero PDF requests** and video
+  remained paused. Native playback decoded successfully; duration **73.000s**,
+  seek to **72s**, **28 English caption cues**, no decoder error.
+- Video byte-range preview request returned **206**, exactly 16 requested bytes,
+  and `Content-Range: bytes 0-15/7073900`. This fixes the original development
+  preview's lack of seek support; the preview script is not deployed.
+- JavaScript-disabled verification retained all seven slides, native playback
+  controls, downloadable files and transcript. No external/application request
+  was permitted by the browser validation policy.
+- Desktop/mobile video and 320px carousel screenshots were visually reviewed.
+  The native financial poster and source credits remain uncropped; the separate
+  promotional cover is the approved 2400 × 1254 LinkedIn artwork.
+- Fixed and rechecked carousel snap padding, which initially prevented an exact
+  return to the first slide. The final browser report and screenshots are
+  preserved privately in `showcase-resources-qa-final/`. The Windows runner
+  emitted PASS and wrote the report; its residual process was explicitly stopped
+  afterward, rather than leaving owned test resources running.
+- Commercial Sarvam output licensing was rechecked against official guidance;
+  photo, adaptation, software and font boundaries are retained in `credits.html`.
+  No new generation, paid call, application interaction or deployment occurred.
+
+This is responsive Chromium validation, not a physical-device or full
+accessibility/Lighthouse audit. The static package is publication-ready, but
+this task does not merge a PR or dispatch Pages. Public destination:
+**https://amit1858.github.io/udaan-ai/#resources** after approved deployment.
+The previous public page was reachable; the new section is not yet claimed live.
+
+The older verification record below retains its historical scope and date.
+
 The application report at source checkpoint `ebe3c64` records 71 unit/persistence tests, seven browser journeys, lint/typecheck and two production builds. Those historical results were reviewed, not rerun here. No paid provider or speech calls were made.
 
 ## Executed showcase checks

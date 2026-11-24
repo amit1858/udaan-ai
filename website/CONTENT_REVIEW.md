@@ -1,5 +1,39 @@
 # Content and implementation-status review
 
+## Approved resource revision — 24 November 2026
+
+The owner explicitly requested the approved product video, carousel, cover and
+genuine screenshots for the public GitHub Pages showcase. The repository is now
+public. This revision prepares those static assets for publication, without
+merging or dispatching a deployment. Historical review statements below retain
+their original release-candidate scope/date; they are not a current assertion
+that the repository or Pages site is private/unpublished.
+
+The new `#resources` section includes the final 73-second approved portrait edit
+and its PNG cover/SRT unchanged. The unchanged seven-page PDF and uncropped
+responsive slide derivatives come from carousel commit
+`bb7843750a28a8f9cdc55290f68c8d4eb67b516a`.
+Six full-frame screenshots come from genuine local take 02 at handoff
+`de9283e1c8a1d08cf62fd9832e0d14df84749d43`, not fresh production captures.
+The local source, deterministic Demo Mode interactions and saved 70-unit result
+were recorded before this static task; no application is started or contacted.
+
+The 99/45/1500/7-day assumptions yield 2,280 contribution at 70 total units,
+after promotion and before overhead. The next 600-rupee visibility experiment
+is a hypothesis, not a proven cause or an observed customer outcome.
+The disclosure appears immediately before playback and throughout the resources.
+Post-production Sarvam narration is distinguished from the historical internal
+Voice Lab. Commercial licensing was rechecked against
+https://docs.sarvam.ai/api/getting-started/commercial-licensing on 24 Nov 2026:
+own-account credit-consuming generated output may be used commercially subject
+to terms. No further generation, account action, top-up or paid request occurred.
+
+Photo source/author/license and modification notices remain visible in the
+unchanged artwork/video and are repeated in `credits.html`. CC BY-SA 4.0 applies
+to the video/visual adaptation and photographic carousel compositions; unrelated
+software, marks, fonts and original screenshot rights are not relicensed.
+No raw recording, provider WAV, private runtime, credentials or database is added.
+
 ## Source of truth
 
 Reviewed GitHub source: `ebe3c64ba7db318749e4839478a5074d59f7a886`, frozen release candidate pushed on 22 November 2026. React/Vite frontend, Express/TypeScript API, SQLite migrations, contracts, tests, provider adapters, documentation and the existing static thesis are present. This confirms the reviewed source handoff, not an unpublished Replit filesystem comparison or production deployment.

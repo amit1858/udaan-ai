@@ -1,0 +1,7 @@
+*.pdf binary
+*.mp4 binary
+*.png binary
+*.webp binary
+*.srt binary
+*.vtt -text
+carousel-credits.md -text
